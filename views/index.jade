@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1.c-title #{title}
+
+  div.u-mbm
+    textarea#js-input.c-inputBox(type="text" placeholder="CSS")
+  div.u-mbm
+    input#js-url.c-urlBox(type="text" placeholder="URL" )
+  div.u-mbm
+    input#js-file.c-fileButton(type="file" value="Upload" multiple)
+
+  div.u-mbm
+    input#js-exe.c-button(type="button" value="StyleStats!")
+  
+  div.c-githubButtons
+    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20")
+    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20")
+    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20")

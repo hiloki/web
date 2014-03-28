@@ -1,11 +1,11 @@
 {
-    "name": "stylestats",
-    "version": "0.1.0-1",
-    "description": "StyleStatsSite",
-    "main": "web.js",
+    "name": "stylestats.org",
+    "version": "0.1.0",
+    "description": "StyleStats Official Site",
+    "main": "app.js",
     "scripts": {
         "test": "",
-        "start": "node web.js"
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",
@@ -14,7 +14,7 @@
     "keywords": [
         "CSS"
     ],
-    "author": "t32k",
+    "author": "Koji Ishimoto",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/stylestats/stylestats.org/issues"
@@ -24,8 +24,10 @@
         "node": "0.10.x"
     },
     "dependencies": {
-        "logfmt": "~1.0.0-pre2",
-        "express": "~3.4.8"
+        "logfmt": "~1.1.2",
+        "express": "~3.5.1",
+        "stylestats": "~3.2.1",
+        "jade": "*"
     },
-    "subdomain": "stylestats"
+    "subdomainpm n": "stylestats"
 }
