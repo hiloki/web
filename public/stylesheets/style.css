@@ -5,11 +5,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 .c-title  {
-	color: #666;
+	color: #999;
 	font-weight: 100;
+	margin: 100px 0 0;
 	font-size: 80px;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	line-height: 200px;
 }
 a {
   color: #00B7FF;
@@ -43,6 +43,8 @@ a {
 /* #2b9cce ~ #66bec8*/
 .c-button {
 	margin: 40px 0;
+	display: block;
+	width: 200px;
 	padding: 0 1em;
 	border: 0;
 	border-radius: 4px;
@@ -55,5 +57,7 @@ a {
 	background: #2b9cce;
 }
 .c-githubButtons {
+	border-top: 1px #eee solid;
+	padding-top: 20px;
 	margin: 200px 0 0;
 }
