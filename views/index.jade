@@ -3,15 +3,24 @@ extends layout
 block content
   h1.c-title #{title}
   p.u-mbm StyleStats is Node.js library to collect CSS statistics!
-  div.u-mbm
-    textarea#js-input.c-inputBox(type="text" placeholder="CSS")
-  div.u-mbm
-    input#js-url.c-urlBox(type="text" placeholder="URL" )
-  div.u-mbm
-    input#js-file.c-fileButton(type="file" value="Upload" multiple)
+
+  ul.c-tabs.u-cf
+    li.c-tabs-s-tab.is-active
+      a.block(href="#uri") URI
+    li.c-tabs-s-tab
+      a.block(href="#upload") File Upload
+    li.c-tabs-s-tab
+      a.block(href="#input") Direct Input
 
   div.u-mbm
-    input#js-exe.c-button(type="button" value="Check")
+    input#js-url.c-urlBox(type="text" value="http://t32k.me/" placeholder="URL")
+  div.u-mbm
+    input#js-file.c-fileButton(type="file" value="Upload" multiple)
+  div.u-mbm
+    textarea#js-input.c-inputBox(type="text" placeholder="CSS")
+
+  div.u-mbm
+    div#js-parse.c-button Parse
   
   div.c-githubButtons
     iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20")

@@ -4,6 +4,16 @@ body {
   padding: 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+a {
+	color: inherit;
+}
+.u-cf:before,
+.u-cf:after { 
+	content: "";
+	display: table !important;
+}
+.u-cf:after { clear: both; }
+
 .c-title  {
 	color: #999;
 	font-weight: 100;
@@ -11,16 +21,53 @@ body {
 	font-size: 80px;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-a {
-  color: #00B7FF;
+.c-tabs {
+	margin: 30px 0;
 }
+.c-tabs-s-tab {
+	float: left;
+	width: 200px;
+	text-indent: 1em;
+	font-size: 18px;
+	border-bottom: 3px #eee solid;
+	color: #999;
+}
+.c-tabs-s-tab.is-active {
+	border-bottom-color: #66bec8;
+}
+.c-tabs-s-tab > .block {
+	display: block;
+	text-decoration: none;
+	line-height: 40px;
+}
+
+.c-header-alpha  {
+	color: #999;
+	font-weight: 100;
+	margin: 10px;
+	font-size: 40px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.c-resultBox-s-box {
+	margin: 30px;
+}
+.c-resultBox-s-box > .header {
+	margin-bottom: 10px;
+
+}
+.c-resultBox-s-box > .result {
+	color: #999;
+	font-size: 45px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 
 .u-mbm {
 	margin-bottom: 20px;
 }
 .c-inputBox {
 	display: block;
-	width: 500px;
+	width: 580px;
 	border: 0;
 	padding: 0 1em;
 	line-height: 36px;
@@ -31,7 +78,7 @@ a {
 
 .c-urlBox {
 	display: block;
-	width: 500px;
+	width: 580px;
 	border: 0;
 	padding: 0 1em;
 	border-radius: 4px;
@@ -51,7 +98,21 @@ a {
 	background: #66bec8;
 	color: #fff; 
 	font-size: 18px;
+	height: 48px;
 	line-height: 48px;
+	text-align: center;
+	position: relative;
+}
+.c-button.is-loading:after {
+	position: absolute;
+	top: 10px;
+	left: 105px;
+	content: url("/images/loading-bars.svg");
+	display: block;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+
 }
 .c-button:hover {
 	background: #2b9cce;
