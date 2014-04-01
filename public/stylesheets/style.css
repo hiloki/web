@@ -7,58 +7,60 @@ body {
 a {
 	color: inherit;
 }
+select, button, input, textarea {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
 .u-cf:before,
-.u-cf:after { 
+.u-cf:after {
+	display: table !important; 
 	content: "";
-	display: table !important;
 }
 .u-cf:after { clear: both; }
 
 .c-title  {
+	margin: 100px 0 0;
 	color: #999;
 	font-weight: 100;
-	margin: 100px 0 0;
 	font-size: 80px;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.l-wrapper {
+	display: flex;
+}
+.l-painInput {
+	max-width: 600px;
+	position: fixed;
+}
+.l-painResult {
+	padding: 120px 30px 60px 630px;
+}
 .c-tabs {
+	display: flex;
 	margin: 30px 0;
 }
 .c-tabs-s-tab {
-	float: left;
 	width: 200px;
-	text-indent: 1em;
-	font-size: 18px;
 	border-bottom: 3px #eee solid;
 	color: #999;
+	text-indent: 1em;
+	font-size: 18px;
 }
 .c-tabs-s-tab.is-active {
 	border-bottom-color: #66bec8;
 }
 .c-tabs-s-tab > .block {
 	display: block;
+	padding: 10px 0;
 	text-decoration: none;
-	line-height: 40px;
 }
 
-.c-header-alpha  {
-	color: #999;
-	font-weight: 100;
-	margin: 10px;
-	font-size: 40px;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+.c-tabContents-s-tabContent {
+	display: none;
 }
-.c-resultBox-s-box {
-	margin: 30px;
-}
-.c-resultBox-s-box > .header {
-	margin-bottom: 10px;
-
-}
-.c-resultBox-s-box > .result {
-	color: #999;
-	font-size: 45px;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+.c-tabContents-s-tabContent.is-active {
+	display: block;
 }
 
 
@@ -67,58 +69,86 @@ a {
 }
 .c-inputBox {
 	display: block;
-	width: 580px;
-	border: 0;
 	padding: 0 1em;
-	line-height: 36px;
+	max-width: 580px;
+	height: 300px;
+	border: 0;
 	border-radius: 4px;
 	background: #eee;
-	height: 300px;
+	line-height: 36px;
 }
 
-.c-urlBox {
+.c-uriBox {
 	display: block;
-	width: 580px;
-	border: 0;
 	padding: 0 1em;
+	max-width: 580px;
+	height: 36px;
+	border: 0;
 	border-radius: 4px;
 	background: #eee;
 	line-height: 36px;
-	height: 36px;
 }
 
 /* #2b9cce ~ #66bec8*/
 .c-button {
-	margin: 40px 0;
+	position: relative;
 	display: block;
-	width: 200px;
+	margin: 40px 0;
 	padding: 0 1em;
+	max-width: 300px;
+	height: 48px;
 	border: 0;
 	border-radius: 4px;
 	background: #66bec8;
-	color: #fff; 
+	color: #fff;
+	text-align: center; 
 	font-size: 18px;
-	height: 48px;
 	line-height: 48px;
-	text-align: center;
-	position: relative;
 }
 .c-button.is-loading:after {
 	position: absolute;
 	top: 10px;
-	left: 105px;
-	content: url("/images/loading-bars.svg");
+	left: 145px;
 	display: block;
-	width: 20px;
+	max-width: 20px;
 	height: 20px;
+	content: url("/images/loading-bars.svg");
 	text-align: center;
 
 }
+.c-resultBox {
+	color: #999;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.c-resultBox-s-item {
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+.c-resultBox-s-item em {
+	color: #66bec8;
+	font-weight: bold;
+	font-size: 60px;
+}
+.published em,
+.paths em,
+.lowestCohesionSelector em,
+.uniqueFontSize em,
+.uniqueColor em,
+.mostIdentifierSelector em,
+.propertiesCount em{
+	font-weight: normal;
+	font-size: 30px;
+}
+.c-social {
+	margin: 200px 0 0;
+	padding-top: 20px;
+	border-top: 1px #eee solid;
+}
+.c-social-s-item {
+	float: left;
+	margin-right: 10px;
+}
+
 .c-button:hover {
 	background: #2b9cce;
-}
-.c-githubButtons {
-	border-top: 1px #eee solid;
-	padding-top: 20px;
-	margin: 200px 0 0;
 }

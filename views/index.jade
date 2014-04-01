@@ -1,28 +1,61 @@
 extends layout
 
 block content
-  h1.c-title #{title}
-  p.u-mbm StyleStats is Node.js library to collect CSS statistics!
+  .l-wrapper
+    .l-painInput
+      h1.c-title #{title}
+      p.u-mbm StyleStats is Node.js library to collect CSS statistics!
 
-  ul.c-tabs.u-cf
-    li.c-tabs-s-tab.is-active
-      a.block(href="#uri") URI
-    li.c-tabs-s-tab
-      a.block(href="#upload") File Upload
-    li.c-tabs-s-tab
-      a.block(href="#input") Direct Input
+      ul#js-tabs.c-tabs
+        li.c-tabs-s-tab.is-active(data-tabs="uri")
+          a.block(href="#uri") URI
+        li.c-tabs-s-tab(data-tabs="upload")
+          a.block(href="#upload") File Upload
+        li.c-tabs-s-tab(data-tabs="input")
+          a.block(href="#input") Direct Input
 
-  div.u-mbm
-    input#js-url.c-urlBox(type="text" value="http://t32k.me/" placeholder="URL")
-  div.u-mbm
-    input#js-file.c-fileButton(type="file" value="Upload" multiple)
-  div.u-mbm
-    textarea#js-input.c-inputBox(type="text" placeholder="CSS")
+      ul#js-tabContents.c-tabContents
+        li.c-tabContents-s-tabContent.is-active
+          input#js-uri.c-uriBox(type="text" placeholder="http://www.google.com/")
+        li.c-tabContents-s-tabContent
+          input#js-upload.c-fileButton(type="file" value="Upload" multiple)
+        li.c-tabContents-s-tabContent
+          textarea#js-input.c-inputBox(placeholder=".foo { color: green; }")
 
-  div.u-mbm
-    div#js-parse.c-button Parse
-  
-  div.c-githubButtons
-    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20")
-    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20")
-    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20")
+      .u-mbm
+        button#js-parse.c-button Parse
+
+      ul.c-social
+        li.c-social-s-item
+          iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20")
+        li.c-social-s-item
+          div(class="fb-like" data-layout="button_count" data-send="false" data-show-faces="false")
+        li.c-social-s-item
+          a(href="https://twitter.com/share" data-count="horizontal" class="twitter-share-button" data-lang="en")
+        li.c-social-s-item
+          div(class="g-plusone" data-size="medium")
+
+    #js-view.l-painResult
+
+  script#js-tmpResult(type="text/template")
+    |<ul class="c-resultBox">
+    |<% _.each(results, function (result) { %>
+    |   <li class="c-resultBox-s-item <%- result.name %>">
+    |   <%- result.prop %><br>
+    |   <em><%= result.value %></em></li>
+    |<% }); %>
+    |</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

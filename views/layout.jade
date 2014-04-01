@@ -6,7 +6,21 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     block content
+    #fb-root
   script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js")
   script(src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js")
   script(src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js")
   script(src="/javascripts/app.js")
+  script
+    |(function(d, s) {
+    |  var js,
+    |      fjs = d.getElementsByTagName(s)[0],
+    |      load = function(url, id) {
+    |        if (d.getElementById(id)) {return;}
+    |        js = d.createElement(s); js.src = url; js.id = id;
+    |        fjs.parentNode.insertBefore(js, fjs);
+    |      };
+    |  load('//connect.facebook.net/en_US/all.js#xfbml=1&appId=212646065416408', 'fbjssdk');
+    |  load('//platform.twitter.com/widgets.js', 'tweetjs');
+    |  load('https://apis.google.com/js/plusone.js', 'gplusjs');
+    |}(document, 'script'));
