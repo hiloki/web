@@ -1,29 +1,49 @@
 $(function() {
-  
+
+  // tabs and related views
   var $tabs = $('#js-tabs').find('li');
   var $tabContents = $('#js-tabContents').find('li');
 
+  // contents of uri, upload, and input
   var $uriElements = $('.js-tab-uri');
   var $uploadElements = $('.js-tab-upload');
   var $inputElements = $('.js-tab-input');
   
   switch (location.hash) {
     case '#upload':
+      // remove URI tab focus
       $uriElements.removeClass('is-active');
+      
+      // activate upload tab
       $uploadElements.addClass('is-active');
       break;
     case '#input':
+      // remove URI tab focus
       $uriElements.removeClass('is-active');
+      
+      // activate input tab
       $inputElements.addClass('is-active');
+      break;
+    default:
+      // URI tab is selected
       break;
   }
 
   $tabs.on('click', function () {
+    
+    // enable parse button
+    $parse.removeAttr('disabled').removeClass('is-failed');
+    $text.text('Parse');
+
     var $this = $(this);
     if (!$this.hasClass('is-active')) {
+
+      // if clicked tab is not active,
+      // remove tab and related view focus
       $tabs.removeClass('is-active');
       $tabContents.removeClass('is-active');
 
+      // get mode from clicked tab
       var mode = $this.attr('data-mode');
       switch (mode) {
         case 'uri':
@@ -54,12 +74,7 @@ $(function() {
     $text.text('Parse');
   }
 
-  var resultTemplate = $('#js-tmpResult').html();
-  var resultCompiler = _.template(resultTemplate);
-  
-  var colorTemplate = $('#js-tmpColor').html();
-  var colorCompiler = _.template(colorTemplate);
-
+  // loaded file strings
   var loadedFiles = [];
   $upload.on('change', function() {
     loadedFiles = [];
@@ -74,11 +89,21 @@ $(function() {
     });
   });
 
+  // result template
+  var resultTemplate = $('#js-tmpResult').html();
+  var resultCompiler = _.template(resultTemplate);
+
+  // color template
+  var colorTemplate = $('#js-tmpColor').html();
+  var colorCompiler = _.template(colorTemplate);
+
   $parse.on('click', function() {
 
+    // set indicator
     $parse.addClass('is-loading');
     $text.text('');
 
+    // request parameter
     var param = {};
 
     var mode = $tabs.filter('.is-active').attr('data-mode');
@@ -109,10 +134,11 @@ $(function() {
       data: param
     }).done(function(data) {
 
-      $text.text('Parse');
+      // set up parse button text
       $parse.removeClass('is-loading');
+      $text.text('Parse');
 
-      // uniqueColor
+      // replace "uniqueColor" items with compiled html
       data.filter(function (item) {
         return item.name === 'uniqueColor';
       }).forEach(function (item) {
@@ -121,19 +147,19 @@ $(function() {
         });
       });
 
+      // render result with compiled html
       $view.html(resultCompiler({
         results: data
       }));
 
+      // scroll to window top
       $(document).scrollTop(0);
 
     }).fail(function() {
-      $text.text('Failed!');
+
+      // disable parse button
       $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('is-failed');
+      $text.text('Failed!');
     });
   });
 });
-
-
-
-    
