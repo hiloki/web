@@ -1,4 +1,3 @@
-stylestats.org
-==============
+# stylestats.org
 
 official site.
