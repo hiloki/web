@@ -2,40 +2,40 @@ extends layout
 
 block content
   .l-wrapper
-    .l-painInput
+    .l-paneInput
       h1.c-title #{title}
       p.u-mbm StyleStats is Node.js library to collect CSS statistics!
 
-      ul#js-tabs.c-tabs
-        li.c-tabs-s-tab.is-active(data-tabs="uri")
+      ul.c-tabs#js-tabs
+        li.c-tabs-s-item.is-active(data-tabs="uri")
           a.block(href="#uri") URI
-        li.c-tabs-s-tab(data-tabs="upload")
+        li.c-tabs-s-item(data-tabs="upload")
           a.block(href="#upload") File Upload
-        li.c-tabs-s-tab(data-tabs="input")
+        li.c-tabs-s-item(data-tabs="input")
           a.block(href="#input") Direct Input
 
-      ul#js-tabContents.c-tabContents
-        li.c-tabContents-s-tabContent.is-active
-          input#js-uri.c-uriBox(type="text" placeholder="http://www.google.com/")
-        li.c-tabContents-s-tabContent
-          input#js-upload.c-fileButton(type="file" value="Upload" multiple)
-        li.c-tabContents-s-tabContent
-          textarea#js-input.c-inputBox(placeholder=".foo { color: green; }")
+      ul.c-tabContents#js-tabContents
+        li.c-tabContents-s-item.is-active
+          input.c-uriBox#js-uri(type="text" placeholder="http://www.google.com/")
+        li.c-tabContents-s-item
+          input.c-fileButton#js-upload(type="file" value="Upload" multiple)
+        li.c-tabContents-s-item
+          textarea.c-inputBox#js-input(placeholder=".foo { color: green; }")
 
       .u-mbm
-        button#js-parse.c-button Parse
+        button.c-button#js-parse Parse
 
       ul.c-social
         li.c-social-s-item
           iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20")
         li.c-social-s-item
-          div(class="fb-like" data-layout="button_count" data-send="false" data-show-faces="false")
-        li.c-social-s-item
           a(href="https://twitter.com/share" data-count="horizontal" class="twitter-share-button" data-lang="en")
         li.c-social-s-item
           div(class="g-plusone" data-size="medium")
+        li.c-social-s-item
+          div(class="fb-like" data-layout="button_count" data-send="false" data-show-faces="false")
 
-    #js-view.l-painResult
+    .l-paneOutput#js-view
 
   script#js-tmpResult(type="text/template")
     |<ul class="c-resultBox">

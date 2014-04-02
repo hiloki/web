@@ -1,5 +1,6 @@
+/* Reset 
+==================================================== */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;vertical-align:baseline;font:inherit;font-size:100%;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}table{border-spacing:0;border-collapse:collapse;}
-
 body {
   padding: 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -9,16 +10,38 @@ a {
 }
 select, button, input, textarea {
 	display: block;
-	width: 100%;
 	box-sizing: border-box;
+	width: 100%;
 }
+/* #2b9cce ~ #66bec8*/
+
+/* Utility
+==================================================== */
 .u-cf:before,
 .u-cf:after {
 	display: table !important; 
 	content: "";
 }
 .u-cf:after { clear: both; }
+.u-mbm {
+	margin-bottom: 20px;
+}
 
+/* Layout
+==================================================== */
+.l-wrapper {
+	display: flex;
+}
+.l-paneInput {
+	position: fixed;
+	max-width: 600px;
+}
+.l-paneOutput {
+	padding: 120px 30px 60px 630px;
+}
+
+/* Component
+==================================================== */
 .c-title  {
 	margin: 100px 0 0;
 	color: #999;
@@ -26,47 +49,34 @@ select, button, input, textarea {
 	font-size: 80px;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.l-wrapper {
-	display: flex;
-}
-.l-painInput {
-	max-width: 600px;
-	position: fixed;
-}
-.l-painResult {
-	padding: 120px 30px 60px 630px;
-}
+
 .c-tabs {
 	display: flex;
 	margin: 30px 0;
 }
-.c-tabs-s-tab {
+.c-tabs-s-item {
 	width: 200px;
 	border-bottom: 3px #eee solid;
 	color: #999;
 	text-indent: 1em;
 	font-size: 18px;
 }
-.c-tabs-s-tab.is-active {
+.c-tabs-s-item.is-active {
 	border-bottom-color: #66bec8;
 }
-.c-tabs-s-tab > .block {
+.c-tabs-s-item > .block {
 	display: block;
 	padding: 10px 0;
 	text-decoration: none;
 }
 
-.c-tabContents-s-tabContent {
+.c-tabContents-s-item {
 	display: none;
 }
-.c-tabContents-s-tabContent.is-active {
+.c-tabContents-s-item.is-active {
 	display: block;
 }
 
-
-.u-mbm {
-	margin-bottom: 20px;
-}
 .c-inputBox {
 	display: block;
 	padding: 0 1em;
@@ -89,7 +99,6 @@ select, button, input, textarea {
 	line-height: 36px;
 }
 
-/* #2b9cce ~ #66bec8*/
 .c-button {
 	position: relative;
 	display: block;
@@ -105,6 +114,7 @@ select, button, input, textarea {
 	font-size: 18px;
 	line-height: 48px;
 }
+
 .c-button.is-loading:after {
 	position: absolute;
 	top: 10px;
@@ -148,7 +158,6 @@ select, button, input, textarea {
 	float: left;
 	margin-right: 10px;
 }
-
 .c-button:hover {
 	background: #2b9cce;
 }

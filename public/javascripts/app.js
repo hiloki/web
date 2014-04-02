@@ -1,4 +1,5 @@
 (function() {
+    $('<img>').attr('src', '/images/loading-bars.svg');
 
     $(document).ready(function() {
         console.log();
@@ -50,19 +51,16 @@
                 mode = $(this).data('tabs');
             }
         });
-
+        var paths;
         var selector = '#js-' + mode;
         if ($(selector).val()) {
-            var paths = $(selector).val();
+            paths = $(selector).val();
         } else {
-            window.alert('No Input.')
+            window.alert('No Input.');
             return false;
         }
 
-
         $that.text('').addClass('is-loading');
-
-
 
         $.ajax({
             type: 'POST',
@@ -71,13 +69,18 @@
                 path: paths
             }
         }).done(function(data) {
+
             $that.text('Parse').removeClass('is-loading');
 
             $('#js-view').html(compiled({
                 results: data
             }));
 
+        }).fail(function(data) {
+            $that.text('Parse').removeClass('is-loading');
+            $('#js-view').html(data);
         });
     });
+
 
 }());
