@@ -74,11 +74,14 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 
 
-app.post('/parse', function(req, res) {
-    var stats = new StyleStats(req.body.path);
-    stats.parse(function(result) {
-        res.send(prettify(result));
-    });
+app.post('/parse', function(request, response) {
+  var path = request.body.path;
+  var css = request.body.css;
+
+  var stylestats = new StyleStats(path || css);
+  stylestats.parse(function(result) {
+    response.send(prettify(result));
+  });
 });
 
 http.createServer(app).listen(app.get('port'), function() {
