@@ -7,7 +7,7 @@ _.mixin(_.str.exports());
 _.str.include('Underscore.string', 'string');
 
 exports.index = function(request, response) {
-  request.render('index', {
+  response.render('index', {
     title: 'StyleStats'
   });
 };
