@@ -54,37 +54,13 @@
 
     // File.api 
     $('#js-upload').on('change', function() {
+        var reader = new FileReader();
         var files = $(this)[0].files;
 
-        processFiles(files, function(src) {
-            var a = document.createElement("a");
-            a.textContent = "Received data URL in " + (Date.now() - now) + "ms";
-            a.href = src;
-            a.target = "_blank";
-            document.body.appendChild(a);
-            document.body.appendChild(document.createElement("br"));
-        });
+        files.forEach(function(file) {
+            console.log(reader.readAsText(file, 'utf-8'));
+        })
 
-        function processFiles(files, cb) {
-
-            if (!FileReaderSyncSupport) {
-                return;
-            }
-
-            var syncWorker = makeWorker(
-                document.getElementById('worker-script').textContent
-            );
-
-            if (syncWorker) {
-                syncWorker.onmessage = function(e) {
-                    cb(e.data.result);
-                };
-
-                Array.prototype.forEach.call(files, function(file) {
-                    syncWorker.postMessage(file);
-                });
-            }
-        }
 
     });
 
