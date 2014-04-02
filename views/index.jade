@@ -7,19 +7,19 @@ block content
       p.u-mbm StyleStats is Node.js library to collect CSS statistics!
 
       ul.c-tabs#js-tabs
-        li.c-tabs-s-item.is-active(data-tabs="uri")
+        li.c-tabs-s-item.is-active.js-tab-uri(data-mode='uri')
           a.block(href="#uri") URI
-        li.c-tabs-s-item(data-tabs="upload")
+        li.c-tabs-s-item.js-tab-upload(data-mode='upload')
           a.block(href="#upload") File Upload
-        li.c-tabs-s-item(data-tabs="input")
+        li.c-tabs-s-item.js-tab-input(data-mode='input')
           a.block(href="#input") Direct Input
 
       ul.c-tabContents#js-tabContents
-        li.c-tabContents-s-item.is-active
+        li.c-tabContents-s-item.is-active.js-tab-uri
           input.c-uriBox#js-uri(type="text" placeholder="http://www.google.com/")
-        li.c-tabContents-s-item
+        li.c-tabContents-s-item.js-tab-upload
           input.c-fileButton#js-upload(type="file" value="Upload" multiple)
-        li.c-tabContents-s-item
+        li.c-tabContents-s-item.js-tab-input
           textarea.c-textBox#js-input(placeholder=".foo { color: green; }")
 
       .u-mbm
@@ -47,12 +47,18 @@ block content
          <li class="c-resultBox-s-item <%- result.name %>">
          <%- result.prop %><br>
          <% if(result.name === 'uniqueColor') { %>
-          <div class="u-mts u-mls"><%= result.value %></div></li>
+           <div class="u-mts u-mls"><%= result.value %></div></li>
          <% } else {%>
-          <em><%= result.value %></em></li>
+           <em><%= result.value %></em></li>
          <% }%>
       <% }); %>
       </ul>
+    </script>
+    <script type="text/template" id="js-tmpColor">
+      <% _.each(colors, function (color) { %>
+        <span class="c-colorBox" style="background-color: <%- color %>"></span>
+        <em><%- color %></em><br>
+      <% }); %>
     </script>
   #fb-root
 

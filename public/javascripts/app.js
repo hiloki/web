@@ -1,125 +1,139 @@
-(function() {
-    $('<img>').attr('src', '/images/loading-bars.svg');
+$(function() {
+  
+  var $tabs = $('#js-tabs').find('li');
+  var $tabContents = $('#js-tabContents').find('li');
 
-    // Hash Change
-    $(document).ready(function() {
-        console.log();
-        if (location.hash === "#upload") {
-            $('#js-tabs > li').each(function() {
-                $(this).removeClass('is-active');
-            });
-            $('[href="#upload"]').parent().addClass('is-active');
-            $('#js-tabContents > li').each(function() {
-                $(this).removeClass('is-active');
-            });
-            $('#js-upload').parent().addClass('is-active');
+  var $uriElements = $('.js-tab-uri');
+  var $uploadElements = $('.js-tab-upload');
+  var $inputElements = $('.js-tab-input');
+  
+  switch (location.hash) {
+    case '#upload':
+      $uriElements.removeClass('is-active');
+      $uploadElements.addClass('is-active');
+      break;
+    case '#input':
+      $uriElements.removeClass('is-active');
+      $inputElements.addClass('is-active');
+      break;
+  }
+
+  $tabs.on('click', function () {
+    var $this = $(this);
+    if (!$this.hasClass('is-active')) {
+      $tabs.removeClass('is-active');
+      $tabContents.removeClass('is-active');
+
+      var mode = $this.attr('data-mode');
+      switch (mode) {
+        case 'uri':
+          $uriElements.addClass('is-active');
+          break;
+        case 'upload':
+          $uploadElements.addClass('is-active');
+          break;
+        case 'input':
+          $inputElements.addClass('is-active');
+          break;
+      }
+    }
+  });
+
+  var $uri = $('#js-uri');
+  var $upload = $('#js-upload');
+  var $input = $('#js-input');
+  var $parse = $('#js-parse');
+  var $text = $('#js-text');
+  var $view = $('#js-view');
+
+  $uri.on('focus', onFocusInput);
+  $input.on('focus', onFocusInput);
+
+  function onFocusInput (e) {
+    $parse.removeAttr('disabled').removeClass('is-failed');
+    $text.text('Parse');
+  }
+
+  var resultTemplate = $('#js-tmpResult').html();
+  var resultCompiler = _.template(resultTemplate);
+  
+  var colorTemplate = $('#js-tmpColor').html();
+  var colorCompiler = _.template(colorTemplate);
+
+  var loadedFiles = [];
+  $upload.on('change', function() {
+    loadedFiles = [];
+    _.each(this.files, function (file) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        if (e.target.result) {
+          loadedFiles.push(e.target.result);
         }
-        if (location.hash === "#input") {
-            $('#js-tabs > li').each(function() {
-                $(this).removeClass('is-active');
-            });
-            $('[href="#input"]').parent().addClass('is-active');
-            $('#js-tabContents > li').each(function() {
-                $(this).removeClass('is-active');
-            });
-            $('#js-input').parent().addClass('is-active');
+      };
+      reader.readAsText(file, 'utf-8');
+    });
+  });
+
+  $parse.on('click', function() {
+
+    $parse.addClass('is-loading');
+    $text.text('');
+
+    var param = {};
+
+    var mode = $tabs.filter('.is-active').attr('data-mode');
+    switch (mode) {
+      case 'uri':
+        var path = $uri.val();
+        if (path) {
+          param.path = path;
         }
-    });
-
-    // Tab Change
-    $('#js-tabs > li').on('click', function() {
-        $('#js-tabs > li').each(function() {
-            $(this).removeClass('is-active');
-        });
-        $(this).addClass('is-active');
-
-        $('#js-tabContents > li').each(function() {
-            $(this).removeClass('is-active');
-        });
-        var content = '#js-' + $(this).data('tabs');
-        $(content).parent().addClass('is-active');
-    });
-
-
-    // Focus
-    $('#js-uri, #js-input').on('focus', function() {
-        $('#js-parse')
-            .removeAttr('disabled')
-            .removeClass('is-failed');
-        $('#js-text').text('Parse');
-    });
-
-    var tmpl = $('#js-tmpResult').html();
-    var compiled = _.template(tmpl);
-
-    // File.api 
-    $('#js-upload').on('change', function() {
-        var reader = new FileReader();
-        var files = $(this)[0].files;
-
-        files.forEach(function(file) {
-            console.log(reader.readAsText(file, 'utf-8'));
-        })
-
-
-    });
-
-    $('#js-parse').on('click', function() {
-        var $that = $(this);
-
-        var mode = '';
-        $('#js-tabs > li').each(function() {
-            if ($(this).hasClass('is-active')) {
-                mode = $(this).data('tabs');
-            }
-        });
-        var paths;
-        var selector = '#js-' + mode;
-        if ($(selector).val()) {
-            paths = $(selector).val();
-        } else {
-            window.alert('No Input.');
-            return false;
+        break;
+      case 'upload':
+        var string = loadedFiles.join('');
+        if (string) {
+          param.css = string;
         }
-        $('#js-text').text('');
-        $that.addClass('is-loading');
+        break;
+      case 'input':
+        var string = $input.val();
+        if (string) {
+          param.css = string;
+        }
+        break;
+    }
 
-        $.ajax({
-            type: 'POST',
-            url: '/parse',
-            data: {
-                path: paths
-            }
-        }).done(function(data) {
-            console.log(data);
-            $('#js-text').text('Parse');
-            $that.removeClass('is-loading');
+    $.ajax({
+      type: 'post',
+      url: '/parse',
+      data: param
+    }).done(function(data) {
 
-            // uniqueColor
-            _.each(data, function(item) {
-                if (item.name === 'uniqueColor') {
-                    var trimVal = '';
-                    _.each(item.value, function(color) {
-                        trimVal += '<span class="c-colorBox" style="background-color:' + color + '"></span><em>' + color + '</em><br>'
-                    });
-                    item.value = trimVal;
-                }
-            });
+      $text.text('Parse');
+      $parse.removeClass('is-loading');
 
-
-            $('#js-view').html(compiled({
-                results: data
-            }));
-
-            $(document).scrollTop(0);
-
-        }).fail(function(data) {
-            $('#js-text').text('Failed!');
-            $that.attr('disabled', 'true')
-                .removeClass('is-loading')
-                .addClass('is-failed');
+      // uniqueColor
+      data.filter(function (item) {
+        return item.name === 'uniqueColor';
+      }).forEach(function (item) {
+        item.value = colorCompiler({
+          colors: item.value || []
         });
+      });
+
+      $view.html(resultCompiler({
+        results: data
+      }));
+
+      $(document).scrollTop(0);
+
+    }).fail(function() {
+      $text.text('Failed!');
+      $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('is-failed');
     });
+  });
+});
 
 
-}());
+
+    
