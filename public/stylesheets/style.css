@@ -9,6 +9,7 @@ a {
 	color: inherit;
 }
 select, button, input, textarea {
+	border: 0;
 	display: block;
 	box-sizing: border-box;
 	width: 100%;
@@ -23,9 +24,16 @@ select, button, input, textarea {
 	content: "";
 }
 .u-cf:after { clear: both; }
+.u-mls {
+	margin-left: 10px;
+}
+.u-mts {
+	margin-top: 10px;
+}
 .u-mbm {
 	margin-bottom: 20px;
 }
+
 
 /* Layout
 ==================================================== */
@@ -39,6 +47,21 @@ select, button, input, textarea {
 .l-paneOutput {
 	padding: 120px 30px 60px 630px;
 }
+
+/* Animation
+==================================================== */
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translateX(10px);
+  }
+}
+
 
 /* Component
 ==================================================== */
@@ -82,10 +105,8 @@ select, button, input, textarea {
 }
 
 .c-textBox {
-	display: block;
 	padding: 1em;
 	height: 300px;
-	border: 0;
 	border-radius: 4px;
 	font-weight: bold;
 	font-size: 14px;
@@ -95,14 +116,14 @@ select, button, input, textarea {
 }
 
 .c-uriBox {
-	display: block;
-	padding: 0 1em;
-	max-width: 580px;
-	height: 36px;
-	border: 0;
+	padding: 1em;
+	height: 40px;
 	border-radius: 4px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #666;
 	background: #eee;
-	line-height: 36px;
+	font-family: "Courier New", Courier, monospace;
 }
 
 .c-button {
@@ -120,16 +141,24 @@ select, button, input, textarea {
 	font-size: 18px;
 	line-height: 48px;
 }
+.c-button:hover {
+	background: #2b9cce;
+}
+.c-button img {
+	display: none;
+}
+.c-button.is-loading img {
+	display: inline;
+}
 
-.c-button.is-loading:after {
-	position: absolute;
-	top: 10px;
-	left: 145px;
-	display: block;
-	max-width: 20px;
-	height: 20px;
-	content: url("/images/loading-bars.svg");
-	text-align: center;
+.c-button.is-failed {
+	-webkit-animation-name: shake;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	background-color: #db7080;
+}
+.c-button.is-failed:hover {
+	background-color: #db7080;
 }
 .c-resultBox {
 	color: #999;
@@ -154,6 +183,19 @@ select, button, input, textarea {
 	font-weight: normal;
 	font-size: 30px;
 }
+.uniqueColor em {
+	line-height: 24px;
+	font-size: 18px;
+}
+.c-colorBox {
+	box-shadow: 0 0 1px 0 rgba(0,0,0, 0.3);
+	border-radius: 2px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 6px;
+	vertical-align: -4px;
+}
 .c-social {
 	margin: 200px 0 0;
 	padding-top: 20px;
@@ -162,13 +204,4 @@ select, button, input, textarea {
 .c-social-s-item {
 	float: left;
 	margin-right: 10px;
-}
-.c-button:hover {
-	background: #2b9cce;
-}
-.c-alertBox {
-	padding: 185px 0;
-	color: #db7080;
-	text-align: center;
-	font-size: 40px;
 }

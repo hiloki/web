@@ -40,7 +40,9 @@ function prettify(result) {
         } else if (key === 'size' || key === 'gzippedSize' || key === 'dataUriSize') {
             stats.value = numeral(result[key]).format('0.0b').replace(/\.0B/, 'B').replace(/0\.0/, '0');
         } else if (key === 'simplicity' || key === 'ratioOfDataUriSize') {
-            stats.value = numeral(result[key]).format('0.00%');
+            stats.value = numeral(result[key]).format('0.0%');
+        } else if (key === 'uniqueColor') {
+            stats.value = result[key];
         } else {
             stats.value = Array.isArray(result[key]) ? result[key].join('<br>') : result[key];
             if (stats.value === '') {
