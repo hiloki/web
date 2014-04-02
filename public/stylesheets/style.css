@@ -59,7 +59,10 @@ select, button, input, textarea {
 	border-bottom: 3px #eee solid;
 	color: #999;
 	text-indent: 1em;
-	font-size: 18px;
+	font-size: 18px;  
+	transition-timing-function: ease-out;  
+	transition-duration: 0.4s;
+	transition-property: border-bottom-color;  
 }
 .c-tabs-s-item.is-active {
 	border-bottom-color: #66bec8;
@@ -72,20 +75,23 @@ select, button, input, textarea {
 
 .c-tabContents-s-item {
 	display: none;
+	min-height: 40px; 
 }
 .c-tabContents-s-item.is-active {
 	display: block;
 }
 
-.c-inputBox {
+.c-textBox {
 	display: block;
-	padding: 0 1em;
-	max-width: 580px;
+	padding: 1em;
 	height: 300px;
 	border: 0;
 	border-radius: 4px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #666;
 	background: #eee;
-	line-height: 36px;
+	font-family: "Courier New", Courier, monospace;
 }
 
 .c-uriBox {
@@ -124,14 +130,13 @@ select, button, input, textarea {
 	height: 20px;
 	content: url("/images/loading-bars.svg");
 	text-align: center;
-
 }
 .c-resultBox {
 	color: #999;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .c-resultBox-s-item {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	font-size: 20px;
 }
 .c-resultBox-s-item em {
@@ -160,4 +165,10 @@ select, button, input, textarea {
 }
 .c-button:hover {
 	background: #2b9cce;
+}
+.c-alertBox {
+	padding: 185px 0;
+	color: #db7080;
+	text-align: center;
+	font-size: 40px;
 }

@@ -78,7 +78,7 @@
 
         }).fail(function(data) {
             $that.text('Parse').removeClass('is-loading');
-            $('#js-view').html(data);
+            $('#js-view').html('<div class="c-alertBox">Failed!</div>');
         });
     });
 
