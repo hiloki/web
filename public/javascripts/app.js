@@ -59,6 +59,7 @@ $(function() {
         }
     });
 
+    var csrfToken = $('meta[name="_csrf"]').attr('content');
     var $uri = $('#js-uri');
     var $upload = $('#js-upload');
     var $input = $('#js-input');
@@ -131,6 +132,9 @@ $(function() {
         $.ajax({
             type: 'post',
             url: '/parse',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+            },
             data: param
         }).done(function(data) {
 
