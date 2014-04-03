@@ -27,18 +27,19 @@ block content
           span#js-text Parse
           img(src="/images/loading-bars.svg" height="45")
 
-      //ul.c-social
-      //  li.c-social-s-item
-      //    iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20")
-      //  li.c-social-s-item
-      //    a(href="https://twitter.com/share" data-count="horizontal" class="twitter-share-button" data-lang="en")
-      //  li.c-social-s-item
-      //    div(class="g-plusone" data-size="medium")
-      //  li.c-social-s-item
-      //    div(class="fb-like" data-layout="button_count" data-send="false" data-show-faces="false")
+      ul.c-social
+        li.c-social-s-item
+          iframe(src="http://ghbtns.com/github-btn.html?user=t32k&repo=stylestats&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20")
+        li.c-social-s-item
+          a(href="https://twitter.com/share" data-count="horizontal" class="twitter-share-button" data-lang="en")
+        li.c-social-s-item
+          div(class="g-plusone" data-size="medium")
+        li.c-social-s-item
+          div(class="fb-like" data-layout="button_count" data-send="false" data-show-faces="false")
 
     .l-paneOutput#js-view
-  .raw-start.
+
+  .html-jade.
     <script type="text/template" id="js-tmpResult">
       <ul class="c-resultBox">
       <% _.each(results, function (result) { %>
