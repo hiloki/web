@@ -18,7 +18,9 @@ app.use(express.session({
     secret: '234D&CSSF'
 }));
 app.use(express.csrf());
+
 app.use(function(req, res, next) {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
     res.locals.csrf_token = req.csrfToken();
     next();
 });
