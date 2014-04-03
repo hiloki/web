@@ -47,6 +47,9 @@ function prettify(result) {
             stats.value = numeral(result[key]).format('0.0%');
         } else if (key === 'uniqueColor') {
             stats.value = result[key];
+            if (stats.value == '') {
+                stats.value = 'N/A';
+            }
         } else {
             stats.value = Array.isArray(result[key]) ? result[key].join('<br>') : result[key];
             if (stats.value === '') {

@@ -54,9 +54,13 @@ block content
       </ul>
     </script>
     <script type="text/template" id="js-tmpColor">
-      <% _.each(colors, function (color) { %>
-        <span class="c-colorBox" style="background-color: <%- color %>"></span>
-        <em><%- color %></em><br>
-      <% }); %>
+      <% if(colors !== 'N/A' ) {%>
+        <% _.each(colors, function (color) { %>
+          <span class="c-colorBox" style="background-color: <%- color %>"></span>
+          <em><%- color %></em><br>
+        <% }); %>
+      <% } else {%>
+        <em style="font-size:30px"><%- colors %></em>
+      <% }%>
     </script>
   #fb-root
