@@ -1,165 +1,166 @@
 $(function() {
 
-  // tabs and related views
-  var $tabs = $('#js-tabs').find('li');
-  var $tabContents = $('#js-tabContents').find('li');
+    // tabs and related views
+    var $tabs = $('#js-tabs').find('li');
+    var $tabContents = $('#js-tabContents').find('li');
 
-  // contents of uri, upload, and input
-  var $uriElements = $('.js-tab-uri');
-  var $uploadElements = $('.js-tab-upload');
-  var $inputElements = $('.js-tab-input');
-  
-  switch (location.hash) {
-    case '#upload':
-      // remove URI tab focus
-      $uriElements.removeClass('is-active');
-      
-      // activate upload tab
-      $uploadElements.addClass('is-active');
-      break;
-    case '#input':
-      // remove URI tab focus
-      $uriElements.removeClass('is-active');
-      
-      // activate input tab
-      $inputElements.addClass('is-active');
-      break;
-    default:
-      // URI tab is selected
-      break;
-  }
+    // contents of uri, upload, and input
+    var $uriElements = $('.js-tab-uri');
+    var $uploadElements = $('.js-tab-upload');
+    var $inputElements = $('.js-tab-input');
 
-  $tabs.on('click', function () {
-    
-    // enable parse button
-    $parse.removeAttr('disabled').removeClass('is-failed');
-    $text.text('Parse');
+    switch (location.hash) {
+        case '#upload':
+            // remove URI tab focus
+            $uriElements.removeClass('is-active');
 
-    var $this = $(this);
-    if (!$this.hasClass('is-active')) {
+            // activate upload tab
+            $uploadElements.addClass('is-active');
+            break;
+        case '#input':
+            // remove URI tab focus
+            $uriElements.removeClass('is-active');
 
-      // if clicked tab is not active,
-      // remove tab and related view focus
-      $tabs.removeClass('is-active');
-      $tabContents.removeClass('is-active');
-
-      // get mode from clicked tab
-      var mode = $this.attr('data-mode');
-      switch (mode) {
-        case 'uri':
-          $uriElements.addClass('is-active');
-          break;
-        case 'upload':
-          $uploadElements.addClass('is-active');
-          break;
-        case 'input':
-          $inputElements.addClass('is-active');
-          break;
-      }
+            // activate input tab
+            $inputElements.addClass('is-active');
+            break;
+        default:
+            // URI tab is selected
+            break;
     }
-  });
 
-  var $uri = $('#js-uri');
-  var $upload = $('#js-upload');
-  var $input = $('#js-input');
-  var $parse = $('#js-parse');
-  var $text = $('#js-text');
-  var $view = $('#js-view');
+    $tabs.on('click', function() {
 
-  $uri.on('focus', onFocusInput);
-  $input.on('focus', onFocusInput);
+        // enable parse button
+        $parse.removeAttr('disabled').removeClass('c-button-m-danger');
+        $buttonText.text('Parse');
 
-  function onFocusInput (e) {
-    $parse.removeAttr('disabled').removeClass('is-failed');
-    $text.text('Parse');
-  }
+        var $this = $(this);
+        if (!$this.hasClass('is-active')) {
 
-  // loaded file strings
-  var loadedFiles = [];
-  $upload.on('change', function() {
-    loadedFiles = [];
-    _.each(this.files, function (file) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        if (e.target.result) {
-          loadedFiles.push(e.target.result);
+            // if clicked tab is not active,
+            // remove tab and related view focus
+            $tabs.removeClass('is-active');
+            $tabContents.removeClass('is-active');
+
+            // get mode from clicked tab
+            var mode = $this.attr('data-mode');
+            switch (mode) {
+                case 'uri':
+                    $uriElements.addClass('is-active');
+                    break;
+                case 'upload':
+                    $uploadElements.addClass('is-active');
+                    break;
+                case 'input':
+                    $inputElements.addClass('is-active');
+                    break;
+            }
         }
-      };
-      reader.readAsText(file, 'utf-8');
     });
-  });
 
-  // result template
-  var resultTemplate = $('#js-tmpResult').html();
-  var resultCompiler = _.template(resultTemplate);
+    var $uri = $('#js-uri');
+    var $upload = $('#js-upload');
+    var $input = $('#js-input');
+    var $parse = $('#js-parse');
+    var $buttonText = $('#js-text');
+    var $view = $('#js-view');
 
-  // color template
-  var colorTemplate = $('#js-tmpColor').html();
-  var colorCompiler = _.template(colorTemplate);
+    $uri.on('focus', onFocusInput);
+    $input.on('focus', onFocusInput);
 
-  $parse.on('click', function() {
-
-    // set indicator
-    $parse.addClass('is-loading');
-    $text.text('');
-
-    // request parameter
-    var param = {};
-
-    var mode = $tabs.filter('.is-active').attr('data-mode');
-    switch (mode) {
-      case 'uri':
-        var path = $uri.val();
-        if (path) {
-          param.path = path;
-        }
-        break;
-      case 'upload':
-        var string = loadedFiles.join('');
-        if (string) {
-          param.css = string;
-        }
-        break;
-      case 'input':
-        var string = $input.val();
-        if (string) {
-          param.css = string;
-        }
-        break;
+    function onFocusInput(e) {
+        $parse.removeAttr('disabled').removeClass('c-button-m-danger');
+        $buttonText.text('Parse');
     }
 
-    $.ajax({
-      type: 'post',
-      url: '/parse',
-      data: param
-    }).done(function(data) {
-
-      // set up parse button text
-      $parse.removeClass('is-loading');
-      $text.text('Parse');
-
-      // replace "uniqueColor" items with compiled html
-      data.filter(function (item) {
-        return item.name === 'uniqueColor';
-      }).forEach(function (item) {
-        item.value = colorCompiler({
-          colors: item.value || []
+    // loaded file strings
+    var loadedFiles = [];
+    $upload.on('change', function() {
+        loadedFiles = [];
+        _.each(this.files, function(file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                if (e.target.result) {
+                    loadedFiles.push(e.target.result);
+                }
+            };
+            reader.readAsText(file, 'utf-8');
         });
-      });
-
-      // render result with compiled html
-      $view.html(resultCompiler({
-        results: data
-      }));
-
-      // scroll to window top
-      $(document).scrollTop(0);
-
-    }).fail(function() {
-
-      // disable parse button
-      $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('is-failed');
-      $text.text('Failed!');
     });
-  });
+
+    // result template
+    var resultTemplate = $('#js-tmpResult').html();
+    var resultCompiler = _.template(resultTemplate);
+
+    // color template
+    var colorTemplate = $('#js-tmpColor').html();
+    var colorCompiler = _.template(colorTemplate);
+
+    $parse.on('click', function() {
+
+        // set indicator
+        $parse.addClass('is-loading');
+        $buttonText.text('');
+
+        // request parameter
+        var param = {};
+
+        var mode = $tabs.filter('.is-active').attr('data-mode');
+        switch (mode) {
+            case 'uri':
+                var path = $uri.val();
+                if (path) {
+                    param.path = path;
+                }
+                break;
+            case 'upload':
+                var string = loadedFiles.join('');
+                if (string) {
+                    param.css = string;
+                }
+                break;
+            case 'input':
+                var string = $input.val();
+                if (string) {
+                    param.css = string;
+                }
+                break;
+        }
+
+        $.ajax({
+            type: 'post',
+            url: '/parse',
+            data: param
+        }).done(function(data) {
+
+            // set up parse button text
+            $parse.removeClass('is-loading');
+            $buttonText.text('Parse');
+
+            // replace "uniqueColor" items with compiled html
+            data.filter(function(item) {
+                return item.name === 'uniqueColor';
+            }).forEach(function(item) {
+                item.value = colorCompiler({
+                    colors: item.value || []
+                });
+            });
+
+            // render result with compiled html
+            $view.html(resultCompiler({
+                results: data
+            }));
+
+            // scroll to window top
+            $(document).scrollTop(0);
+
+        }).fail(function() {
+
+            // disable parse button
+            $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
+            $buttonText.text('Failed!');
+
+        });
+    });
 });

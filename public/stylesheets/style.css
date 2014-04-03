@@ -9,10 +9,10 @@ a {
 	color: inherit;
 }
 select, button, input, textarea {
-	border: 0;
 	display: block;
 	box-sizing: border-box;
 	width: 100%;
+	border: 0;
 }
 /* #2b9cce ~ #66bec8*/
 
@@ -98,7 +98,7 @@ select, button, input, textarea {
 
 .c-tabContents-s-item {
 	display: none;
-	min-height: 40px; 
+	min-height: 40px;
 }
 .c-tabContents-s-item.is-active {
 	display: block;
@@ -108,10 +108,10 @@ select, button, input, textarea {
 	padding: 1em;
 	height: 300px;
 	border-radius: 4px;
+	background: #eee;
+	color: #666;
 	font-weight: bold;
 	font-size: 14px;
-	color: #666;
-	background: #eee;
 	font-family: "Courier New", Courier, monospace;
 }
 
@@ -119,10 +119,10 @@ select, button, input, textarea {
 	padding: 1em;
 	height: 40px;
 	border-radius: 4px;
+	background: #eee;
+	color: #666;
 	font-weight: bold;
 	font-size: 14px;
-	color: #666;
-	background: #eee;
 	font-family: "Courier New", Courier, monospace;
 }
 
@@ -151,13 +151,13 @@ select, button, input, textarea {
 	display: inline;
 }
 
-.c-button.is-failed {
+.c-button.c-button-m-danger {
+	background-color: #db7080;
 	-webkit-animation-name: shake;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-fill-mode: both;
-	background-color: #db7080;
 }
-.c-button.is-failed:hover {
+.c-button.c-button-m-danger:hover {
 	background-color: #db7080;
 }
 .c-resultBox {
@@ -184,16 +184,16 @@ select, button, input, textarea {
 	font-size: 30px;
 }
 .uniqueColor em {
-	line-height: 24px;
 	font-size: 18px;
+	line-height: 24px;
 }
 .c-colorBox {
-	box-shadow: 0 0 1px 0 rgba(0,0,0, 0.3);
-	border-radius: 2px;
 	display: inline-block;
+	margin-right: 6px;
 	width: 20px;
 	height: 20px;
-	margin-right: 6px;
+	border-radius: 2px;
+	box-shadow: 0 0 1px 0 rgba(0,0,0, 0.3);
 	vertical-align: -4px;
 }
 .c-social {
