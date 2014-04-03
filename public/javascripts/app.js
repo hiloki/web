@@ -79,6 +79,11 @@ $(function() {
         return $('<div>').text(val).html();
     }
 
+    function disableButton() {
+        $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
+        $buttonText.text('Failed!');
+    }
+
     // loaded file strings
     var loadedFiles = [];
     $upload.on('change', function() {
@@ -115,20 +120,30 @@ $(function() {
         switch (mode) {
             case 'uri':
                 var path = $uri.val();
+                console.log(path);
                 if (path) {
                     param.path = escapeHTML(path);
+                } else {
+                    disableButton();
+                    return;
                 }
                 break;
             case 'upload':
                 var string = loadedFiles.join('');
                 if (string) {
                     param.css = escapeHTML(string);
+                } else {
+                    disableButton();
+                    return;
                 }
                 break;
             case 'input':
                 var string = $input.val();
                 if (string) {
                     param.css = escapeHTML(string);
+                } else {
+                    disableButton();
+                    return;
                 }
                 break;
         }
@@ -165,8 +180,7 @@ $(function() {
         }).fail(function() {
 
             // disable parse button
-            $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
-            $buttonText.text('Failed!');
+            disableButton();
             // token genereated
             setTimeout(function() {
                 location.reload();
