@@ -75,6 +75,10 @@ $(function() {
         $buttonText.text('Parse');
     }
 
+    function escapeHTML(val) {
+        return $('<div>').text(val).html();
+    }
+
     // loaded file strings
     var loadedFiles = [];
     $upload.on('change', function() {
@@ -112,23 +116,22 @@ $(function() {
             case 'uri':
                 var path = $uri.val();
                 if (path) {
-                    param.path = path;
+                    param.path = escapeHTML(path);
                 }
                 break;
             case 'upload':
                 var string = loadedFiles.join('');
                 if (string) {
-                    param.css = string;
+                    param.css = escapeHTML(string);
                 }
                 break;
             case 'input':
                 var string = $input.val();
                 if (string) {
-                    param.css = string;
+                    param.css = escapeHTML(string);
                 }
                 break;
         }
-
         $.ajax({
             type: 'post',
             url: '/parse',
