@@ -1,18 +1,53 @@
 /* Reset 
 ==================================================== */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;vertical-align:baseline;font:inherit;font-size:100%;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:none;}table{border-spacing:0;border-collapse:collapse;}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font: inherit;
+    font-size: 100%;
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    display: block;
+}
+
 body {
-  padding: 0 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    line-height: 1;
 }
+
+ol,ul {
+    list-style: none;
+}
+
+blockquote,q {
+    quotes: none;
+}
+
+blockquote:before,blockquote:after,q:before,q:after {
+    content: none;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+body {
+    padding: 0 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 a {
-	color: inherit;
+    color: inherit;
 }
+
 select, button, input, textarea {
-	display: block;
-	box-sizing: border-box;
-	width: 100%;
-	border: 0;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border: 0;
 }
 /* #2b9cce ~ #66bec8*/
 
@@ -20,188 +55,234 @@ select, button, input, textarea {
 ==================================================== */
 .u-cf:before,
 .u-cf:after {
-	display: table !important; 
-	content: "";
+    display: table !important;
+    content: "";
 }
-.u-cf:after { clear: both; }
+
+.u-cf:after {
+    clear: both;
+}
+
 .u-mls {
-	margin-left: 10px;
+    margin-left: 10px;
 }
+
 .u-mts {
-	margin-top: 10px;
+    margin-top: 10px;
 }
+
 .u-mbm {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 
 /* Layout
 ==================================================== */
 .l-wrapper {
-	display: flex;
+    display: flex;
 }
+
 .l-paneInput {
-	position: fixed;
-	max-width: 600px;
+    position: fixed;
+    max-width: 600px;
 }
+
 .l-paneOutput {
-	padding: 120px 30px 60px 630px;
+    padding: 120px 30px 60px 630px;
 }
 
 /* Animation
 ==================================================== */
 @-webkit-keyframes shake {
-  0%, 100% {
-    -webkit-transform: translateX(0);
-  }
-  10%, 30%, 50%, 70%, 90% {
-    -webkit-transform: translateX(-10px);
-  }
-  20%, 40%, 60%, 80% {
-    -webkit-transform: translateX(10px);
-  }
+    0%, 100% {
+        -webkit-transform: translateX(0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        -webkit-transform: translateX(-10px);
+    }
+
+    20%, 40%, 60%, 80% {
+        -webkit-transform: translateX(10px);
+    }
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
 }
 
 
 /* Component
 ==================================================== */
-.c-title  {
-	margin: 100px 0 0;
-	color: #999;
-	font-weight: 100;
-	font-size: 80px;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+.c-title {
+    margin: 100px 0 0;
+    color: #999;
+    font-weight: 100;
+    font-size: 80px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .c-tabs {
-	display: flex;
-	margin: 30px 0;
+    display: flex;
+    margin: 30px 0;
 }
+
 .c-tabs-s-item {
-	width: 200px;
-	border-bottom: 3px #eee solid;
-	color: #999;
-	text-indent: 1em;
-	font-size: 18px;  
-	transition-timing-function: ease-out;  
-	transition-duration: 0.4s;
-	transition-property: border-bottom-color;  
+    width: 200px;
+    border-bottom: 3px #eee solid;
+    color: #999;
+    text-indent: 1em;
+    font-size: 18px;
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-property: border-bottom-color;
+    transition-timing-function: ease-out;
+    transition-duration: 0.4s;
+    transition-property: border-bottom-color;
+
 }
+
 .c-tabs-s-item.is-active {
-	border-bottom-color: #66bec8;
+    border-bottom-color: #66bec8;
 }
+
 .c-tabs-s-item > .block {
-	display: block;
-	padding: 10px 0;
-	text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
 }
 
 .c-tabContents-s-item {
-	display: none;
-	min-height: 40px;
+    display: none;
+    min-height: 40px;
 }
+
 .c-tabContents-s-item.is-active {
-	display: block;
+    display: block;
 }
 
 .c-textBox {
-	padding: 1em;
-	height: 300px;
-	border-radius: 4px;
-	background: #eee;
-	color: #666;
-	font-weight: bold;
-	font-size: 14px;
-	font-family: "Courier New", Courier, monospace;
+    padding: 1em;
+    height: 300px;
+    border-radius: 4px;
+    background: #eee;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .c-uriBox {
-	padding: 1em;
-	height: 40px;
-	border-radius: 4px;
-	background: #eee;
-	color: #666;
-	font-weight: bold;
-	font-size: 14px;
-	font-family: "Courier New", Courier, monospace;
+    padding: 1em;
+    height: 40px;
+    border-radius: 4px;
+    background: #eee;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .c-button {
-	position: relative;
-	display: block;
-	margin: 40px 0;
-	padding: 0 1em;
-	max-width: 300px;
-	height: 48px;
-	border: 0;
-	border-radius: 4px;
-	background: #66bec8;
-	color: #fff;
-	text-align: center; 
-	font-size: 18px;
-	line-height: 48px;
+    position: relative;
+    display: block;
+    margin: 40px 0;
+    padding: 0 1em;
+    max-width: 300px;
+    height: 48px;
+    border: 0;
+    border-radius: 4px;
+    background: #66bec8;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    line-height: 48px;
 }
+
 .c-button:hover {
-	background: #2b9cce;
+    background: #2b9cce;
 }
+
 .c-button img {
-	display: none;
+    display: none;
 }
+
 .c-button.is-loading img {
-	display: inline;
+    display: inline;
 }
 
 .c-button.c-button-m-danger {
-	background-color: #db7080;
-	-webkit-animation-name: shake;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-fill-mode: both;
+    background-color: #db7080;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-fill-mode: both;
 }
+
 .c-button.c-button-m-danger:hover {
-	background-color: #db7080;
+    background-color: #db7080;
 }
+
 .c-resultBox {
-	color: #999;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #999;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
 .c-resultBox-s-item {
-	margin-bottom: 30px;
-	font-size: 20px;
+    margin-bottom: 30px;
+    font-size: 20px;
 }
+
 .c-resultBox-s-item em {
-	color: #66bec8;
-	font-weight: bold;
-	font-size: 60px;
+    color: #66bec8;
+    font-weight: bold;
+    font-size: 60px;
 }
+
 .published em,
 .paths em,
 .lowestCohesionSelector em,
 .uniqueFontSize em,
 .uniqueColor em,
 .mostIdentifierSelector em,
-.propertiesCount em{
-	font-weight: normal;
-	font-size: 30px;
+.propertiesCount em {
+    font-weight: normal;
+    font-size: 30px;
 }
+
 .uniqueColor em {
-	font-size: 18px;
-	line-height: 24px;
+    font-size: 18px;
+    line-height: 24px;
 }
+
 .c-colorBox {
-	display: inline-block;
-	margin-right: 6px;
-	width: 20px;
-	height: 20px;
-	border-radius: 2px;
-	box-shadow: 0 0 1px 0 rgba(0,0,0, 0.3);
-	vertical-align: -4px;
+    display: inline-block;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 0 rgba(0,0,0, 0.3);
+    vertical-align: -4px;
 }
+
 .c-social {
-	margin: 200px 0 0;
-	padding-top: 20px;
-	border-top: 1px #eee solid;
+    margin: 200px 0 0;
+    padding-top: 20px;
+    border-top: 1px #eee solid;
 }
+
 .c-social-s-item {
-	float: left;
-	margin-right: 10px;
+    float: left;
+    margin-right: 10px;
 }
