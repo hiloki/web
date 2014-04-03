@@ -67,6 +67,9 @@ $(function() {
     var $buttonText = $('#js-text');
     var $view = $('#js-view');
 
+    $uri.one('focus', function() {
+        $(this).val('');
+    });
     $uri.on('focus', onFocusInput);
     $input.on('focus', onFocusInput);
 
