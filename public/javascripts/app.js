@@ -167,7 +167,10 @@ $(function() {
             // disable parse button
             $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
             $buttonText.text('Failed!');
-
+            // token genereated
+            setTimeout(function() {
+                location.reload();
+            }, 500);
         });
     });
 });
