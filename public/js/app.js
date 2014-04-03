@@ -79,9 +79,11 @@ $(function() {
         return $('<div>').text(val).html();
     }
 
-    function disableButton() {
+    function disableButton(analyticsPath) {
         $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
         $buttonText.text('Failed!');
+        // send analytics data
+        ga('send', 'event', 'Parse', 'Error', analyticsPath);
     }
 
     // loaded file strings
@@ -114,39 +116,41 @@ $(function() {
         $buttonText.text('');
 
         // request parameter
+        var string;
         var param = {};
 
         var mode = $tabs.filter('.is-active').attr('data-mode');
         switch (mode) {
             case 'uri':
                 var path = $uri.val();
-                console.log(path);
                 if (path) {
                     param.path = escapeHTML(path);
                 } else {
-                    disableButton();
+                    disableButton('Undefined: ' + mode);
                     return;
                 }
                 break;
             case 'upload':
-                var string = loadedFiles.join('');
+                string = loadedFiles.join('');
                 if (string) {
                     param.css = escapeHTML(string);
                 } else {
-                    disableButton();
+                    disableButton('Undefined: ' + mode);
                     return;
                 }
                 break;
             case 'input':
-                var string = $input.val();
+                string = $input.val();
                 if (string) {
                     param.css = escapeHTML(string);
                 } else {
-                    disableButton();
+                    disableButton('Undefined: ' + mode);
                     return;
                 }
                 break;
         }
+
+        var errorPath = param.path || 'Raw data';
         $.ajax({
             type: 'post',
             url: '/parse',
@@ -177,10 +181,20 @@ $(function() {
             // scroll to window top
             $(document).scrollTop(0);
 
-        }).fail(function() {
+            var parsedSize;
 
+            data.filter(function(item) {
+                return item.name === 'size';
+            }).forEach(function(item) {
+                parsedSize = numeral().unformat(item.value);
+            });
+
+            // send analytics data
+            ga('send', 'event', 'Parse', 'Success', data[1].value, parsedSize);
+
+        }).fail(function() {
             // disable parse button
-            disableButton();
+            disableButton(errorPath);
             // token genereated
             setTimeout(function() {
                 location.reload();

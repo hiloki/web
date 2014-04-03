@@ -18,10 +18,9 @@ app.use(express.session({
     secret: '234D&CSSF'
 }));
 app.use(express.csrf());
-
-app.use(function(req, res, next) {
-    res.cookie('XSRF-TOKEN', req.csrfToken());
-    res.locals.csrf_token = req.csrfToken();
+app.use(function(request, response, next) {
+    response.cookie('XSRF-TOKEN', request.csrfToken());
+    response.locals.csrf_token = request.csrfToken();
     next();
 });
 
@@ -31,6 +30,14 @@ app.use(express.compress());
 
 app.configure('development', function() {
     app.use(express.errorHandler());
+});
+
+// 404 Page Not Found
+app.use(function(request, response, next) {
+    response.status(404);
+    response.render('404', {
+        title: "404 Page Not Found :("
+    });
 });
 
 app.get('/', routes.index);

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         autoprefixer: {
             options: ['last 2 version'],
             dist: {
-                src: 'public/stylesheets/app.css'
+                src: 'public/css/app.css'
             }
         },
         connect: {
@@ -20,21 +20,21 @@ module.exports = function(grunt) {
         csscomb: {
             dist: {
                 files: {
-                    'public/stylesheets/app.css': ['public/stylesheets/app.css']
+                    'public/css/app.css': ['public/css/app.css']
                 }
             }
         },
         csso: {
             dist: {
                 files: {
-                    'public/stylesheets/app.css': ['public/stylesheets/app.css']
+                    'public/css/app.css': ['public/css/app.css']
                 }
             }
         },
         stylus: {
             dist: {
                 files: {
-                    'public/stylesheets/app.css': 'stylus/app.styl'
+                    'public/css/app.css': 'stylus/app.styl'
                 }
             }
         },
