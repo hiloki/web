@@ -40,7 +40,7 @@ function prettify(result) {
             });
             stats.value = array.join('<br>').replace(/\,/g, ': ');
         } else if (key === 'published') {
-            stats.value = moment().format('llll');
+            stats.value = moment().format('MMMM D YYYY, HH:mm');
         } else if (key === 'size' || key === 'gzippedSize' || key === 'dataUriSize') {
             stats.value = numeral(result[key]).format('0.0b').replace(/\.0B/, 'B').replace(/0\.0/, '0');
         } else if (key === 'simplicity' || key === 'ratioOfDataUriSize') {

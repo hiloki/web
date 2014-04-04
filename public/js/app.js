@@ -162,7 +162,6 @@ $(function() {
             },
             data: param
         }).done(function(data) {
-
             // set up parse button text
             $parse.removeClass('is-loading');
             $buttonText.text('Parse');

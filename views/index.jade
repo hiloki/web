@@ -44,24 +44,22 @@ block content
     <script type="text/template" id="js-tmpResult">
       <ul class="c-resultBox">
       <% _.each(results, function (result) { %>
-         <li class="c-resultBox-s-item <%- result.name %>">
-         <%- result.prop %><br>
-         <% if(result.name === 'uniqueColor') { %>
-           <div class="u-mts u-mls"><%= result.value %></div></li>
-         <% } else {%>
-           <em><%= result.value %></em></li>
-         <% }%>
+         <li class="c-resultBox-s-item <%- result.name %>"><div class="inner">
+           <h3 class="header"><%- result.prop %></h3>
+           <div class="section"><%= result.value %></div></div></li>
       <% }); %>
       </ul>
     </script>
     <script type="text/template" id="js-tmpColor">
       <% if(colors !== 'N/A' ) {%>
+        <ul class="list">
         <% _.each(colors, function (color) { %>
-          <span class="c-colorBox" style="background-color: <%- color %>"></span>
-          <em><%- color %></em><br>
+          <li><span class="c-colorBox" style="background:<%- color %>"></span>
+          <em><%- color %></em></li>
         <% }); %>
       <% } else {%>
-        <em style="font-size:30px"><%- colors %></em>
+        <li><%- colors %></li>
       <% }%>
+        </ul>
     </script>
   #fb-root

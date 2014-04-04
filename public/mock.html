@@ -1,0 +1,191 @@
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>StyleStats</title><meta property="og:type" content="website"><meta property="og:url" content="http://www.stylestats.org/"><meta property="og:title" content="StyleStats"><meta property="og:description" content="StyleStats is Node.js library to collect CSS statistics!"><meta property="og:image" content="http://www.stylestats.org/img/og-image.png"><meta name="_csrf" content="HgW9W3kqwlrUqwEWnqe83kapgrWPftO2bzrNQ="><link rel="stylesheet" href="/css/app.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,.fb_connect_bar_container span,.fb_connect_bar_container a,.fb_connect_bar_container img,.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}.fb_connect_bar a:hover{color:#fff}.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}.fb_connect_bar div a,.fb_connect_bar span,.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}.fbpluginrecommendationsbarleft{left:10px}.fbpluginrecommendationsbarright{right:10px}</style></head><body data-twttr-rendered="true" style=""><div class="l-wrapper"><div class="l-paneInput"><h1 class="c-title">StyleStats</h1><p class="u-mbm">StyleStats is Node.js library to collect CSS statistics!</p><ul id="js-tabs" class="c-tabs"><li data-mode="uri" class="c-tabs-s-item is-active js-tab-uri"><a href="#uri" class="block">URI</a></li><li data-mode="upload" class="c-tabs-s-item js-tab-upload"><a href="#upload" class="block">File Upload</a></li><li data-mode="input" class="c-tabs-s-item js-tab-input"><a href="#input" class="block">Direct Input</a></li></ul><ul id="js-tabContents" class="c-tabContents"><li class="c-tabContents-s-item is-active js-tab-uri"><input id="js-uri" type="url" placeholder="EX. http://www.google.com/" value="http://www.google.com/" class="c-uriBox"></li><li class="c-tabContents-s-item js-tab-upload"><input id="js-upload" type="file" value="Upload" multiple="" class="c-fileButton"></li><li class="c-tabContents-s-item js-tab-input"><textarea id="js-input" placeholder="EX. #foo { color: green; }" autofocus="" class="c-textBox"></textarea></li></ul><div class="u-mbm"><button id="js-parse" class="c-button"><span id="js-text">Parse</span><img src="/img/loading-bars.svg" height="45"></button></div><ul class="c-social"><li class="c-social-s-item"><iframe src="http://ghbtns.com/github-btn.html?user=t32k&amp;repo=stylestats&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe></li><li class="c-social-s-item"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1395870373.html#_=1396635787047&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Flocalhost%3A5000%2F&amp;size=m&amp;text=StyleStats&amp;url=http%3A%2F%2Flocalhost%3A5000%2F" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe></li><li class="c-social-s-item"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1396635787214" name="I0_1396635787214" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;size=medium&amp;origin=http%3A%2F%2Flocalhost%3A5000&amp;url=http%3A%2F%2Flocalhost%3A5000%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.ja.w2oAO9GDup0.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Fz%3Dzcms%2Frs%3DAItRSTNeOUaKuVcm_NsYYxS5p8N0k03kcg#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1396635787214&amp;parent=http%3A%2F%2Flocalhost%3A5000&amp;pfname=&amp;rpctoken=16459608" data-gapiattached="true" title="+1"></iframe></div></li><li class="c-social-s-item"><div data-layout="button_count" data-send="false" data-show-faces="false" class="fb-like fb_iframe_widget" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=212646065416408&amp;href=http%3A%2F%2Flocalhost%3A5000%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 79px; height: 20px;"><iframe name="f1f9c0c6ec" width="1000px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/plugins/like.php?app_id=212646065416408&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FwTH8U0osOYl.js%3Fversion%3D40%23cb%3Df31ab73b88%26domain%3Dlocalhost%26origin%3Dhttp%253A%252F%252Flocalhost%253A5000%252Ff17f5e140%26relation%3Dparent.parent&amp;href=http%3A%2F%2Flocalhost%3A5000%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false" class="" style="border: none; visibility: visible; width: 79px; height: 20px;"></iframe></span></div></li></ul></div><div id="js-view" class="l-paneOutput">
+  <ul class="c-resultBox">
+  
+     <li class="c-resultBox-s-item published"><div class="inner">
+       <h3 class="header">Published</h3>
+       <div class="section">April 5 2014, 03:23</div></div></li>
+  
+     <li class="c-resultBox-s-item paths"><div class="inner">
+       <h3 class="header">Paths</h3>
+       <div class="section">http://www.google.com/</div></div></li>
+  
+     <li class="c-resultBox-s-item stylesheets"><div class="inner">
+       <h3 class="header">Stylesheets</h3>
+       <div class="section">0</div></div></li>
+  
+     <li class="c-resultBox-s-item styleElements"><div class="inner">
+       <h3 class="header">Style Elements</h3>
+       <div class="section">2</div></div></li>
+  
+     <li class="c-resultBox-s-item size"><div class="inner">
+       <h3 class="header">Size</h3>
+       <div class="section">15.4KB</div></div></li>
+  
+     <li class="c-resultBox-s-item dataUriSize"><div class="inner">
+       <h3 class="header">Data Uri Size</h3>
+       <div class="section">0</div></div></li>
+  
+     <li class="c-resultBox-s-item rules"><div class="inner">
+       <h3 class="header">Rules</h3>
+       <div class="section">181</div></div></li>
+  
+     <li class="c-resultBox-s-item selectors"><div class="inner">
+       <h3 class="header">Selectors</h3>
+       <div class="section">262</div></div></li>
+  
+     <li class="c-resultBox-s-item simplicity"><div class="inner">
+       <h3 class="header">Simplicity</h3>
+       <div class="section">69.1%</div></div></li>
+  
+     <li class="c-resultBox-s-item mostIdentifier"><div class="inner">
+       <h3 class="header">Most Identifier</h3>
+       <div class="section">3</div></div></li>
+  
+     <li class="c-resultBox-s-item mostIdentifierSelector"><div class="inner">
+       <h3 class="header">Most Identifier Selector</h3>
+       <div class="section">#gbd4 .gbpgs .gbmtc</div></div></li>
+  
+     <li class="c-resultBox-s-item lowestCohesion"><div class="inner">
+       <h3 class="header">Lowest Cohesion</h3>
+       <div class="section">22</div></div></li>
+  
+     <li class="c-resultBox-s-item lowestCohesionSelector"><div class="inner">
+       <h3 class="header">Lowest Cohesion Selector</h3>
+       <div class="section">.gbxms</div></div></li>
+  
+     <li class="c-resultBox-s-item totalUniqueFontSizes"><div class="inner">
+       <h3 class="header">Total Unique Font Sizes</h3>
+       <div class="section">3</div></div></li>
+  
+     <li class="c-resultBox-s-item uniqueFontSize"><div class="inner">
+       <h3 class="header">Unique Font Size</h3>
+       <div class="section">0<br>11px<br>24px</div></div></li>
+  
+     <li class="c-resultBox-s-item totalUniqueColors"><div class="inner">
+       <h3 class="header">Total Unique Colors</h3>
+       <div class="section">13</div></div></li>
+  
+     <li class="c-resultBox-s-item uniqueColor"><div class="inner">
+       <h3 class="header">Unique Color</h3>
+       <div class="section">
+  
+    <ul class="list">
+    
+      <li><span class="c-colorBox" style="background:#000"></span>
+      <em>#000</em></li>
+    
+      <li><span class="c-colorBox" style="background:#00C"></span>
+      <em>#00C</em></li>
+    
+      <li><span class="c-colorBox" style="background:#11C"></span>
+      <em>#11C</em></li>
+    
+      <li><span class="c-colorBox" style="background:#222"></span>
+      <em>#222</em></li>
+    
+      <li><span class="c-colorBox" style="background:#36C"></span>
+      <em>#36C</em></li>
+    
+      <li><span class="c-colorBox" style="background:#444"></span>
+      <em>#444</em></li>
+    
+      <li><span class="c-colorBox" style="background:#551A8B"></span>
+      <em>#551A8B</em></li>
+    
+      <li><span class="c-colorBox" style="background:#666"></span>
+      <em>#666</em></li>
+    
+      <li><span class="c-colorBox" style="background:#900"></span>
+      <em>#900</em></li>
+    
+      <li><span class="c-colorBox" style="background:#CCC"></span>
+      <em>#CCC</em></li>
+    
+      <li><span class="c-colorBox" style="background:#DD8E27"></span>
+      <em>#DD8E27</em></li>
+    
+      <li><span class="c-colorBox" style="background:#FFF"></span>
+      <em>#FFF</em></li>
+    
+      <li><span class="c-colorBox" style="background:BLACK"></span>
+      <em>BLACK</em></li>
+    
+  
+    </ul>
+</div></div></li>
+  
+     <li class="c-resultBox-s-item idSelectors"><div class="inner">
+       <h3 class="header">Id Selectors</h3>
+       <div class="section">75</div></div></li>
+  
+     <li class="c-resultBox-s-item universalSelectors"><div class="inner">
+       <h3 class="header">Universal Selectors</h3>
+       <div class="section">0</div></div></li>
+  
+     <li class="c-resultBox-s-item unqualifiedAttributeSelectors"><div class="inner">
+       <h3 class="header">Unqualified Attribute Selectors</h3>
+       <div class="section">0</div></div></li>
+  
+     <li class="c-resultBox-s-item javascriptSpecificSelectors"><div class="inner">
+       <h3 class="header">Javascript Specific Selectors</h3>
+       <div class="section">0</div></div></li>
+  
+     <li class="c-resultBox-s-item importantKeywords"><div class="inner">
+       <h3 class="header">Important Keywords</h3>
+       <div class="section">26</div></div></li>
+  
+     <li class="c-resultBox-s-item floatProperties"><div class="inner">
+       <h3 class="header">Float Properties</h3>
+       <div class="section">0</div></div></li>
+  
+     <li class="c-resultBox-s-item propertiesCount"><div class="inner">
+       <h3 class="header">Properties Count</h3>
+       <div class="section">background-image: 49<br>display: 34<br>color: 25<br>margin: 21<br>padding: 19<br>position: 19<br>background: 17<br>height: 16<br>border: 14<br>top: 13</div></div></li>
+  
+     <li class="c-resultBox-s-item mediaQueries"><div class="inner">
+       <h3 class="header">Media Queries</h3>
+       <div class="section">0</div></div></li>
+  
+  </ul>
+</div></div><a href="https://github.com/t32k/stylestats"><img src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" class="c-ribbon"></a><div class="html-jade"><script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.ja.w2oAO9GDup0.O/m=auth/exm=plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTNeOUaKuVcm_NsYYxS5p8N0k03kcg/cb=gapi.loaded_1" async=""></script><script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.ja.w2oAO9GDup0.O/m=plusone/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AItRSTNeOUaKuVcm_NsYYxS5p8N0k03kcg/cb=gapi.loaded_0" async=""></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script src="//connect.facebook.net/en_US/all.js#xfbml=1&amp;appId=212646065416408" id="fbjssdk"></script><script src="//platform.twitter.com/widgets.js" id="tweetjs"></script><script src="https://apis.google.com/js/plusone.js" id="gplusjs" gapi_processed="true"></script><script type="text/template" id="js-tmpResult">
+  <ul class="c-resultBox">
+  <% _.each(results, function (result) { %>
+     <li class="c-resultBox-s-item <%- result.name %>"><div class="inner">
+       <h3 class="header"><%- result.prop %></h3>
+       <div class="section"><%= result.value %></div></div></li>
+  <% }); %>
+  </ul>
+</script>
+<script type="text/template" id="js-tmpColor">
+  <% if(colors !== 'N/A' ) {%>
+    <ul class="list">
+    <% _.each(colors, function (color) { %>
+      <li><span class="c-colorBox" style="background:<%- color %>"></span>
+      <em><%- color %></em></li>
+    <% }); %>
+  <% } else {%>
+    <li><%- colors %></li>
+  <% }%>
+    </ul>
+</script></div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="http://static.ak.facebook.com/connect/xd_arbiter/wTH8U0osOYl.js?version=40#channel=f17f5e140&amp;origin=http%3A%2F%2Flocalhost%3A5000" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="https://s-static.ak.facebook.com/connect/xd_arbiter/wTH8U0osOYl.js?version=40#channel=f17f5e140&amp;origin=http%3A%2F%2Flocalhost%3A5000" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="f3c781309c" frameborder="0" allowtransparency="true" scrolling="no" src="https://www.facebook.com/connect/ping?client_id=212646065416408&amp;domain=localhost&amp;origin=1&amp;redirect_uri=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FwTH8U0osOYl.js%3Fversion%3D40%23cb%3Df2ce69dd24%26domain%3Dlocalhost%26origin%3Dhttp%253A%252F%252Flocalhost%253A5000%252Ff17f5e140%26relation%3Dparent&amp;response_type=token%2Csigned_request%2Ccode&amp;sdk=joey" style="display: none;"></iframe></div></div></div><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script><script src="/js/app.js"></script><script>(function(d, s) {
+ var js,
+     fjs = d.getElementsByTagName(s)[0],
+     load = function(url, id) {
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.src = url; js.id = id;
+       fjs.parentNode.insertBefore(js, fjs);
+     };
+ load('//connect.facebook.net/en_US/all.js#xfbml=1&appId=212646065416408', 'fbjssdk');
+ load('//platform.twitter.com/widgets.js', 'tweetjs');
+ load('https://apis.google.com/js/plusone.js', 'gplusjs');
+}(document, 'script'));
+  
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-2317436-37', 'stylestats.org');</script><iframe name="oauth2relay559540017" id="oauth2relay559540017" src="https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Flocalhost%3A5000#rpctoken=852378018&amp;forcesecure=1" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
