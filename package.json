@@ -31,7 +31,7 @@
         "numeral": "~1.5.3",
         "forever": "~0.10.11",
         "newrelic": "~1.4.0",
-        "stylestats": "~3.2.1",
+        "stylestats": "~3.2.2",
         "underscore": "~1.6.0",
         "underscore.string": "~2.3.3"
     },
