@@ -1,10 +1,9 @@
-var StyleStats = require('stylestats');
+var _ = require('underscore');
 var moment = require('moment');
 var numeral = require('numeral');
-var _ = require('underscore');
-_.str = require('underscore.string');
-_.mixin(_.str.exports());
-_.str.include('Underscore.string', 'string');
+
+var StyleStats = require('stylestats');
+var aliases = require('../node_modules/stylestats/assets/aliases.json');
 
 exports.index = function(request, response) {
     response.render('index', {
@@ -15,9 +14,11 @@ exports.index = function(request, response) {
 exports.parse = function(request, response) {
     var path = request.body.path;
     var css = request.body.css;
-
     var stylestats = new StyleStats(path || css);
-    stylestats.parse(function(result) {
+    stylestats.parse(function(error, result) {
+        if(error) {
+            response.send(500, 'Something broke!');
+        }
         response.send(prettify(result));
     });
 };
@@ -32,7 +33,7 @@ function prettify(result) {
     Object.keys(result).forEach(function(key) {
         var stats = {};
         stats.name = key;
-        stats.prop = _(_(key).humanize()).titleize();
+        stats.prop = aliases[key];
         if (key === 'propertiesCount') {
             var array = [];
             result[key].forEach(function(item) {

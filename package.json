@@ -1,6 +1,6 @@
 {
     "name": "stylestats.org",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "StyleStats Official Site",
     "main": "app.js",
     "scripts": {
@@ -31,9 +31,8 @@
         "numeral": "~1.5.3",
         "forever": "~0.10.11",
         "newrelic": "~1.4.0",
-        "stylestats": "~3.2.2",
-        "underscore": "~1.6.0",
-        "underscore.string": "~2.3.3"
+        "stylestats": "~4.0.0",
+        "underscore": "~1.6.0"
     },
     "devDependencies": {
         "grunt": "~0.4.4",
