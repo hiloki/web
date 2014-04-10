@@ -53,15 +53,15 @@ block content
       </ul>
     </script>
     <script type="text/template" id="js-tmpColor">
+      <ul class="list">
       <% if(colors !== 'N/A' ) {%>
-        <ul class="list">
-        <% _.each(colors, function (color) { %>
-          <li><span class="c-colorBox" style="background:<%- color %>"></span>
-          <em><%- color %></em></li>
-        <% }); %>
+      <% _.each(colors, function (color) { %>
+        <li><span class="c-colorBox" style="background:<%- color %>"></span>
+        <em><%- color %></em></li>
+      <% }); %>
       <% } else {%>
         <li><%- colors %></li>
       <% }%>
-        </ul>
+      </ul>
     </script>
   #fb-root
