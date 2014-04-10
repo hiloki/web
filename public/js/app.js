@@ -200,7 +200,7 @@ $(function() {
         }).fail(function() {
             // disable parse button
             disableButton(errorPath);
-            // token genereated
+            // token generated
             setTimeout(function() {
                 location.reload();
             }, 500);
@@ -208,11 +208,11 @@ $(function() {
     });
 
     var result = qs.parse(location.search.replace('?', ''));
-    if (result.url) {
+    if (result.uri) {
         $inputElements.removeClass('is-active');
         $uploadElements.removeClass('is-active');
         $uriElements.addClass('is-active');
-        $uri.val(result.url);
+        $uri.val(result.uri);
         $parse.trigger('click');
     }
 });
