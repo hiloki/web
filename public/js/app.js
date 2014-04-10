@@ -1,3 +1,5 @@
+var qs = require('querystring');
+
 $(function() {
 
     // tabs and related views
@@ -204,4 +206,13 @@ $(function() {
             }, 500);
         });
     });
+
+    var result = qs.parse(location.search.replace('?', ''));
+    if (result.url) {
+        $inputElements.removeClass('is-active');
+        $uploadElements.removeClass('is-active');
+        $uriElements.addClass('is-active');
+        $uri.val(result.url);
+        $parse.trigger('click');
+    }
 });
