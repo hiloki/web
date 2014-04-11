@@ -69,9 +69,6 @@ $(function() {
     var $buttonText = $('#js-text');
     var $view = $('#js-view');
 
-    $uri.one('focus', function() {
-        $(this).val('');
-    });
     $uri.on('focus', onFocusInput);
     $input.on('focus', onFocusInput);
 
@@ -165,6 +162,12 @@ $(function() {
             },
             data: param
         }).done(function(data) {
+            if (param.path) {
+                window.history.pushState({
+                    uri: param.path
+                }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
+            }
+
             // set up parse button text
             $parse.removeClass('is-loading');
             $buttonText.text('Parse');
@@ -214,5 +217,9 @@ $(function() {
         $uriElements.addClass('is-active');
         $uri.val(result.uri);
         $parse.trigger('click');
+    } else {
+        $uri.one('focus', function() {
+            $(this).val('');
+        });
     }
 });
