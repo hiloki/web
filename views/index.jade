@@ -27,17 +27,18 @@ block content
           span#js-text Parse
           img(src="/img/loading-bars.svg" height="45")
 
-      ul.c-footer
-        li.c-footer-s-item
-          a(href="https://github.com/t32k/stylestats") Source
-        li.c-footer-s-item
-          a(href="https://github.com/t32k/stylestats#metrics") Document
-        li.c-footer-s-item
-          a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
-        li.c-footer-s-item.c-footer-s-item-m-copyright
-          span.u-nw &copy; 2014 StyleStats.org
-
     .l-paneOutput#js-view
+
+  ul.c-footer
+      li.c-footer-s-item
+        a(href="https://github.com/t32k/stylestats") Source
+      li.c-footer-s-item
+        a(href="https://github.com/t32k/stylestats#metrics") Document
+      li.c-footer-s-item
+        a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
+      li.c-footer-s-item.c-footer-s-item-m-copyright
+        span.u-nw &copy; 2014 StyleStats.org
+
 
   a(href="https://github.com/t32k/stylestats")
     img.c-ribbon(src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png")
@@ -53,15 +54,15 @@ block content
       </ul>
     </script>
     <script type="text/template" id="js-tmpColor">
+      <ul class="list">
       <% if(colors !== 'N/A' ) {%>
-        <ul class="list">
-        <% _.each(colors, function (color) { %>
-          <li><span class="c-colorBox" style="background:<%- color %>"></span>
-          <em><%- color %></em></li>
-        <% }); %>
+      <% _.each(colors, function (color) { %>
+        <li><span class="c-colorBox" style="background:<%- color %>"></span>
+        <em><%- color %></em></li>
+      <% }); %>
       <% } else {%>
         <li><%- colors %></li>
       <% }%>
-        </ul>
+      </ul>
     </script>
   #fb-root
