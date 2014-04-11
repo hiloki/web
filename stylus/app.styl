@@ -212,17 +212,26 @@ select, button, input, textarea
     vertical-align: -4px
 
 .c-footer
-    margin: 120px 0 0
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    margin: 120px 40px 0
     padding-top: 20px
     border-top: 1px #eee solid
+    background-color: #FFFFFF
     color: #999
     font-size: 14px
 
 .c-footer-s-item
     float: left
-    margin: 0 20px 20px 0
-    padding-right: 20px
-    border-right: 1px #ccc solid
+    margin-bottom: 20px
+    // margin: 0 20px 20px 0
+    // padding-right: 20px
+    & + &
+      border-left: 1px #ccc solid
+      margin-left: 20px
+      padding-left: 20px
 
 .c-footer-s-item-m-copyright
     margin-right: 0
@@ -268,6 +277,20 @@ select, button, input, textarea
         font-size: 14px
     .c-textBox
         height: 120px
+    .c-footer
+        position: static
+        margin-left: 0
+        margin-right: 0
+    .c-footer-s-item
+        & + &
+          margin-left: 10px
+          padding-left: 10px
+        & + .c-footer-s-item-m-copyright
+          border-left: 0
+          margin-left: 0
+          padding-left: 0
+          
     .c-footer-s-item-m-copyright
+        clear: left
         float: none
         margin-bottom: 20px
