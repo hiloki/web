@@ -1,3 +1,5 @@
+var qs = require('querystring');
+
 $(function() {
 
     // tabs and related views
@@ -67,9 +69,6 @@ $(function() {
     var $buttonText = $('#js-text');
     var $view = $('#js-view');
 
-    $uri.one('focus', function() {
-        $(this).val('');
-    });
     $uri.on('focus', onFocusInput);
     $input.on('focus', onFocusInput);
 
@@ -163,6 +162,12 @@ $(function() {
             },
             data: param
         }).done(function(data) {
+            if (param.path) {
+                window.history.pushState({
+                    uri: param.path
+                }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
+            }
+
             // set up parse button text
             $parse.removeClass('is-loading');
             $buttonText.text('Parse');
@@ -198,10 +203,23 @@ $(function() {
         }).fail(function() {
             // disable parse button
             disableButton(errorPath);
-            // token genereated
+            // token generated
             setTimeout(function() {
                 location.reload();
             }, 500);
         });
     });
+
+    var result = qs.parse(location.search.replace('?', ''));
+    if (result.uri) {
+        $inputElements.removeClass('is-active');
+        $uploadElements.removeClass('is-active');
+        $uriElements.addClass('is-active');
+        $uri.val(result.uri);
+        $parse.trigger('click');
+    } else {
+        $uri.one('focus', function() {
+            $(this).val('');
+        });
+    }
 });
