@@ -32,6 +32,18 @@ app.configure('development', function() {
     app.use(express.errorHandler());
 });
 
+// Redirect root domain to www.
+app.configure('production', function(){
+    app.all(/.*/, function(request, response, next) {
+      var host = request.header('host');
+      if (host.match(/^www\..*/i)) {
+        next();
+      } else {
+        response.redirect(301, 'http://www.' + host);
+      }
+    });
+});
+
 // 404 Page Not Found
 app.use(function(request, response, next) {
     response.status(404);
