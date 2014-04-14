@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         csso: {
             dist: {
                 files: {
-                    'public/css/app.css': ['public/css/app.css']
+                    'public/css/app.min.css': ['public/css/app.css']
                 }
             }
         },
