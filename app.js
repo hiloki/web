@@ -1,39 +1,47 @@
 var path = require('path');
+var csrf = require('csurf');
+var morgan = require('morgan');
+var session = require('express-session');
 var express = require('express');
+var compress = require('compression');
+var bodyParser = require('body-parser');
+var serveStatic = require('serve-static');
+var cookieParser = require('cookie-parser');
+var errorHandler = require('errorhandler');
+var methodOverride = require('method-override');
 
-var routes = require('./routes');
 var app = express();
+var env = process.env.NODE_ENV || 'development';
+var routes = require('./routes');
 
-app.use(express.logger());
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
+app.use(morgan('dev'));
+app.use(compress());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(methodOverride());
 
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
 // CSRF
-app.use(express.cookieParser());
-app.use(express.session({
-    secret: '234D&CSSF'
-}));
-app.use(express.csrf());
+app.use(cookieParser());
+app.use(session({ secret: '234D&CSSF' }));
+app.use(csrf());
 app.use(function(request, response, next) {
     response.cookie('XSRF-TOKEN', request.csrfToken());
     response.locals.csrf_token = request.csrfToken();
     next();
 });
 
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.compress());
+app.use(serveStatic(path.join(__dirname, 'public')));
 
-app.configure('development', function() {
-    app.use(express.errorHandler());
-});
+
+if (env === 'development') {
+    app.use(errorHandler());
+}
 
 // Redirect root domain to www.
-app.configure('production', function(){
+if (env === 'production') {
     app.all(/.*/, function(request, response, next) {
       var host = request.header('host');
       if (host.match(/^www\..*/i)) {
@@ -42,7 +50,10 @@ app.configure('production', function(){
         response.redirect(301, 'http://www.' + host);
       }
     });
-});
+}
+
+app.get('/', routes.index);
+app.post('/parse', routes.parse);
 
 // 404 Page Not Found
 app.use(function(request, response, next) {
@@ -51,9 +62,6 @@ app.use(function(request, response, next) {
         title: "404 Page Not Found :("
     });
 });
-
-app.get('/', routes.index);
-app.post('/parse', routes.parse);
 
 app.listen(process.env.PORT || 5000, function() {
     console.log('Express server listening on port ' + (process.env.PORT || 5000));
