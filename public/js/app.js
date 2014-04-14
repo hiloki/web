@@ -162,10 +162,14 @@ $(function() {
             },
             data: param
         }).done(function(data) {
+            
+            var sharePath = false;
+
             if (param.path) {
                 window.history.pushState({
                     uri: param.path
                 }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
+                sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
             }
 
             // set up parse button text
@@ -183,7 +187,8 @@ $(function() {
 
             // render result with compiled html
             $view.html(resultCompiler({
-                results: data
+                results: data,
+                path: sharePath
             }));
 
             // scroll to window top

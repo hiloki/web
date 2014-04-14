@@ -65,17 +65,33 @@ module.exports = function(grunt) {
                 files: ['stylus/*.styl'],
                 tasks: ['stylesheet']
             }
+        },
+        webfont: {
+            dist: {
+                src: 'public/svg/*.svg',
+                dest: 'public/font/',
+                destCss: 'stylus/',
+                options: {
+                  types: ['woff', 'ttf'],
+                  stylesheet: 'styl',
+                  htmlDemo: false,
+                  syntax: 'bootstrap',
+                  relativeFontPath: '/font/'
+                }
+            }
         }
     });
 
     // These plugins provide necessary tasks
     grunt.loadNpmTasks('grunt-csso');
     grunt.loadNpmTasks('grunt-csscomb');
+    grunt.loadNpmTasks('grunt-webfont');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-browserify');
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
 

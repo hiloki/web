@@ -45,6 +45,42 @@ select,button,input,textarea
     width: 100%;
 
     border: 0;
+}@font-face{
+    font-family: 'icons';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('/font/icons-d42bb4e08341c1065fb16d3d41567958.woff') format('woff'),url('/font/icons-d42bb4e08341c1065fb16d3d41567958.ttf') format('truetype');
+}
+[class^='icon-']:before,[class*=' icon-']:before
+{
+    font-family: 'icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+
+    display: inline-block;
+
+    vertical-align: middle;
+    text-decoration: inherit;
+    text-transform: none;
+
+    speak: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-facebook:before
+{
+    content: '\e001';
+}
+.icon-plus:before
+{
+    content: '\e002';
+}
+.icon-twitter:before
+{
+    content: '\e003';
 }
 .u-cf:before,.u-cf:after
 {
@@ -269,6 +305,12 @@ select,button,input,textarea
     border-left: 2px #ccc solid;
     background: #eee;
 }
+.c-resultBox-s-item.share .header
+{
+    color: #fff;
+    border-left: 2px #2b9cce solid;
+    background: #66bec8;
+}
 .c-resultBox-s-item .section
 {
     font-size: 32px;
@@ -277,6 +319,45 @@ select,button,input,textarea
     padding: 12px 12px 24px;
 
     color: #66bec8;
+}
+.c-resultBox-s-share
+{
+    padding: 4px 4px 12px;
+}
+.c-resultBox-s-share li
+{
+    float: left;
+
+    margin: 8px;
+}
+.c-resultBox-s-share a
+{
+    display: inline-block;
+}
+.c-resultBox-s-share i
+{
+    font-size: 48px;
+
+    -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+    -webkit-transition-duration: .4s;
+            transition-duration: .4s;
+    -webkit-transition-property: color;
+            transition-property: color;
+
+    color: #ccc;
+}
+.c-resultBox-s-share a:hover .icon-twitter
+{
+    color: #00aced;
+}
+.c-resultBox-s-share a:hover .icon-facebook
+{
+    color: #3b5999;
+}
+.c-resultBox-s-share a:hover .icon-plus
+{
+    color: #d44332;
 }
 .uniqueColor .inner,.uniqueFontSize .inner
 {
@@ -379,7 +460,7 @@ select,button,input,textarea
                 column-count: 1;
     }
 }
-@media screen and (max-width:640px)
+@media screen and (max-width:800px)
 {
     body
     {
@@ -417,6 +498,10 @@ select,button,input,textarea
     .c-tabs-s-item
     {
         font-size: 14px;
+    }
+    .c-button
+    {
+        max-width: 100%;
     }
     .c-textBox
     {
