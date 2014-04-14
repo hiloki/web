@@ -1,4 +1,4 @@
-# [stylestats.org](http://stylestats.org)
+# [stylestats.org](http://www.stylestats.org)
 
 official site.
 
