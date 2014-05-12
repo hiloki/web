@@ -32,28 +32,28 @@
     "express": "^4.0.0",
     "numeral": "^1.5.3",
     "forever": "^0.11.0",
-    "newrelic": "^1.5.0",
-    "stylestats": "^4.0.0",
+    "newrelic": "^1.5.4",
+    "stylestats": "^4.1.0",
     "underscore": "^1.6.0",
-    "body-parser": "^1.0.1",
-    "compression": "^1.0.1",
+    "body-parser": "^1.2.0",
+    "compression": "^1.0.2",
     "serve-static": "^1.0.4",
     "errorhandler": "^1.0.0",
     "cookie-parser": "^1.0.1",
     "method-override": "^1.0.0",
-    "express-session": "^1.0.2",
-    "grunt-webfont": "~0.3.4"
+    "express-session": "^1.0.2"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-csso": "^0.6.1",
+    "grunt-webfont": "^0.4.0",
     "grunt-csscomb": "^2.0.1",
-    "grunt-browserify": "^2.0.3",
-    "grunt-autoprefixer": "^0.7.2",
+    "grunt-browserify": "^2.0.8",
+    "grunt-autoprefixer": "^0.7.3",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-stylus": "^0.14.0",
+    "grunt-contrib-stylus": "^0.16.0",
     "grunt-contrib-connect": "^0.7.1"
   }
 }
