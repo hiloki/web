@@ -1,6 +1,6 @@
 {
   "name": "stylestats.org",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "StyleStats Official Site",
   "main": "app.js",
   "scripts": {
