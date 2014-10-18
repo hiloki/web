@@ -77,10 +77,6 @@ $(function() {
         $buttonText.text('Parse');
     }
 
-    function escapeHTML(val) {
-        return $('<div>').text(val).html();
-    }
-
     function disableButton(analyticsPath) {
         $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
         $buttonText.text('Failed!');
@@ -127,7 +123,7 @@ $(function() {
             case 'uri':
                 var path = $uri.val();
                 if (URL.test(path)) {
-                    param.path = escapeHTML(path);
+                    param.path = _.escape(path);
                 } else {
                     disableButton('Undefined: ' + mode);
                     return;
@@ -136,7 +132,7 @@ $(function() {
             case 'upload':
                 string = loadedFiles.join('');
                 if (string) {
-                    param.css = escapeHTML(string);
+                    param.css = _.escape(string);
                 } else {
                     disableButton('Undefined: ' + mode);
                     return;
@@ -145,7 +141,7 @@ $(function() {
             case 'input':
                 string = $input.val();
                 if (string) {
-                    param.css = escapeHTML(string);
+                    param.css = _.escape(string);
                 } else {
                     disableButton('Undefined: ' + mode);
                     return;
