@@ -59,9 +59,9 @@ block content
          </li>
       <% } %>
       <% _.each(results, function (result) { %>
-         <li class="c-resultBox-s-item <%- result.name %>">
+         <li class="c-resultBox-s-item">
            <div class="inner">
-             <h3 class="header"><%- result.prop %></h3>
+             <h3 class="header"><%- result.name %></h3>
              <div class="section"><%= result.value %></div>
            </div>
          </li>
@@ -71,10 +71,12 @@ block content
     <script type="text/template" id="js-tmpColor">
       <ul class="list">
       <% if(colors !== 'N/A' ) {%>
-      <% _.each(colors, function (color) { %>
-        <li><span class="c-colorBox" style="background:<%- color %>"></span>
-        <em><%- color %></em></li>
-      <% }); %>
+        <% _.each(colors, function (color) { %>
+          <li>
+            <span class="c-colorBox" style="background:<%- color %>"></span>
+            <em><%- color %></em>
+          </li>
+        <% }); %>
       <% } else {%>
         <li><%- colors %></li>
       <% }%>

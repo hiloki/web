@@ -173,12 +173,27 @@ $(function() {
             $buttonText.text('Parse');
 
             // replace "uniqueColor" items with compiled html
+            data = data.map(function (item) {
+                var keys = Object.keys(item);
+                var key = _.first(keys);
+                return {
+                    name: key,
+                    value: item[key]
+                };
+            });
+
             data.filter(function(item) {
-                return item.name === 'uniqueColor';
+                return item.name === 'Unique Color';
             }).forEach(function(item) {
                 item.value = colorCompiler({
-                    colors: item.value || []
+                    colors: item.value.split(/\r\n|\r|\n/) || []
                 });
+            });
+          
+            data.filter(function (item) {
+                return item.name !== 'Unique Color' && _.isString(item.value) && item.value.indexOf(/\r\n|\r|\n/);
+            }).forEach(function (item) {
+                item.value = item.value.replace(/\r\n|\r|\n/g, '<br>');
             });
 
             // render result with compiled html
