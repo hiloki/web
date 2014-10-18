@@ -38,6 +38,17 @@ module.exports = function(grunt) {
                 }
             }
         },
+        concat: {
+            lib: {
+                src: [
+                    'bower_components/jquery/dist/jquery.min.js',
+                    'bower_components/underscore/underscore-min.js',
+                    'bower_components/numeral/min/numeral.min.js',
+                    'bower_components/mustache/mustache.js'
+                ],
+                dest: 'public/js/lib.min.js'
+            }
+        },
         browserify: {
             dist: {
                 files: {
@@ -92,6 +103,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-connect');
 
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
@@ -99,5 +111,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['develop']);
     grunt.registerTask('develop', ['connect', 'watch']);
     grunt.registerTask('stylesheet', ['stylus', 'autoprefixer', 'csscomb', 'csso']);
-    grunt.registerTask('js', ['browserify', 'uglify', 'clean']);
+    grunt.registerTask('js', ['concat', 'browserify', 'uglify', 'clean']);
 };
