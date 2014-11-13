@@ -9,6 +9,6 @@ module.exports = function(request, response) {
     if(error) {
       response.send(500, 'Something broken!');
     }
-    response.send(prettify(result));
+    response.json(prettify(result));
   });
 };
