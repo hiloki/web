@@ -12,7 +12,6 @@ var methodOverride = require('method-override');
 
 var app = express();
 var env = process.env.NODE_ENV || 'development';
-var routes = require('./routes');
 
 app.use(morgan('dev'));
 app.use(compress());
@@ -52,8 +51,8 @@ if (env === 'production') {
     });
 }
 
-app.get('/', routes.index);
-app.post('/parse', routes.parse);
+app.get('/', require('./routes/index'));
+app.post('/parse', require('./routes/parse'));
 
 // 404 Page Not Found
 app.use(function(request, response, next) {

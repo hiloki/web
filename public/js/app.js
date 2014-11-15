@@ -77,10 +77,6 @@ $(function() {
         $buttonText.text('Parse');
     }
 
-    function escapeHTML(val) {
-        return $('<div>').text(val).html();
-    }
-
     function disableButton(analyticsPath) {
         $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
         $buttonText.text('Failed!');
@@ -127,7 +123,7 @@ $(function() {
             case 'uri':
                 var path = $uri.val();
                 if (URL.test(path)) {
-                    param.path = escapeHTML(path);
+                    param.path = _.escape(path);
                 } else {
                     disableButton('Undefined: ' + mode);
                     return;
@@ -136,7 +132,7 @@ $(function() {
             case 'upload':
                 string = loadedFiles.join('');
                 if (string) {
-                    param.css = escapeHTML(string);
+                    param.css = _.escape(string);
                 } else {
                     disableButton('Undefined: ' + mode);
                     return;
@@ -145,7 +141,7 @@ $(function() {
             case 'input':
                 string = $input.val();
                 if (string) {
-                    param.css = escapeHTML(string);
+                    param.css = _.escape(string);
                 } else {
                     disableButton('Undefined: ' + mode);
                     return;
@@ -177,12 +173,27 @@ $(function() {
             $buttonText.text('Parse');
 
             // replace "uniqueColor" items with compiled html
+            data = data.map(function (item) {
+                var keys = Object.keys(item);
+                var key = _.first(keys);
+                return {
+                    name: key,
+                    value: item[key]
+                };
+            });
+
             data.filter(function(item) {
-                return item.name === 'uniqueColor';
+                return item.name === 'Unique Color';
             }).forEach(function(item) {
                 item.value = colorCompiler({
-                    colors: item.value || []
+                    colors: item.value.split(/\r\n|\r|\n/) || []
                 });
+            });
+          
+            data.filter(function (item) {
+                return item.name !== 'Unique Color' && _.isString(item.value) && item.value.indexOf(/\r\n|\r|\n/);
+            }).forEach(function (item) {
+                item.value = item.value.replace(/\r\n|\r|\n/g, '<br>');
             });
 
             // render result with compiled html

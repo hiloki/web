@@ -47,28 +47,36 @@ block content
     <script type="text/template" id="js-tmpResult">
       <ul class="c-resultBox">
       <% if (path) { %>
-         <li class="c-resultBox-s-item share"><div class="inner">
-           <h3 class="header">Share</h3>
-           <ul class="c-resultBox-s-share u-cf">
-              <li><a href="https://twitter.com/share?url=<%- path %>" title="Share on Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
-              <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%- path %>" title="Share on Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
-              <li><a href="https://plus.google.com/share?url=<%- path %>" title="Share on Google+" target="_blank"><i class="icon-plus"></i></a></li>
-           </ul></li>
+         <li class="c-resultBox-s-item share">
+           <div class="inner">
+             <h3 class="header">Share</h3>
+             <ul class="c-resultBox-s-share u-cf">
+                <li><a href="https://twitter.com/share?url=<%- path %>" title="Share on Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=<%- path %>" title="Share on Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://plus.google.com/share?url=<%- path %>" title="Share on Google+" target="_blank"><i class="icon-plus"></i></a></li>
+             </ul>
+           </div>
+         </li>
       <% } %>
       <% _.each(results, function (result) { %>
-         <li class="c-resultBox-s-item <%- result.name %>"><div class="inner">
-           <h3 class="header"><%- result.prop %></h3>
-           <div class="section"><%= result.value %></div></div></li>
+         <li class="c-resultBox-s-item">
+           <div class="inner">
+             <h3 class="header"><%- result.name %></h3>
+             <div class="section"><%= result.value %></div>
+           </div>
+         </li>
       <% }); %>
       </ul>
     </script>
     <script type="text/template" id="js-tmpColor">
       <ul class="list">
       <% if(colors !== 'N/A' ) {%>
-      <% _.each(colors, function (color) { %>
-        <li><span class="c-colorBox" style="background:<%- color %>"></span>
-        <em><%- color %></em></li>
-      <% }); %>
+        <% _.each(colors, function (color) { %>
+          <li>
+            <span class="c-colorBox" style="background:<%- color %>"></span>
+            <em><%- color %></em>
+          </li>
+        <% }); %>
       <% } else {%>
         <li><%- colors %></li>
       <% }%>
