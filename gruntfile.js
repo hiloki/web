@@ -110,6 +110,6 @@ module.exports = function(grunt) {
     // Default task
     grunt.registerTask('default', ['develop']);
     grunt.registerTask('develop', ['connect', 'watch']);
-    grunt.registerTask('stylesheet', ['stylus', 'autoprefixer', 'csscomb', 'csso']);
+    grunt.registerTask('css', ['stylus', 'autoprefixer', 'csscomb', 'csso']);
     grunt.registerTask('js', ['concat', 'browserify', 'uglify', 'clean']);
 };
