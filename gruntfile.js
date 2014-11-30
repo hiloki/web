@@ -74,7 +74,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: ['stylus/*.styl'],
-                tasks: ['stylesheet']
+                tasks: ['css']
             }
         },
         webfont: {
