@@ -34,7 +34,7 @@
     "express-session": "^1.9.1",
     "forever": "^0.13.0",
     "grunt": "^0.4.5",
-    "grunt-autoprefixer": "^1.0.1",
+    "grunt-autoprefixer": "^2.0.0",
     "grunt-browserify": "^3.2.0",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
@@ -54,7 +54,7 @@
     "newrelic": "^1.13.2",
     "numeral": "^1.5.3",
     "serve-static": "^1.7.1",
-    "stylestats": "^4.1.4",
+    "stylestats": "^4.2.0",
     "underscore": "^1.7.0"
   }
 }
