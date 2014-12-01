@@ -23,7 +23,7 @@ block content
           textarea.c-textBox#js-input(placeholder="EX. #foo { color: green; }" autofocus)
 
       .u-mbm
-        button.c-button#js-parse
+        button.c-button#js-parse(type="submit")
           span#js-text Parse
           img(src="/img/loading-bars.svg" height="45")
 
@@ -62,7 +62,7 @@ block content
          <li class="c-resultBox-s-item">
            <div class="inner">
              <h3 class="header"><%- result.name %></h3>
-             <div class="section"><%= result.value %></div>
+             <div class="section" data-name="<%- result.name %>"><%= result.value %></div>
            </div>
          </li>
       <% }); %>

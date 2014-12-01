@@ -89,20 +89,20 @@
     display: inline
 
 .c-button.c-button-m-danger
-    background-color: #db7080
+    background-color: $dangerColor
     animation-name: shake
     animation-duration: 1s
     animation-fill-mode: both
 
 .c-button.c-button-m-danger:hover
-    background-color: #db7080
+    background-color: $dangerColor
 
 .c-resultBox
     column-count: 3
     column-gap: 20px
 
 .c-resultBox-s-item
-    margin: 2px 2px 16px
+    margin: 0 2px 16px 4px
     padding-top: 12px
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2)
 
@@ -111,25 +111,33 @@
 
 .c-resultBox-s-item .header
     display: inline
-    margin-left: -2px
+    margin-left: -4px
     padding: 2px 24px 2px 8px
-    border-left: 2px #ccc solid
+    border-left: 4px $mainColor solid
     color: #666
-    line-height: 1.5
     background: #eee
+    line-height: 1.5
     font-size: 14px
 
 .c-resultBox-s-item.share .header
-    border-left: 2px $subColor solid
+    border-left: 4px #eee solid
     color: #fff
     background: $mainColor
 
-
 .c-resultBox-s-item .section
-    padding: 12px 12px 24px
+    line-height: 1.2
+    padding: 12px 12px 18px
     font-weight: bold
-    font-size: 24px
+    font-size: 28px
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace
     color: $txtColor
+
+.c-resultBox-s-item .section[data-name="Unique Font Family"],
+.c-resultBox-s-item .section[data-name="Properties Count"],
+.c-resultBox-s-item .section[data-name="Lowest Cohesion Selector"],
+.c-resultBox-s-item .section[data-name="Unique Color"],
+.c-resultBox-s-item .section[data-name="Unique Font Size"]
+    font-size: 20px
 
 .c-resultBox-s-share
     padding: 4px 4px 12px
@@ -171,7 +179,7 @@
 
 .c-colorBox
     display: inline-block
-    margin-right: 8px
+    margin-right: -4px
     width: 20px
     height: 20px
     border-radius: 2px
