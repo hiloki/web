@@ -4,6 +4,7 @@
   "description": "StyleStats Official Site",
   "main": "app.js",
   "scripts": {
+    "prenstall": "npm i -g bower grunt-cli",
     "postinstall": "bower i && grunt js css",
     "start": "node web.js",
     "stop": "forever stopall"
