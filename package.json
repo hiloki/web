@@ -4,7 +4,6 @@
   "description": "StyleStats Official Site",
   "main": "app.js",
   "scripts": {
-    "preinstall": "npm i -g bower grunt-cli",
     "postinstall": "bower i && grunt js css",
     "start": "node web.js",
     "stop": "forever stopall"
@@ -27,6 +26,7 @@
   },
   "dependencies": {
     "body-parser": "^1.9.2",
+    "bower": "^1.3.12",
     "compression": "^1.2.0",
     "cookie-parser": "^1.3.3",
     "csurf": "^1.6.3",
