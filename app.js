@@ -24,44 +24,44 @@ app.set('views', path.join(__dirname, 'views'));
 
 // CSRF
 app.use(cookieParser());
-app.use(session({ secret: '234D&CSSF' }));
+app.use(session({secret: '234D&CSSF'}));
 app.use(csrf());
-app.use(function(request, response, next) {
-    response.cookie('XSRF-TOKEN', request.csrfToken());
-    response.locals.csrf_token = request.csrfToken();
-    next();
+app.use(function (request, response, next) {
+  response.cookie('XSRF-TOKEN', request.csrfToken());
+  response.locals.csrf_token = request.csrfToken();
+  next();
 });
 
 app.use(serveStatic(path.join(__dirname, 'public')));
 
 
 if (env === 'development') {
-    app.use(errorHandler());
+  app.use(errorHandler());
 }
 
 // Redirect root domain to www.
 if (env === 'production') {
-    app.all(/.*/, function(request, response, next) {
-      var host = request.header('host');
-      if (host.match(/^www\..*/i)) {
-        next();
-      } else {
-        response.redirect(301, 'http://www.' + host);
-      }
-    });
+  app.all(/.*/, function (request, response, next) {
+    var host = request.header('host');
+    if (host.match(/^www\..*/i)) {
+      next();
+    } else {
+      response.redirect(301, 'http://www.' + host);
+    }
+  });
 }
 
 app.get('/', require('./routes/index'));
 app.post('/parse', require('./routes/parse'));
 
 // 404 Page Not Found
-app.use(function(request, response, next) {
-    response.status(404);
-    response.render('404', {
-        title: "404 Page Not Found :("
-    });
+app.use(function (request, response, next) {
+  response.status(404);
+  response.render('404', {
+    title: "404 Page Not Found :("
+  });
 });
 
-app.listen(process.env.PORT || 5000, function() {
-    console.log('Express server listening on port ' + (process.env.PORT || 5000));
+app.listen(process.env.PORT || 5000, function () {
+  console.log('Express server listening on port ' + (process.env.PORT || 5000));
 });
