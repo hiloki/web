@@ -3,7 +3,8 @@ extends layout
 block content
   .l-wrapper
     .l-paneInput
-      h1.c-title #{title}
+      h1.c-title
+        a(href="/") #{title}
       p.c-description StyleStats is a Node.js library to collect CSS statistics!
 
       ul.c-tabs#js-tabs
