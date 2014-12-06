@@ -2,4 +2,4 @@
 
 official site.
 
-[![Dependency Status](https://david-dm.org/stylestats/stylestats.org.svg)](https://david-dm.org/stylestats/stylestats.org)
+[![Dependency Status](https://david-dm.org/stylestats/web.svg)](https://david-dm.org/stylestats/stylestats.org)
