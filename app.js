@@ -27,6 +27,10 @@ app.use(cookieParser());
 app.use(session({secret: '234D&CSSF'}));
 app.use(csrf());
 app.use(function (request, response, next) {
+
+  response.header("Access-Control-Allow-Origin", "t32k.me");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
   response.cookie('XSRF-TOKEN', request.csrfToken());
   response.locals.csrf_token = request.csrfToken();
   next();
