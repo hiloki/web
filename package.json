@@ -54,7 +54,7 @@
     "newrelic": "^1.14.7",
     "numeral": "^1.5.3",
     "serve-static": "^1.8.0",
-    "stylestats": "^5.0.1",
+    "stylestats": "^5.1.0",
     "underscore": "^1.7.0"
   },
   "private": true
