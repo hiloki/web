@@ -2,26 +2,6 @@ module.exports = function (grunt) {
   'use strict';
   // Project configuration
   grunt.initConfig({
-    browserify: {
-      dist: {
-        files: {
-          'public/js/bundle.js': 'public/js/app.js'
-        }
-      }
-    },
-    uglify: {
-      dist: {
-        files: {
-          'public/js/app.min.js': 'public/js/bundle.js'
-        }
-      }
-    },
-    clean: {
-      js: {
-        src: ['public/js/bundle.js']
-      }
-    }
-    }
   });
 
   // These plugins provide necessary tasks

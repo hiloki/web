@@ -5,7 +5,7 @@ var cssmin = require('gulp-cssmin');
 var csscomb = require('gulp-csscomb');
 var rename = require('gulp-rename');
 var browserify = require('gulp-browserify');
-
+var uglify = require('gulp-uglify');
 
 gulp.task('css', function () {
   gulp.src('stylus/app.styl')
@@ -19,9 +19,12 @@ gulp.task('css', function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('public/css/'));
 });
+
 gulp.task('js', function () {
   gulp.src('public/js/app.js')
     .pipe(browserify())
-    .pipe(gulp.dest('public/js/'))
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('public/js/'));
 });
 
