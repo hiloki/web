@@ -20,20 +20,7 @@ module.exports = function (grunt) {
       js: {
         src: ['public/js/bundle.js']
       }
-    },
-    webfont: {
-      dist: {
-        src: 'public/svg/*.svg',
-        dest: 'public/font/',
-        destCss: 'stylus/',
-        options: {
-          types: ['woff', 'ttf'],
-          stylesheet: 'styl',
-          htmlDemo: false,
-          syntax: 'bootstrap',
-          relativeFontPath: '/font/'
-        }
-      }
+    }
     }
   });
 
