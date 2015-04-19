@@ -2,25 +2,6 @@ module.exports = function (grunt) {
   'use strict';
   // Project configuration
   grunt.initConfig({
-    connect: {
-      dist: {
-        options: {
-          port: 5001,
-          base: 'public/'
-        }
-      }
-    },
-    concat: {
-      lib: {
-        src: [
-          'bower_components/jquery/dist/jquery.min.js',
-          'bower_components/underscore/underscore-min.js',
-          'bower_components/numeral/min/numeral.min.js',
-          'bower_components/mustache/mustache.js'
-        ],
-        dest: 'public/js/lib.min.js'
-      }
-    },
     browserify: {
       dist: {
         files: {
@@ -38,15 +19,6 @@ module.exports = function (grunt) {
     clean: {
       js: {
         src: ['public/js/bundle.js']
-      }
-    },
-    watch: {
-      options: {
-        livereload: true
-      },
-      dist: {
-        files: ['stylus/*.styl'],
-        tasks: ['css']
       }
     },
     webfont: {
