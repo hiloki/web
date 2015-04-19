@@ -10,20 +10,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    csscomb: {
-      dist: {
-        files: {
-          'public/css/app.css': ['public/css/app.css']
-        }
-      }
-    },
-    csso: {
-      dist: {
-        files: {
-          'public/css/app.min.css': ['public/css/app.css']
-        }
-      }
-    },
     concat: {
       lib: {
         src: [
