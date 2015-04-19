@@ -1,6 +1,7 @@
 {
-  "name": "web",
+  "name": "StyleStats",
   "description": "StyleStats Official Site",
+  "private": true,
   "main": "app.js",
   "scripts": {
     "postinstall": "bower i && grunt js css",
@@ -41,7 +42,7 @@
     "grunt-contrib-concat": "^0.5.0",
     "grunt-contrib-connect": "^0.10.1",
     "grunt-contrib-stylus": "^0.21.0",
-    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-csscomb": "^3.0.0",
     "grunt-csso": "^0.7.0",
