@@ -31,13 +31,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    stylus: {
-      dist: {
-        files: {
-          'public/css/app.css': 'stylus/app.styl'
-        }
-      }
-    },
     concat: {
       lib: {
         src: [
