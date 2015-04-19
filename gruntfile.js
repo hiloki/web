@@ -2,13 +2,6 @@ module.exports = function (grunt) {
   'use strict';
   // Project configuration
   grunt.initConfig({
-    // Task configuration
-    autoprefixer: {
-      options: ['last 2 version'],
-      dist: {
-        src: 'public/css/app.css'
-      }
-    },
     connect: {
       dist: {
         options: {

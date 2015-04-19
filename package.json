@@ -55,6 +55,7 @@
     "grunt-csso": "^0.7.0",
     "grunt-webfont": "^0.5.1",
     "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
     "gulp-stylus": "^2.0.1"
   }
 }
