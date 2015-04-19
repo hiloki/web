@@ -18,7 +18,10 @@
   "scripts": {
     "start": "node web.js",
     "stop": "forever stopall",
-    "dev": "browser-sync start --proxy localhost:5000 --files '**/*.jade, **/*.styl, **/*.js'"
+    "develop": "npm start && npm run server && npm run watch:css && npm run watch:js",
+    "watch:css": "watch 'gulp css' stylus/",
+    "watch:js": "watch 'gulp js' public/js/",
+    "server": "browser-sync start --proxy localhost:5000 --files '**/*.jade, **/*.styl, **/*.js'"
   },
   "dependencies": {
     "body-parser": "^1.10.1",
@@ -50,6 +53,7 @@
     "gulp-load-plugins": "^0.10.0",
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.0.1",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "watch": "^0.16.0"
   }
 }
