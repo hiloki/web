@@ -1,7 +1,14 @@
 {
-  "name": "StyleStats",
+  "name": "StyleStats.Web",
+  "version": "4.0.0",
   "description": "Official Web Application",
-  "author": "Koji Ishimoto",
+  "author": "Koji Ishimoto <ijok.ijok@gmail.com>",
+  "contributors": [
+    {
+      "name": "Shogo Sensui",
+      "email": "shogo.sensui@gmail.com"
+    }
+  ],
   "homepage": "http://www.stylestats.org/",
   "private": true,
   "repository": {
@@ -11,6 +18,11 @@
   "bugs": {
     "url": "https://github.com/stylestats/web/issues"
   },
+  "keywords": [
+    "css",
+    "style",
+    "stats"
+  ],
   "engines": {
     "node": "0.10.x"
   },
@@ -59,5 +71,6 @@
     "gulp-uglify": "^1.2.0",
     "hbsfy": "^2.2.1",
     "watch": "^0.16.0"
-  }
+  },
+  "license": "MIT"
 }
