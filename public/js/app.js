@@ -1,5 +1,7 @@
 var qs = require('querystring');
-var numeral = require('numeral');
+var templateList = require('../assets/template/list.hbs');
+var templateColor = require('../assets/template/color.hbs');
+var templateFont = require('../assets/template/font.hbs');
 
 $(function () {
 
@@ -68,7 +70,7 @@ $(function () {
   var $input = $('#js-input');
   var $parse = $('#js-parse');
   var $buttonText = $('#js-text');
-  var $view = $('#js-view');
+  var $view = $('#js-results');
 
   $uri.on('focus', onFocusInput);
   $input.on('focus', onFocusInput);
@@ -99,14 +101,6 @@ $(function () {
       reader.readAsText(file, 'utf-8');
     });
   });
-
-  // result template
-  var resultTemplate = $('#js-tmpResult').html();
-  var resultCompiler = _.template(resultTemplate);
-
-  // color template
-  var colorTemplate = $('#js-tmpColor').html();
-  var colorCompiler = _.template(colorTemplate);
 
   $parse.on('click', function () {
 
@@ -161,44 +155,30 @@ $(function () {
     }).done(function (data) {
 
       var sharePath = false;
-
       if (param.path) {
         window.history.pushState({
           uri: param.path
         }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
         sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
       }
-
       // set up parse button text
       $parse.removeClass('is-loading');
       $buttonText.text('Parse');
 
-      // replace "uniqueColor" items with compiled html
-      data = data.map(function (item) {
-        var keys = Object.keys(item);
-        var key = _.first(keys);
-        return {
-          name: key,
-          value: item[key]
-        };
-      });
-
-      data.filter(function (item) {
-        return item.name === 'Unique Color';
-      }).forEach(function (item) {
-        item.value = colorCompiler({
-          colors: item.value.split(/\r\n|\r|\n/) || []
+      if(data['Unique Colors'] !== 0) {
+        data['Unique Colors'] = templateColor({
+          color: data['Unique Colors'].split(/<br>/)
         });
-      });
+      }
 
-      data.filter(function (item) {
-        return item.name !== 'Unique Color' && _.isString(item.value) && item.value.indexOf(/\r\n|\r|\n/);
-      }).forEach(function (item) {
-        item.value = item.value.replace(/\r\n|\r|\n/g, '<br>');
-      });
+      if(data['Unique Font Families'] !== 0) {
+        data['Unique Font Families'] = templateFont({
+          font: data['Unique Font Families'].split(/<br>/)
+        });
+      }
 
       // render result with compiled html
-      $view.html(resultCompiler({
+      $view.html(templateList({
         results: data,
         path: sharePath
       }));
@@ -206,17 +186,7 @@ $(function () {
       // scroll to window top
       $(document).scrollTop(0);
 
-      var parsedSize;
-
-      data.filter(function (item) {
-        return item.name === 'size';
-      }).forEach(function (item) {
-        parsedSize = numeral().unformat(item.value);
-      });
-
-      // send analytics data
-      ga('send', 'event', 'Parse', 'Success', data[1].value, parsedSize);
-
+      ga('send', 'event', 'Parse', 'Success', data[1].value);
     }).fail(function () {
       // disable parse button
       disableButton(errorPath);

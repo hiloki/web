@@ -132,13 +132,6 @@
   font-family: Consolas, 'Courier New', Courier, Monaco, monospace
   color: $txtColor
 
-.c-resultBox-s-item .section[data-name="Unique Font Family"],
-.c-resultBox-s-item .section[data-name="Properties Count"],
-.c-resultBox-s-item .section[data-name="Lowest Cohesion Selector"],
-.c-resultBox-s-item .section[data-name="Unique Color"],
-.c-resultBox-s-item .section[data-name="Unique Font Size"]
-  font-size: 20px
-
 .c-resultBox-s-share
   padding: 4px 4px 12px
 
@@ -169,15 +162,20 @@
 .uniqueFontSize .inner
   display: block
 
-.published .section,
-.paths .section,
-.mostIdentifierSelector .section,
-.lowestCohesionSelector .section,
-.uniqueColor .section,
-.uniqueFontSize .section,
-.propertiesCount .section
-  font-size: 20px
-  line-height: 1.3
+[data-name='Published'],
+[data-name='Paths'],
+[data-name='Most Identifier'],
+[data-name='Lowest Cohesion Selector'],
+[data-name='Most Identifier Selector'],
+[data-name='Unique Font Families'],
+[data-name='Unique Colors'],
+[data-name='Unique Font Sizes'],
+[data-name='Properties Count']
+  font-size: 20px !important
+  line-height: 1.3 !important
+
+[data-name='Unique Font Families']
+  font-weight: normal !important
 
 .c-colorBox
   display: inline-block

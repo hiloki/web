@@ -14,14 +14,15 @@
   "engines": {
     "node": "0.10.x"
   },
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
     "start": "node web.js",
     "stop": "forever stopall",
-    "develop": "npm start && npm run server && npm run watch:css && npm run watch:js",
+    "develop": "NODE_ENV=development npm start & npm run server & npm run watch",
     "watch:css": "watch 'gulp css' stylus/",
-    "watch:js": "watch 'gulp js' public/js/",
-    "server": "browser-sync start --proxy localhost:5000 --files '**/*.jade, **/*.styl, **/*.js'"
+    "watch:js": "watch 'gulp js' public/js/app.js",
+    "watch": "npm run watch:css & npm run watch:js",
+    "server": "browser-sync start --proxy=localhost:5000 --files='**/*.css, **/*.js'"
   },
   "dependencies": {
     "body-parser": "^1.10.1",
@@ -35,7 +36,7 @@
     "jade": "^1.9.1",
     "logfmt": "^1.2.0",
     "method-override": "^2.3.1",
-    "moment": "^2.9.0",
+    "moment": "^2.10.2",
     "morgan": "^1.5.1",
     "newrelic": "^1.14.7",
     "numeral": "^1.5.3",
@@ -54,6 +55,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.0.1",
     "gulp-uglify": "^1.2.0",
+    "hbsfy": "^2.2.1",
     "watch": "^0.16.0"
   }
 }

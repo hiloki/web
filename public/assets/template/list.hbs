@@ -1,0 +1,26 @@
+{{#each results}}
+  <li class="c-resultBox-s-item">
+    <div class="inner">
+      <h3 class="header">{{ @key }}</h3>
+      <section class="section" data-name="{{ @key }}">{{{ this }}}</section>
+    </div>
+  </li>
+{{/each}}
+{{#if path}}
+  <li class="c-resultBox-s-item share">
+    <section class="inner">
+      <h3 class="header">Share</h3>
+      <ul class="c-resultBox-s-share u-cf">
+        <li><a href="https://twitter.com/share?url={{{ path }}}"
+               title="Share on Twitter" target="_blank"><i
+            class="icon-twitter"></i></a></li>
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{{ path }}}"
+               title="Share on Facebook" target="_blank"><i
+            class="icon-facebook"></i></a></li>
+        <li><a href="https://plus.google.com/share?url={{{ path }}}"
+               title="Share on Google+" target="_blank"><i
+            class="icon-plus"></i></a></li>
+      </ul>
+    </section>
+  </li>
+{{/if}}

@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var hbsfy = require('hbsfy');
 var $ = require('gulp-load-plugins')();
 
 gulp.task('css', function () {
@@ -16,7 +17,7 @@ gulp.task('css', function () {
 
 gulp.task('js', function () {
   gulp.src('public/js/app.js')
-    .pipe($.browserify())
+    .pipe($.browserify({transform: [hbsfy]}))
     .pipe($.uglify())
     .pipe($.rename({suffix: '.min'}))
     .pipe(gulp.dest('public/js/'));

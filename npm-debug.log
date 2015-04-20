@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/Users/t32k/.nvm/v0.10.35/bin/npm', 'run', 'watch:js' ]
+2 info using npm@2.7.6
+3 info using node@v0.10.35
+4 verbose run-script [ 'prewatch:js', 'watch:js', 'postwatch:js' ]
+5 info prewatch:js StyleStats@
+6 info watch:js StyleStats@
+7 verbose unsafe-perm in lifecycle true
+8 info StyleStats@ Failed to exec watch:js script
+9 verbose stack Error: StyleStats@ watch:js: `watch 'gulp js' public/js/app.js`
+9 verbose stack Exit status 8
+9 verbose stack     at EventEmitter.<anonymous> (/Users/t32k/.nvm/v0.10.35/lib/node_modules/npm/lib/utils/lifecycle.js:213:16)
+9 verbose stack     at EventEmitter.emit (events.js:98:17)
+9 verbose stack     at ChildProcess.<anonymous> (/Users/t32k/.nvm/v0.10.35/lib/node_modules/npm/lib/utils/spawn.js:14:12)
+9 verbose stack     at ChildProcess.emit (events.js:98:17)
+9 verbose stack     at maybeClose (child_process.js:766:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:833:5)
+10 verbose pkgid StyleStats@
+11 verbose cwd /Users/t32k/Projects/web
+12 error Darwin 14.3.0
+13 error argv "node" "/Users/t32k/.nvm/v0.10.35/bin/npm" "run" "watch:js"
+14 error node v0.10.35
+15 error npm  v2.7.6
+16 error code ELIFECYCLE
+17 error StyleStats@ watch:js: `watch 'gulp js' public/js/app.js`
+17 error Exit status 8
+18 error Failed at the StyleStats@ watch:js script 'watch 'gulp js' public/js/app.js'.
+18 error This is most likely a problem with the StyleStats package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     watch 'gulp js' public/js/app.js
+18 error You can get their info via:
+18 error     npm owner ls StyleStats
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]
