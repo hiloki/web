@@ -1,6 +1,7 @@
 .idea
 .DS_Store
 node_modules
-npm-debug.log
 public/css/
 public/js/
+npm-debug.log
+newrelic_agent.log
