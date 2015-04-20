@@ -165,13 +165,13 @@ $(function () {
       $parse.removeClass('is-loading');
       $buttonText.text('Parse');
 
-      if(data['Unique Colors'] !== 0) {
+      if (data['Unique Colors'] !== 0) {
         data['Unique Colors'] = templateColor({
           color: data['Unique Colors'].split(/<br>/)
         });
       }
 
-      if(data['Unique Font Families'] !== 0) {
+      if (data['Unique Font Families'] !== 0) {
         data['Unique Font Families'] = templateFont({
           font: data['Unique Font Families'].split(/<br>/)
         });
