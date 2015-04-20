@@ -18,9 +18,9 @@
   "scripts": {
     "start": "node web.js",
     "stop": "forever stopall",
-    "develop": "NODE_ENV=development npm start & npm run server & npm run watch",
+    "develop": "npm start & npm run server & npm run watch",
     "watch:css": "watch 'gulp css' stylus/",
-    "watch:js": "watch 'gulp js' public/js/app.js",
+    "watch:js": "watch 'gulp js' public/js/",
     "watch": "npm run watch:css & npm run watch:js",
     "server": "browser-sync start --proxy=localhost:5000 --files='**/*.css, **/*.js'"
   },
@@ -33,6 +33,7 @@
     "express": "^4.11.0",
     "express-session": "^1.10.1",
     "forever": "^0.14.1",
+    "handlebars": "^3.0.2",
     "jade": "^1.9.1",
     "logfmt": "^1.2.0",
     "method-override": "^2.3.1",

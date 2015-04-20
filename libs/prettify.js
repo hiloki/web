@@ -1,6 +1,7 @@
 var numeral = require('numeral');
 var moment = require('moment');
 var aliases = require('stylestats/assets/aliases.json');
+
 var KEY_BYTE = [
   'size',
   'gzippedSize',
@@ -23,7 +24,6 @@ var KEY_NUMBER = [
 function prettify(result) {
   var collections = {};
   Object.keys(result).forEach(function (key) {
-
     var readableKey = aliases[key];
     var value = result[key];
 
@@ -54,7 +54,6 @@ function prettify(result) {
       }
     }
     collections[readableKey] = value;
-
   });
   return collections;
 }
