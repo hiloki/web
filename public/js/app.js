@@ -1,4 +1,5 @@
 var qs = require('querystring');
+var numeral = require('numeral');
 
 $(function () {
 
