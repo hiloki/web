@@ -3,7 +3,7 @@ var hbsfy = require('hbsfy');
 var $ = require('gulp-load-plugins')();
 
 gulp.task('css', function () {
-  gulp.src('stylus/app.styl')
+  gulp.src('assets/styles/app.styl')
     .pipe($.stylus())
     .pipe($.autoprefixer({
       browsers: ['last 2 versions']
@@ -16,8 +16,9 @@ gulp.task('css', function () {
 });
 
 gulp.task('js', function () {
-  gulp.src('public/js/app.js')
+  gulp.src('assets/scripts/app.js')
     .pipe($.browserify({transform: [hbsfy]}))
+    .pipe(gulp.dest('public/js/'))
     .pipe($.uglify())
     .pipe($.rename({suffix: '.min'}))
     .pipe(gulp.dest('public/js/'));

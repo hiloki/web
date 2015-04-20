@@ -1,7 +1,7 @@
 var qs = require('querystring');
-var templateList = require('../assets/template/list.hbs');
-var templateColor = require('../assets/template/color.hbs');
-var templateFont = require('../assets/template/font.hbs');
+var templateList = require('../template/list.hbs');
+var templateColor = require('../template/color.hbs');
+var templateFont = require('../template/font.hbs');
 
 $(function () {
 
