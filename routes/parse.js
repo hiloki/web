@@ -1,5 +1,5 @@
 var StyleStats = require('stylestats');
-var prettify = require('stylestats/lib/prettify');
+var prettify = require('../libs/prettify');
 
 module.exports = function (request, response) {
   var path = request.body.path;
