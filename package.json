@@ -20,9 +20,9 @@
     "start": "node web.js",
     "stop": "forever stopall",
     "develop": "npm start & npm run server & npm run watch",
+    "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "watch 'gulp css' assets/styles/",
     "watch:js": "watch 'gulp js' assets/scripts/",
-    "watch": "npm run watch:css & npm run watch:js",
     "server": "browser-sync start --proxy=localhost:5000 --files='**/*.css, **/*.js'"
   },
   "dependencies": {
