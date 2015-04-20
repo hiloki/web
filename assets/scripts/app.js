@@ -193,7 +193,7 @@ $(function () {
       // token generated
       setTimeout(function () {
         location.reload();
-      }, 500);
+      }, 750);
     });
   });
 
