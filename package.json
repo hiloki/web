@@ -16,7 +16,7 @@
   },
   "main": "main.js",
   "scripts": {
-    "prestart": "gulp build",
+    "postinstall": "gulp build",
     "start": "node web.js",
     "stop": "forever stopall",
     "develop": "npm start & npm run server & npm run watch",
