@@ -16,7 +16,10 @@ var env = process.env.NODE_ENV || 'development';
 app.use(morgan('dev'));
 app.use(compress());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 app.use(methodOverride());
 
 app.set('view engine', 'jade');
@@ -24,13 +27,14 @@ app.set('views', path.join(__dirname, 'views'));
 
 // CSRF
 app.use(cookieParser());
-app.use(session({secret: '234D&CSSF'}));
+app.use(session({
+  secret: '234D&CSSF',
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(csrf());
 app.use(function (request, response, next) {
-
-  response.header("Access-Control-Allow-Origin", "t32k.me");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
   response.cookie('XSRF-TOKEN', request.csrfToken());
   response.locals.csrf_token = request.csrfToken();
   next();
@@ -41,6 +45,7 @@ app.use(serveStatic(path.join(__dirname, 'public')));
 
 if (env === 'development') {
   app.use(errorHandler());
+  app.locals.pretty = true;
 }
 
 // Redirect root domain to www.

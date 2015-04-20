@@ -1,10 +1,9 @@
 require('newrelic');
 var forever = require('forever');
 
-var child = new (forever.Monitor)('app.js', {
+var child = new (forever.Monitor)('main.js', {
   max: 3,
-  silent: false,
-  options: []
+  silent: false
 });
 
 //child.on('exit', this.callback);
