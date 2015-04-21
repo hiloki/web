@@ -11,8 +11,10 @@ var REGEX_URL = require('./regex.js');
 $(function () {
   Parse.$ = jQuery;
   Parse.initialize("6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR", "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b");
+  var Result = Parse.Object.extend('Result');
+  var result = new Result();
 
-  
+
 
   // tabs and related views
   var $tabs = $('#js-tabs').find('li');
@@ -163,6 +165,8 @@ $(function () {
       data: param
     }).done(function (data) {
 
+      result.save(data);
+
       data = prettify(data);
 
       var sharePath = false;
@@ -214,12 +218,12 @@ $(function () {
     });
   });
 
-  var result = qs.parse(location.search.replace('?', ''));
-  if (result.uri) {
+  var testHistroy = qs.parse(location.search.replace('?', ''));
+  if (testHistroy.uri) {
     $inputElements.removeClass('is-active');
     $uploadElements.removeClass('is-active');
     $uriElements.addClass('is-active');
-    $uri.val(result.uri);
+    $uri.val(testHistroy.uri);
     $parse.trigger('click');
   } else {
     $uri.one('focus', function () {
