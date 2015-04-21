@@ -1,5 +1,4 @@
 var StyleStats = require('stylestats');
-var prettify = require('../libs/prettify');
 
 module.exports = function (request, response) {
   var path = request.body.path;
@@ -9,6 +8,6 @@ module.exports = function (request, response) {
     if (error) {
       response.send(500, 'Something broken!');
     }
-    response.json(prettify(result));
+    response.json(result);
   });
 };
