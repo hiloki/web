@@ -7,21 +7,9 @@ block content
         a(href="/") #{title}
       p.c-description StyleStats is an useful tool to collect CSS statistics!
 
-      ul.c-tabs#js-tabs(role='tablist')
-        li.c-tabs-s-item.is-active.js-tab-uri(data-mode='uri' role='tab' id='tab-uri')
-          a.block(href="#uri") URI
-        li.c-tabs-s-item.js-tab-upload(data-mode='upload' role='tab' id='upload')
-          a.block(href="#upload") File Upload
-        li.c-tabs-s-item.js-tab-input(data-mode='input' role='tab' id='input')
-          a.block(href="#input") Direct Input
-
       ul.c-tabContents#js-tabContents
-        li.c-tabContents-s-item.is-active.js-tab-uri
+        li.c-tabContents-s-item.js-tab-uri
           input.c-uriBox#js-uri(type="url" placeholder="EX. http://www.google.com/" value="http://www.google.com/")
-        li.c-tabContents-s-item.js-tab-upload
-          input.c-fileButton#js-upload(type="file" value="Upload" multiple)
-        li.c-tabContents-s-item.js-tab-input
-          textarea.c-textBox#js-input(placeholder="EX. #foo { color: green; }" autofocus)
 
       .u-mbm
         button.c-button#js-parse(type="submit")

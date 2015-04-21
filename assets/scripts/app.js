@@ -2,89 +2,25 @@ var _ = require('underscore');
 var qs = require('querystring');
 var prettify = require('stylestats/lib/prettify.js');
 
+var REGEX_URL = require('./regex.js');
 var templateList = require('../template/list.hbs');
 var templateColor = require('../template/color.hbs');
 var templateFont = require('../template/font.hbs');
 
-var REGEX_URL = require('./regex.js');
+Parse.$ = jQuery;
+Parse.initialize("6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR", "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b");
 
 $(function () {
-  Parse.$ = jQuery;
-  Parse.initialize("6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR", "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b");
+
+  // Model
   var Result = Parse.Object.extend('Result');
   var result = new Result();
 
-
-
-  // tabs and related views
-  var $tabs = $('#js-tabs').find('li');
-  var $tabContents = $('#js-tabContents').find('li');
-
-  // contents of uri, upload, and input
-  var $uriElements = $('.js-tab-uri');
-  var $uploadElements = $('.js-tab-upload');
-  var $inputElements = $('.js-tab-input');
-
-  switch (location.hash) {
-    case '#upload':
-      // remove URI tab focus
-      $uriElements.removeClass('is-active');
-
-      // activate upload tab
-      $uploadElements.addClass('is-active');
-      break;
-    case '#input':
-      // remove URI tab focus
-      $uriElements.removeClass('is-active');
-
-      // activate input tab
-      $inputElements.addClass('is-active');
-      break;
-    default:
-      // URI tab is selected
-      break;
-  }
-
-  $tabs.on('click', function () {
-
-    // enable parse button
-    $parse.removeAttr('disabled').removeClass('c-button-m-danger');
-    $buttonText.text('Parse');
-
-    var $this = $(this);
-    if (!$this.hasClass('is-active')) {
-
-      // if clicked tab is not active,
-      // remove tab and related view focus
-      $tabs.removeClass('is-active');
-      $tabContents.removeClass('is-active');
-
-      // get mode from clicked tab
-      var mode = $this.attr('data-mode');
-      switch (mode) {
-        case 'uri':
-          $uriElements.addClass('is-active');
-          break;
-        case 'upload':
-          $uploadElements.addClass('is-active');
-          break;
-        case 'input':
-          $inputElements.addClass('is-active');
-          break;
-      }
-    }
-  });
-
-  var csrfToken = $('meta[name="_csrf"]').attr('content');
   var $uri = $('#js-uri');
-  var $upload = $('#js-upload');
-  var $input = $('#js-input');
   var $parse = $('#js-parse');
   var $buttonText = $('#js-text');
   var $view = $('#js-results');
-
-  $uri.on('focus', onFocusInput);
-  $input.on('focus', onFocusInput);
+  var csrfToken = $('meta[name="_csrf"]').attr('content');
 
   function onFocusInput(e) {
     $parse.removeAttr('disabled').removeClass('c-button-m-danger');
@@ -98,23 +34,9 @@ $(function () {
     ga('send', 'event', 'Parse', 'Error', analyticsPath);
   }
 
-  // loaded file strings
-  var loadedFiles = [];
-  $upload.on('change', function () {
-    loadedFiles = [];
-    _.each(this.files, function (file) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        if (e.target.result) {
-          loadedFiles.push(e.target.result);
-        }
-      };
-      reader.readAsText(file, 'utf-8');
-    });
-  });
+  $uri.on('focus', onFocusInput);
 
   $parse.on('click', function () {
-
     // set indicator
     $parse.addClass('is-loading');
     $buttonText.text('');
@@ -123,39 +45,13 @@ $(function () {
     var string;
     var param = {};
     var URL = REGEX_URL;
-
-    var mode = $tabs.filter('.is-active').attr('data-mode');
-    switch (mode) {
-      case 'uri':
-        var path = $uri.val();
-        if (URL.test(path)) {
-          param.path = _.escape(path);
-        } else {
-          disableButton('Undefined: ' + mode);
-          return;
-        }
-        break;
-      case 'upload':
-        string = loadedFiles.join('');
-        if (string) {
-          param.css = _.escape(string);
-        } else {
-          disableButton('Undefined: ' + mode);
-          return;
-        }
-        break;
-      case 'input':
-        string = $input.val();
-        if (string) {
-          param.css = _.escape(string);
-        } else {
-          disableButton('Undefined: ' + mode);
-          return;
-        }
-        break;
+    var path = $uri.val();
+    if (URL.test(path)) {
+      param.path = _.escape(path);
     }
 
-    var errorPath = param.path || 'Raw data';
+    var errorPath = param.path;
+
     $.ajax({
       type: 'post',
       url: '/parse',
@@ -164,8 +60,6 @@ $(function () {
       },
       data: param
     }).done(function (data) {
-
-      result.save(data);
 
       data = prettify(data);
 
@@ -213,21 +107,9 @@ $(function () {
       disableButton(errorPath);
       // token generated
       setTimeout(function () {
-        location.reload();
+        //location.reload();
       }, 750);
     });
   });
 
-  var testHistroy = qs.parse(location.search.replace('?', ''));
-  if (testHistroy.uri) {
-    $inputElements.removeClass('is-active');
-    $uploadElements.removeClass('is-active');
-    $uriElements.addClass('is-active');
-    $uri.val(testHistroy.uri);
-    $parse.trigger('click');
-  } else {
-    $uri.one('focus', function () {
-      $(this).val('');
-    });
-  }
 });
