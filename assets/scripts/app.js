@@ -170,15 +170,21 @@ $(function () {
       $parse.removeClass('is-loading');
       $buttonText.text('Parse');
 
+      Object.keys(data).forEach(function (key) {
+        if (typeof data[key] === 'string') {
+          data[key] = data[key].replace(/\n/g, '<br>');
+        }
+      });
+
       if (data['Unique Colors'] !== 'N/A') {
         data['Unique Colors'] = templateColor({
-          color: data['Unique Colors'].split(/\n/)
+          color: data['Unique Colors'].split(/<br>/)
         });
       }
 
       if (data['Unique Font Families'] !== 'N/A') {
         data['Unique Font Families'] = templateFont({
-          font: data['Unique Font Families'].split(/\n/)
+          font: data['Unique Font Families'].split(/<br>/)
         });
       }
 
