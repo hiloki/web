@@ -1,5 +1,6 @@
 var qs = require('querystring');
 var prettify = require('stylestats/lib/prettify.js');
+var _ = require('underscore');
 var templateList = require('../template/list.hbs');
 var templateColor = require('../template/color.hbs');
 var templateFont = require('../template/font.hbs');
@@ -7,7 +8,7 @@ var templateFont = require('../template/font.hbs');
 var REGEX_URL = require('./regex.js');
 
 $(function () {
-
+  Parse.initialize("6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR", "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b");
   // tabs and related views
   var $tabs = $('#js-tabs').find('li');
   var $tabContents = $('#js-tabContents').find('li');
