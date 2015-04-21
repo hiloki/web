@@ -31,7 +31,7 @@
     "postinstall": "gulp build",
     "start": "node web.js",
     "stop": "forever stopall",
-    "develop": "npm start & npm run server & npm run watch",
+    "dev": "npm start & npm run server & npm run watch",
     "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "watch 'gulp css' assets/styles/",
     "watch:js": "watch 'gulp js' assets/scripts/",
