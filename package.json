@@ -68,9 +68,9 @@
     "gulp-uglify": "^1.2.0",
     "hbsfy": "^2.2.1"
   },
-  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.6.4",
     "watch": "^0.16.0"
-  }
+  },
+  "license": "MIT"
 }
