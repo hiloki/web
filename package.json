@@ -1,6 +1,6 @@
 {
   "name": "StyleStats.Web",
-  "version": "4.0.1",
+  "version": "4.0.3",
   "description": "Official Web Application",
   "author": "Koji Ishimoto <ijok.ijok@gmail.com>",
   "contributors": [
@@ -55,9 +55,8 @@
     "newrelic": "^1.14.7",
     "numeral": "^1.5.3",
     "serve-static": "^1.8.0",
-    "stylestats": "^5.1.0",
-    "underscore": "^1.7.0",
-    "browser-sync": "^2.6.4",
+    "stylestats": "^5.2.0",
+    "underscore": "^1.8.3",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-browserify": "^0.5.1",
@@ -67,7 +66,10 @@
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.0.1",
     "gulp-uglify": "^1.2.0",
-    "hbsfy": "^2.2.1",
+    "hbsfy": "^2.2.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.6.4",
     "watch": "^0.16.0"
   },
   "license": "MIT"

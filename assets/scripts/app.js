@@ -1,8 +1,10 @@
 var qs = require('querystring');
+var prettify = require('stylestats/lib/prettify.js');
 var templateList = require('../template/list.hbs');
 var templateColor = require('../template/color.hbs');
 var templateFont = require('../template/font.hbs');
-var REGEX_URL = require('./regex');
+
+var REGEX_URL = require('./regex.js');
 
 $(function () {
 
@@ -155,6 +157,8 @@ $(function () {
       data: param
     }).done(function (data) {
 
+      data = prettify(data);
+
       var sharePath = false;
       if (param.path) {
         window.history.pushState({
@@ -166,15 +170,15 @@ $(function () {
       $parse.removeClass('is-loading');
       $buttonText.text('Parse');
 
-      if (data['Unique Colors'] !== 0) {
+      if (data['Unique Colors'] !== 'N/A') {
         data['Unique Colors'] = templateColor({
-          color: data['Unique Colors'].split(/<br>/)
+          color: data['Unique Colors'].split(/\n/)
         });
       }
 
-      if (data['Unique Font Families'] !== 0) {
+      if (data['Unique Font Families'] !== 'N/A') {
         data['Unique Font Families'] = templateFont({
-          font: data['Unique Font Families'].split(/<br>/)
+          font: data['Unique Font Families'].split(/\n/)
         });
       }
 
@@ -187,7 +191,7 @@ $(function () {
       // scroll to window top
       $(document).scrollTop(0);
 
-      ga('send', 'event', 'Parse', 'Success', data[1].value);
+      ga('send', 'event', 'Parse', 'Success');
     }).fail(function () {
       // disable parse button
       disableButton(errorPath);
