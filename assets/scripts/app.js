@@ -16,6 +16,19 @@ $(function () {
 
   var param = {};
 
+  // Router
+  // =======================
+  var Workspace = Parse.Router.extend({
+    routes: {
+      "results/:id": "result"
+    },
+    result: function(id) {
+      console.log(id);
+    }
+  });
+  new Workspace();
+  Parse.history.start({pushState: true});
+
 
   //  Result Model
   // =======================

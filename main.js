@@ -61,6 +61,7 @@ if (env === 'production') {
 }
 
 app.get('/', require('./routes/index'));
+app.get('/result', require('./routes/index'));
 app.post('/parse', require('./routes/parse'));
 
 // 404 Page Not Found
