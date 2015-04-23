@@ -17,6 +17,7 @@ $(function () {
 
   var param = {};
 
+
   //  Result Model
   // =======================
   var Result = Parse.Object.extend('Result');
@@ -75,7 +76,6 @@ $(function () {
       $.ajax(config).done(function (data) {
         that.$parse.removeClass('is-loading');
         that.$btnText.text('Parse');
-        console.log('AJAX DONE!!');
         that.model.save(data).then(function(object) {
           console.log('SAVE DONE!!', object);
         });
@@ -93,7 +93,7 @@ $(function () {
   // =======================
   var ResultView = Parse.View.extend({
     model: result,
-    el: $('#js-result'),
+    el: '#js-result',
     initialize: function () {
       this.model.on('sync', this.render);
     },
@@ -121,13 +121,11 @@ $(function () {
           font: data['Unique Font Families'].split(/<br>/)
         });
       }
-      console.log($(this.el));
-      // render result with compiled html
+
       $('#js-result').html(templateList({
         results: data,
         path: sharePath
       }));
-      // scroll to window top
       $(document).scrollTop(0);
       ga('send', 'event', 'Parse', 'Success');
       return this;
