@@ -1,7 +1,6 @@
 $(function () {
 
   var _ = require('underscore');
-  var qs = require('querystring');
   var prettify = require('stylestats/lib/prettify.js');
 
   var util = require('./util.js');
@@ -76,6 +75,7 @@ $(function () {
       $.ajax(config).done(function (data) {
         that.$parse.removeClass('is-loading');
         that.$btnText.text('Parse');
+        that.model.set(data);
         that.model.save(data).then(function(object) {
           console.log('SAVE DONE!!', object);
         });
@@ -95,7 +95,7 @@ $(function () {
     model: result,
     el: '#js-result',
     initialize: function () {
-      this.model.on('sync', this.render, this);
+      this.model.on('change', this.render, this);
     },
     processData: function(data) {
       Object.keys(data).forEach(function (key) {
@@ -116,19 +116,12 @@ $(function () {
     },
     render: function () {
       var data = prettify(this.model.attributes);
-      window.history.pushState({
-        uri: param.path
-      }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
-
-      var sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
-
+      var shareURI = 'http://example.com';
       this.processData(data);
-
       this.$el.html(templateList({
         results: data,
-        path: sharePath
+        path: shareURI
       }));
-      $(document).scrollTop(0);
       ga('send', 'event', 'Parse', 'Success');
       return this;
     }
