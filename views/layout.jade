@@ -9,7 +9,7 @@ html(lang="en")
     meta(property="og:title" content="StyleStats")
     meta(property="og:description" content="StyleStats is an useful tool to collect CSS statistics!")
     meta(property="og:image" content="http://www.stylestats.org/img/og-image.png")
-    meta(name="_csrf", content="#{csrf_token}")
+    meta#js-token(name="_csrf", content="#{csrf_token}")
     link(rel='stylesheet', href='/css/app.min.css')
   body(role='application')
     block content

@@ -7,17 +7,18 @@ block content
         a(href="/") #{title}
       p.c-description StyleStats is an useful tool to collect CSS statistics!
 
-      ul.c-tabContents#js-tabContents
-        li.c-tabContents-s-item.js-tab-uri
-          input.c-uriBox#js-uri(type="url" placeholder="EX. http://www.google.com/" value="http://www.google.com/")
+      #js-operation
+        ul.c-tabContents#js-tabContents
+          li.c-tabContents-s-item.js-tab-uri
+            input.c-uriBox#js-uri(type="url" placeholder="EX. http://www.google.com/" value="http://www.google.com/")
 
-      .u-mbm
-        button.c-button#js-parse(type="submit")
-          span#js-text Parse
-          img(src="/img/loading-bars.svg" height="45")
+        .u-mbm
+          button.c-button#js-parse(type="submit")
+            span#js-text Parse
+            img(src="/img/loading-bars.svg" height="45")
 
     .l-paneOutput
-      ul#js-results.c-resultBox
+      ul#js-result.c-resultBox
 
   ul.c-footer
     li.c-footer-s-item

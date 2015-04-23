@@ -35,7 +35,7 @@
     "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "watch 'gulp css' assets/styles/",
     "watch:js": "watch 'gulp js' assets/scripts/",
-    "server": "browser-sync start --proxy=localhost:5000 --files='**/*.css, public/js/app.min.js'"
+    "server": "browser-sync start --proxy=localhost:5000 --files='public/js/app.min.js, public/js/app.min.js'"
   },
   "dependencies": {
     "body-parser": "^1.10.1",

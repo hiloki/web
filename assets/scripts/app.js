@@ -6,9 +6,11 @@ var REGEX_URL = require('./regex.js');
 var templateList = require('../template/list.hbs');
 var templateColor = require('../template/color.hbs');
 var templateFont = require('../template/font.hbs');
+var APP_ID = "6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR";
+var JS_KEY = "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b";
 
 Parse.$ = jQuery;
-Parse.initialize("6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR", "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b");
+Parse.initialize(APP_ID, JS_KEY);
 
 $(function () {
 
@@ -16,63 +18,92 @@ $(function () {
   var Result = Parse.Object.extend('Result');
   var result = new Result();
 
-  var $uri = $('#js-uri');
-  var $parse = $('#js-parse');
-  var $buttonText = $('#js-text');
-  var $view = $('#js-results');
-  var csrfToken = $('meta[name="_csrf"]').attr('content');
+  var OperationView = Parse.View.extend({
+    model: result,
+    el: '#js-operation',
+    initialize: function () {
+      this.$uri = $('#js-uri');
+      this.$parse = $('#js-parse');
+      this.$btnText = $('#js-text');
+      this.csrfToken = $('#js-token').attr('content');
+    },
+    events: {
+      'focus #js-uri': 'onFocusInput',
+      'click #js-parse': 'requestParse'
+    },
+    onFocusInput: function (e) {
+      this.$parse.prop('disabled', false).removeClass('is-disabled');
+      this.$btnText.text('Parse');
+    },
+    disableBtn: function () {
+      this.$parse
+        .prop('disabled', true)
+        .removeClass('is-loading')
+        .addClass('is-disabled');
+      this.$btnText.text('Failed!');
+      ga('send', 'event', 'Parse', 'Error');
+    },
+    requestParse: function () {
 
-  function onFocusInput(e) {
-    $parse.removeAttr('disabled').removeClass('c-button-m-danger');
-    $buttonText.text('Parse');
-  }
+      var that = this;
 
-  function disableButton(analyticsPath) {
-    $parse.attr('disabled', 'disabled').removeClass('is-loading').addClass('c-button-m-danger');
-    $buttonText.text('Failed!');
-    // send analytics data
-    ga('send', 'event', 'Parse', 'Error', analyticsPath);
-  }
+      this.$parse.addClass('is-loading');
+      this.$btnText.text('');
 
-  $uri.on('focus', onFocusInput);
-
-  $parse.on('click', function () {
-    // set indicator
-    $parse.addClass('is-loading');
-    $buttonText.text('');
-
-    // request parameter
-    var string;
-    var param = {};
-    var URL = REGEX_URL;
-    var path = $uri.val();
-    if (URL.test(path)) {
-      param.path = _.escape(path);
-    }
-
-    var errorPath = param.path;
-
-    $.ajax({
-      type: 'post',
-      url: '/parse',
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-      },
-      data: param
-    }).done(function (data) {
-
-      data = prettify(data);
-
-      var sharePath = false;
-      if (param.path) {
-        window.history.pushState({
-          uri: param.path
-        }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
-        sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
+      var param = {};
+      var path = this.$uri.val();
+      if (REGEX_URL.test(path)) {
+        param.path = _.escape(path);
       }
-      // set up parse button text
-      $parse.removeClass('is-loading');
-      $buttonText.text('Parse');
+      if (REGEX_URL.test(path)) {
+        param.path = _.escape(path);
+      } else {
+        this.disableBtn();
+        return;
+      }
+
+      $.ajax({
+        type: 'post',
+        url: '/parse',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', that.csrfToken);
+        },
+        data: param
+      }).done(function (data) {
+
+        that.model.save(data).then(function(obj) {
+          console.log('SAVE', obj);
+          that.$parse.removeClass('is-loading');
+          that.$btnText.text('Parse');
+        },
+        function(error) {
+          console.log('ERROR', error);
+        });
+
+      }).fail(function () {
+        that.disableBtn();
+        setTimeout(function () {
+          // location.reload();
+        }, 750);
+      });
+    }
+  });
+
+  var ResultView = Parse.View.extend({
+    model: result,
+    el: $('#js-result'),
+    initialize: function () {
+      this.model.on('sync', this.render);
+    },
+    template: templateList,
+    render: function () {
+      console.log('RENDER',this.model);
+      var data = prettify(this.model);
+
+      window.history.pushState({
+        uri: param.path
+      }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
+      var sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
 
       Object.keys(data).forEach(function (key) {
         if (typeof data[key] === 'string') {
@@ -93,7 +124,7 @@ $(function () {
       }
 
       // render result with compiled html
-      $view.html(templateList({
+      $(this.el).html(templateList({
         results: data,
         path: sharePath
       }));
@@ -102,14 +133,11 @@ $(function () {
       $(document).scrollTop(0);
 
       ga('send', 'event', 'Parse', 'Success');
-    }).fail(function () {
-      // disable parse button
-      disableButton(errorPath);
-      // token generated
-      setTimeout(function () {
-        //location.reload();
-      }, 750);
-    });
+      return this;
+    }
   });
+
+  new OperationView();
+  new ResultView();
 
 });
