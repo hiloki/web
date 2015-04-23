@@ -55,7 +55,6 @@ $(function () {
       this.$parse.addClass('is-loading');
       this.$btnText.text('');
 
-
       var path = this.$uri.val();
       if (REGEX_URL.test(path)) {
         param.path = _.escape(path);
@@ -134,7 +133,6 @@ $(function () {
       return this;
     }
   });
-
 
   new OperationView();
   new ResultView();
