@@ -33,13 +33,13 @@ $(function () {
       this.$parse = $('#js-parse');
       this.$btnText = $('#js-text');
       this.csrfToken = $('#js-token').attr('content');
-      this.$uri.one('focus', this.deleteDefautURI);
+      this.$uri.one('focus', this.clearURI);
     },
     events: {
       'focus #js-uri': 'onFocusInput',
       'click #js-parse': 'requestParse'
     },
-    deleteDefautURI: function () {
+    clearURI: function () {
       $(this).val('');
     },
     onFocusInput: function (e) {
@@ -52,7 +52,6 @@ $(function () {
         .removeClass('is-loading')
         .addClass('is-disabled');
       this.$btnText.text('Failed!');
-      ga('send', 'event', 'Parse', 'Error');
     },
     requestParse: function () {
       var that = this;
@@ -80,7 +79,7 @@ $(function () {
         that.$parse.removeClass('is-loading');
         that.$btnText.text('Parse');
         that.model.set(data);
-        that.model.save(data).then(function (object) {
+        that.model.save().then(function (object) {
           console.log('SAVE DONE!!', object);
         });
       }).fail(function () {
@@ -118,6 +117,9 @@ $(function () {
         });
       }
     },
+    clearResultView: function () {
+      this.remove();
+    },
     render: function () {
       var data = prettify(this.model.attributes);
       var shareURI = 'http://example.com';
@@ -126,7 +128,6 @@ $(function () {
         results: data,
         path: shareURI
       }));
-      ga('send', 'event', 'Parse', 'Success');
       return this;
     }
   });
