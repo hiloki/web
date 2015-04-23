@@ -4,7 +4,7 @@ $(function () {
   var qs = require('querystring');
   var prettify = require('stylestats/lib/prettify.js');
 
-  var REGEX_URL = require('./regex.js');
+  var util = require('./util.js');
   var templateList = require('../template/list.hbs');
   var templateColor = require('../template/color.hbs');
   var templateFont = require('../template/font.hbs');
@@ -57,7 +57,7 @@ $(function () {
       this.$btnText.text('');
 
       var path = this.$uri.val();
-      if (REGEX_URL.test(path)) {
+      if (util.URL.test(path)) {
         param.path = _.escape(path);
       } else {
         this.failParse();
@@ -97,18 +97,7 @@ $(function () {
     initialize: function () {
       this.model.on('sync', this.render, this);
     },
-    render: function () {
-
-      console.log('model', this.model);
-      console.log('el', this.el);
-
-      var data = prettify(this.model.attributes);
-      window.history.pushState({
-        uri: param.path
-      }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
-
-      var sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
-
+    processData: function(data) {
       Object.keys(data).forEach(function (key) {
         if (typeof data[key] === 'string') {
           data[key] = data[key].replace(/\n/g, '<br>');
@@ -124,6 +113,16 @@ $(function () {
           font: data['Unique Font Families'].split(/<br>/)
         });
       }
+    },
+    render: function () {
+      var data = prettify(this.model.attributes);
+      window.history.pushState({
+        uri: param.path
+      }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
+
+      var sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
+
+      this.processData(data);
 
       this.$el.html(templateList({
         results: data,
