@@ -95,11 +95,13 @@ $(function () {
     model: result,
     el: '#js-result',
     initialize: function () {
-      this.model.on('sync', this.render);
+      this.model.on('add', this.render);
     },
     render: function () {
-      var data = prettify(result.attributes);
 
+      console.log('render.this', this);
+
+      var data = prettify(this.attributes);
       window.history.pushState({
         uri: param.path
       }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
