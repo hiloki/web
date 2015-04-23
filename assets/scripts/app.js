@@ -17,7 +17,6 @@ $(function () {
   // Model
   var Result = Parse.Object.extend('Result');
   var result = new Result();
-
   var OperationView = Parse.View.extend({
     model: result,
     el: '#js-operation',
@@ -44,9 +43,7 @@ $(function () {
       ga('send', 'event', 'Parse', 'Error');
     },
     requestParse: function () {
-
       var that = this;
-
       this.$parse.addClass('is-loading');
       this.$btnText.text('');
 
@@ -70,16 +67,12 @@ $(function () {
         },
         data: param
       }).done(function (data) {
-
-        that.model.save(data).then(function(obj) {
-          console.log('SAVE', obj);
-          that.$parse.removeClass('is-loading');
-          that.$btnText.text('Parse');
-        },
-        function(error) {
-          console.log('ERROR', error);
+        that.$parse.removeClass('is-loading');
+        that.$btnText.text('Parse');
+        console.log('AJAX DONE!!');
+        that.model.save(data).then(function(object) {
+          console.log('SAVE DONE!!');
         });
-
       }).fail(function () {
         that.disableBtn();
         setTimeout(function () {
@@ -93,12 +86,12 @@ $(function () {
     model: result,
     el: $('#js-result'),
     initialize: function () {
-      this.model.on('sync', this.render);
+      //this.model.on('sync', this.render);
     },
-    template: templateList,
     render: function () {
-      console.log('RENDER',this.model);
-      var data = prettify(this.model);
+
+      console.log('RENDER', this.model.attributes);
+      var data = prettify(this.model.attributes);
 
       window.history.pushState({
         uri: param.path
