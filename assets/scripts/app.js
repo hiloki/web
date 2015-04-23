@@ -95,13 +95,14 @@ $(function () {
     model: result,
     el: '#js-result',
     initialize: function () {
-      this.model.on('sync', this.render);
+      this.model.on('sync', this.render, this);
     },
     render: function () {
 
-      console.log('render.this', this);
+      console.log('model', this.model);
+      console.log('el', this.el);
 
-      var data = prettify(this.attributes);
+      var data = prettify(this.model.attributes);
       window.history.pushState({
         uri: param.path
       }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
@@ -124,7 +125,7 @@ $(function () {
         });
       }
 
-      $('#js-result').html(templateList({
+      this.$el.html(templateList({
         results: data,
         path: sharePath
       }));
