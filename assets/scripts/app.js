@@ -95,7 +95,7 @@ $(function () {
     model: result,
     el: '#js-result',
     initialize: function () {
-      this.model.on('add', this.render);
+      this.model.on('sync', this.render);
     },
     render: function () {
 
