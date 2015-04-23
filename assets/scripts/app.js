@@ -33,10 +33,14 @@ $(function () {
       this.$parse = $('#js-parse');
       this.$btnText = $('#js-text');
       this.csrfToken = $('#js-token').attr('content');
+      this.$uri.one('focus', this.deleteDefautURI);
     },
     events: {
       'focus #js-uri': 'onFocusInput',
       'click #js-parse': 'requestParse'
+    },
+    deleteDefautURI: function () {
+      $(this).val('');
     },
     onFocusInput: function (e) {
       this.$parse.prop('disabled', false).removeClass('is-disabled');
@@ -63,7 +67,7 @@ $(function () {
         return;
       }
 
-      var config =  {
+      var config = {
         type: 'post',
         url: '/parse',
         beforeSend: function (xhr) {
@@ -76,7 +80,7 @@ $(function () {
         that.$parse.removeClass('is-loading');
         that.$btnText.text('Parse');
         that.model.set(data);
-        that.model.save(data).then(function(object) {
+        that.model.save(data).then(function (object) {
           console.log('SAVE DONE!!', object);
         });
       }).fail(function () {
@@ -97,7 +101,7 @@ $(function () {
     initialize: function () {
       this.model.on('change', this.render, this);
     },
-    processData: function(data) {
+    processData: function (data) {
       Object.keys(data).forEach(function (key) {
         if (typeof data[key] === 'string') {
           data[key] = data[key].replace(/\n/g, '<br>');

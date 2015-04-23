@@ -8,9 +8,11 @@ block content
       p.c-description StyleStats is an useful tool to collect CSS statistics!
 
       #js-operation
-        ul.c-tabContents#js-tabContents
-          li.c-tabContents-s-item.js-tab-uri
-            input.c-uriBox#js-uri(type="url" placeholder="EX. http://www.google.com/" value="http://www.google.com/")
+        .c-inputBox
+          input#js-uri(
+          type="url"
+          placeholder="Enter the URI of a document (HTML with CSS or CSS only) "
+          value="http://www.google.com/")
 
         .u-mbm
           button.c-button#js-parse(type="submit")
