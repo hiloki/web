@@ -1,22 +1,30 @@
-var _ = require('underscore');
-var qs = require('querystring');
-var prettify = require('stylestats/lib/prettify.js');
-
-var REGEX_URL = require('./regex.js');
-var templateList = require('../template/list.hbs');
-var templateColor = require('../template/color.hbs');
-var templateFont = require('../template/font.hbs');
-var APP_ID = "6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR";
-var JS_KEY = "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b";
-
-Parse.$ = jQuery;
-Parse.initialize(APP_ID, JS_KEY);
-
 $(function () {
 
-  // Model
+  var _ = require('underscore');
+  var qs = require('querystring');
+  var prettify = require('stylestats/lib/prettify.js');
+
+  var REGEX_URL = require('./regex.js');
+  var templateList = require('../template/list.hbs');
+  var templateColor = require('../template/color.hbs');
+  var templateFont = require('../template/font.hbs');
+
+  var APP_ID = "6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR";
+  var JS_KEY = "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b";
+
+  Parse.$ = jQuery;
+  Parse.initialize(APP_ID, JS_KEY);
+
+  var param = {};
+
+  //  Result Model
+  // =======================
   var Result = Parse.Object.extend('Result');
   var result = new Result();
+
+
+  //  Operation View
+  // =======================
   var OperationView = Parse.View.extend({
     model: result,
     el: '#js-operation',
@@ -34,7 +42,7 @@ $(function () {
       this.$parse.prop('disabled', false).removeClass('is-disabled');
       this.$btnText.text('Parse');
     },
-    disableBtn: function () {
+    failParse: function () {
       this.$parse
         .prop('disabled', true)
         .removeClass('is-loading')
@@ -47,34 +55,33 @@ $(function () {
       this.$parse.addClass('is-loading');
       this.$btnText.text('');
 
-      var param = {};
+
       var path = this.$uri.val();
       if (REGEX_URL.test(path)) {
         param.path = _.escape(path);
-      }
-      if (REGEX_URL.test(path)) {
-        param.path = _.escape(path);
       } else {
-        this.disableBtn();
+        this.failParse();
         return;
       }
 
-      $.ajax({
+      var config =  {
         type: 'post',
         url: '/parse',
         beforeSend: function (xhr) {
           xhr.setRequestHeader('X-CSRF-Token', that.csrfToken);
         },
         data: param
-      }).done(function (data) {
+      };
+
+      $.ajax(config).done(function (data) {
         that.$parse.removeClass('is-loading');
         that.$btnText.text('Parse');
         console.log('AJAX DONE!!');
         that.model.save(data).then(function(object) {
-          console.log('SAVE DONE!!');
+          console.log('SAVE DONE!!', object);
         });
       }).fail(function () {
-        that.disableBtn();
+        that.failParse();
         setTimeout(function () {
           // location.reload();
         }, 750);
@@ -82,20 +89,22 @@ $(function () {
     }
   });
 
+
+  //  Result View
+  // =======================
   var ResultView = Parse.View.extend({
     model: result,
     el: $('#js-result'),
     initialize: function () {
-      //this.model.on('sync', this.render);
+      this.model.on('sync', this.render);
     },
     render: function () {
-
-      console.log('RENDER', this.model.attributes);
-      var data = prettify(this.model.attributes);
+      var data = prettify(result.attributes);
 
       window.history.pushState({
         uri: param.path
       }, 'StyleStats', '?uri=' + encodeURIComponent(param.path));
+
       var sharePath = encodeURIComponent('http://www.stylestats.org/?uri=' + param.path);
 
       Object.keys(data).forEach(function (key) {
@@ -103,32 +112,29 @@ $(function () {
           data[key] = data[key].replace(/\n/g, '<br>');
         }
       });
-
       if (data['Unique Colors'] !== 'N/A') {
         data['Unique Colors'] = templateColor({
           color: data['Unique Colors'].split(/<br>/)
         });
       }
-
       if (data['Unique Font Families'] !== 'N/A') {
         data['Unique Font Families'] = templateFont({
           font: data['Unique Font Families'].split(/<br>/)
         });
       }
-
+      console.log($(this.el));
       // render result with compiled html
-      $(this.el).html(templateList({
+      $('#js-result').html(templateList({
         results: data,
         path: sharePath
       }));
-
       // scroll to window top
       $(document).scrollTop(0);
-
       ga('send', 'event', 'Parse', 'Success');
       return this;
     }
   });
+
 
   new OperationView();
   new ResultView();
