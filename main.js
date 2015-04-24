@@ -69,7 +69,8 @@ app.post('/parse', require('./routes/parse'));
 app.use(function (request, response, next) {
   response.status(404);
   response.render('404', {
-    title: "404 Page Not Found :("
+    title: "404 Page Not Found | StyleStats",
+    header: "404 Page Not Found :("
   });
 });
 

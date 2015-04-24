@@ -100,6 +100,8 @@ $(function () {
         that.model.set(data);
         that.model.save().then(function (object) {
           console.log('SAVE DONE!!', object.id);
+          var title = object.get('paths')[0] + ' - ' + object.createdAt;
+          $('title').text('StyleStats Test Result | ' + title);
           router.navigate('/results/' + object.id, {trigger: false});
         });
       }).fail(function () {

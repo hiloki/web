@@ -1,5 +1,5 @@
 module.exports = function (request, response) {
   response.render('index', {
-    title: 'StyleStats'
+    title: 'StyleStats is an useful tool to collect CSS statistics!'
   });
 };
