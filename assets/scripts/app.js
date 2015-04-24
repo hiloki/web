@@ -100,9 +100,7 @@ $(function () {
         that.model.set(data);
         that.model.save().then(function (object) {
           console.log('SAVE DONE!!', object.id);
-          window.history.pushState({
-            id: object.id
-          }, 'WebPagetest Test Result', '/results/'+ object.id);
+          router.navigate('/results/' + object.id, {trigger: false});
         });
       }).fail(function () {
         that.failParse();
@@ -156,7 +154,7 @@ $(function () {
 
   new OperationView();
   new ResultView();
-  new Workspace();
+  var router = new Workspace();
   Parse.history.start({pushState: true});
 
 });
