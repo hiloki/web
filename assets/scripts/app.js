@@ -2,6 +2,7 @@ $(function () {
 
   var _ = require('underscore');
   var prettify = require('stylestats/lib/prettify.js');
+  var order = require('stylestats/assets/aliases.json');
 
   var util = require('./util.js');
   var templateList = require('../template/list.hbs');
@@ -22,24 +23,15 @@ $(function () {
     routes: {
       "results/:id": "result"
     },
-    result: function(id) {
-      var query = new Parse.Query(Result);
-      console.log(id)
-      query.descending('createdAt');
-      query.limit(10);
-      query.find({
-        success: function(results) {
-          console.log("Successfully retrieved " + results.length + " scores.");
-          // Do something with the returned Parse.Object values
-          for (var i = 0; i < results.length; i++) {
-            var object = results[i];
-            console.log(object.id + ' - ' + object.get('paths'));
-          }
-        },
-        error: function(error) {
-          alert("Error: " + error.code + " " + error.message);
+    result: function (id) {
+      var rawData = JSON.parse($('#js-result').text());
+      var data = {};
+      Object.keys(order).forEach(function (key) {
+        if (rawData[key]) {
+          data[key] = rawData[key];
         }
       });
+      result.set(data);
     }
   });
 
@@ -123,7 +115,7 @@ $(function () {
   // =======================
   var ResultView = Parse.View.extend({
     model: result,
-    el: '#js-result',
+    el: '#js-resultView',
     initialize: function () {
       this.model.on('change', this.render, this);
     },
@@ -159,11 +151,12 @@ $(function () {
     }
   });
 
-  new Workspace();
-  Parse.history.start({pushState: true});
+
   new OperationView();
   new ResultView();
 
+  new Workspace();
+  Parse.history.start({pushState: true});
 
 
 });

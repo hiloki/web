@@ -4,7 +4,7 @@ block content
   .l-wrapper
     .l-paneInput
       h1.c-title
-        a(href="/") #{title}
+        a(href="/") #{ title }
       p.c-description StyleStats is an useful tool to collect CSS statistics!
 
       #js-operation
@@ -20,7 +20,7 @@ block content
             img(src="/img/loading-bars.svg" height="48")
 
     .l-paneOutput
-      ul#js-result.c-resultBox
+      ul#js-resultView.c-resultBox
 
   ul.c-footer
     li.c-footer-s-item
@@ -34,3 +34,6 @@ block content
 
   a(href="https://github.com/t32k/stylestats")
     img.c-ribbon(src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" alt="Fork me on GitHub")
+
+  script(type='application/json' id='js-result')
+    | !{ result }
