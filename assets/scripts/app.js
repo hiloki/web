@@ -100,6 +100,9 @@ $(function () {
         that.model.set(data);
         that.model.save().then(function (object) {
           console.log('SAVE DONE!!', object.id);
+          window.history.pushState({
+            id: object.id
+          }, 'WebPagetest Test Result', '/results/'+ object.id);
         });
       }).fail(function () {
         that.failParse();

@@ -10,7 +10,7 @@ module.exports = function (request, response) {
     if (data) {
       var result = JSON.stringify(data.attributes);
       response.render('index', {
-        title: 'StyleStats',
+        title: 'StyleStats Test Result',
         result: result
       });
     } else {
