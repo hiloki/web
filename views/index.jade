@@ -1,26 +1,21 @@
 extends layout
 
 block content
-  .l-wrapper
-    .l-paneInput
-      h1.c-title
-        a(href="/") StyleStats
-      p.c-description StyleStats is an useful tool to collect CSS statistics!
+  header.c-siteHeader
+    h1
+      a(href="/") StyleStats
+  #js-operation
+    .c-inputBox
+      input.c-input#js-uri(
+      type="url"
+      placeholder="Enter the URI of a document (HTML with CSS or CSS only) "
+      value="http://www.google.com/")
 
-      #js-operation
-        .c-inputBox
-          input#js-uri(
-          type="url"
-          placeholder="Enter the URI of a document (HTML with CSS or CSS only) "
-          value="http://www.google.com/")
+    button.c-button#js-parse(type="submit")
+      span#js-text Parse
 
-        .u-mbm
-          button.c-button#js-parse(type="submit")
-            span#js-text Parse
-            img(src="/img/loading-bars.svg" height="48")
-
-    .l-paneOutput
-      ul#js-resultView.c-resultBox
+  .l-paneOutput
+    ul#js-resultView.c-resultBox
 
   ul.c-footer
     li.c-footer-s-item
@@ -31,9 +26,6 @@ block content
       a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
     li.c-footer-s-item.c-footer-s-item-m-copyright
       span.u-nw &copy; 2014 StyleStats.org
-
-  a(href="https://github.com/t32k/stylestats")
-    img.c-ribbon(src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" alt="Fork me on GitHub")
 
   script(type='application/json' id='js-result')
     | !{ result }

@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+@import "reset";
+@import "config";
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.c-siteHeader {
+
+  color: #fff;
+  font-size: 56px;
+  padding: 100px 200px 50px;
+  background-color: #00BCD4;
+  a {
+
+    font-weight: 300;
+  }
+}
+
+.c-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #00BCD4;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  padding: 0;
+  box-shadow: none;
+  transition: all .3s;
+
+  position: relative;
+  margin-top: 1rem;
+
+  label {
+    //color: $input-border-color;
+    position: absolute;
+    top: 0.8rem;
+    //left: $gutter-width / 2;
+    font-size: 1rem;
+    cursor: text;
+    //@include transition(.2s ease-out);
+  }
+}
