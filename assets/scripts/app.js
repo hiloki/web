@@ -119,6 +119,7 @@ $(function () {
     el: '#js-resultView',
     initialize: function () {
       this.model.on('change', this.render, this);
+      this.$el.on('click', '.js-share', this.setShareURI);
     },
     processData: function (data) {
       Object.keys(data).forEach(function (key) {
@@ -137,17 +138,19 @@ $(function () {
         });
       }
     },
+    setShareURI: function () {
+      if ($(this).data('clicked')) return;
+      var path = $(this).attr('href') + encodeURIComponent(location.href);
+      $(this).attr('href', path);
+      $(this).data('clicked', true);
+    },
     clearResultView: function () {
       this.remove();
     },
     render: function () {
       var data = prettify(this.model.attributes);
-      var shareURI = 'http://example.com';
       this.processData(data);
-      this.$el.html(templateList({
-        results: data,
-        path: shareURI
-      }));
+      this.$el.html(templateList({results: data}));
       return this;
     }
   });
