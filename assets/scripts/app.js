@@ -151,12 +151,9 @@ $(function () {
     }
   });
 
-
   new OperationView();
   new ResultView();
-
   new Workspace();
   Parse.history.start({pushState: true});
-
 
 });

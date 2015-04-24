@@ -15,12 +15,12 @@ module.exports = function (request, response) {
       });
     } else {
       response.render('404', {
-        title: "404 Page Not Found :("
+        title: "Test not found :("
       });
     }
   }, function (error) {
     response.render('404', {
-      title: "404 Page Not Found :("
+      title: "Database is busy :("
     });
   });
 
