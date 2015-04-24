@@ -1,21 +1,27 @@
 module.exports = function (request, response) {
 
+  var id = request.params[0];
   var Parse = require('parse').Parse;
   var Result = Parse.Object.extend('Result');
   var query = new Parse.Query(Result);
 
-  query.equalTo("objectId", "pUXbl6MCqe");
-  query.first().then(function(data) {
-    var result = data.attributes;
-    if (result) {
+  query.equalTo('objectId', id);
+  query.first().then(function (data) {
+    if (data) {
+      var result = JSON.stringify(data.attributes);
       response.render('index', {
         title: 'StyleStats',
-        result: JSON.stringify(result)
+        result: result
       });
     } else {
-      console.log(error);
+      response.render('404', {
+        title: "404 Page Not Found :("
+      });
     }
-  }, function(error) {
-    console.log(error);
+  }, function (error) {
+    response.render('404', {
+      title: "404 Page Not Found :("
+    });
   });
+
 };

@@ -21,9 +21,9 @@ $(function () {
   // =======================
   var Workspace = Parse.Router.extend({
     routes: {
-      "results/:id": "result"
+      'results/:id': 'results'
     },
-    result: function (id) {
+    results: function (id) {
       var rawData = JSON.parse($('#js-result').text());
       var data = {};
       Object.keys(order).forEach(function (key) {
