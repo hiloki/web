@@ -1,15 +1,15 @@
 {{#each results}}
-  <li class="c-resultBox-s-item">
+  <li class="c-card">
     <div class="inner">
       <h3 class="header">{{ @key }}</h3>
       <section class="section" data-name="{{ @key }}">{{{ this }}}</section>
     </div>
   </li>
 {{/each}}
-  <li class="c-resultBox-s-item share">
+  <li class="c-card">
     <section class="inner">
       <h3 class="header">Share</h3>
-      <ul class="c-resultBox-s-share u-cf">
+      <ul class="c-">
         <li><a href="https://twitter.com/share?url="
                class="js-share" title="Share on Twitter" target="_blank">
           <i class="icon-twitter"></i></a></li>

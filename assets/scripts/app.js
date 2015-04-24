@@ -4,6 +4,7 @@ $(function () {
   Parse.$ = jQuery;
   Parse.initialize(util.ID, util.KEY);
 
+
   // Router
   // =======================
   var Workspace = require('./router.js');
@@ -12,6 +13,7 @@ $(function () {
   // =======================
   var Result = Parse.Object.extend('Result');
   var result = new Result();
+  global.result = result;
 
   //  View
   // =======================

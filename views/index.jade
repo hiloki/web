@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  header.c-siteHeader
+  header.c-pageHeader
     h1
       a(href="/") StyleStats
-  #js-operation
+    p An evaluating tool for writing better CSS
+  .c-card#js-operation
     .c-inputBox
       input.c-input#js-uri(
       type="url"
@@ -17,7 +18,7 @@ block content
   .l-paneOutput
     ul#js-resultView.c-resultBox
 
-  ul.c-footer
+  ul.c-pageFooter
     li.c-footer-s-item
       a(href="https://github.com/t32k/stylestats") Source
     li.c-footer-s-item
