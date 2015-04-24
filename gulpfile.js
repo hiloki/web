@@ -3,8 +3,8 @@ var hbsfy = require('hbsfy');
 var $ = require('gulp-load-plugins')();
 
 gulp.task('css', function () {
-  gulp.src('assets/styles/app.styl')
-    .pipe($.stylus())
+  gulp.src('assets/styles/app.scss')
+    .pipe($.sass())
     .pipe($.autoprefixer({
       browsers: ['last 2 versions']
     }))
