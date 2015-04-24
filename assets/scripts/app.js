@@ -23,11 +23,25 @@ $(function () {
       "results/:id": "result"
     },
     result: function(id) {
-      console.log(id);
+      var query = new Parse.Query(Result);
+      console.log(id)
+      query.descending('createdAt');
+      query.limit(10);
+      query.find({
+        success: function(results) {
+          console.log("Successfully retrieved " + results.length + " scores.");
+          // Do something with the returned Parse.Object values
+          for (var i = 0; i < results.length; i++) {
+            var object = results[i];
+            console.log(object.id + ' - ' + object.get('paths'));
+          }
+        },
+        error: function(error) {
+          alert("Error: " + error.code + " " + error.message);
+        }
+      });
     }
   });
-  new Workspace();
-  Parse.history.start({pushState: true});
 
 
   //  Result Model
@@ -93,7 +107,7 @@ $(function () {
         that.$btnText.text('Parse');
         that.model.set(data);
         that.model.save().then(function (object) {
-          console.log('SAVE DONE!!', object);
+          console.log('SAVE DONE!!', object.id);
         });
       }).fail(function () {
         that.failParse();
@@ -145,7 +159,11 @@ $(function () {
     }
   });
 
+  new Workspace();
+  Parse.history.start({pushState: true});
   new OperationView();
   new ResultView();
+
+
 
 });
