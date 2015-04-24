@@ -9,11 +9,8 @@ $(function () {
   var templateColor = require('../template/color.hbs');
   var templateFont = require('../template/font.hbs');
 
-  var APP_ID = "6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR";
-  var JS_KEY = "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b";
-
   Parse.$ = jQuery;
-  Parse.initialize(APP_ID, JS_KEY);
+  Parse.initialize(util.ID, util.KEY);
 
   var param = {};
 

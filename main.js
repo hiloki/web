@@ -13,10 +13,9 @@ var methodOverride = require('method-override');
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 
+var util = require('./assets/scripts/util.js');
 var Parse = require('parse').Parse;
-var APP_ID = "6xDZRme9sj9QV5hnZgzN0EqDS6H6enwJ6FlbzGbR";
-var JS_KEY = "ZdTWdw6CQ1tupvwfJqcojcxqPFQmwLqqxamkZT4b";
-Parse.initialize(APP_ID, JS_KEY);
+Parse.initialize(util.ID, util.KEY);
 
 app.use(morgan('dev'));
 app.use(compress());
