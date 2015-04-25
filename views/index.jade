@@ -4,32 +4,23 @@ block content
   .l-wrapper
     .l-paneInput
       h1.c-title
-        a(href="/") #{title}
+        a(href="/") StyleStats
       p.c-description StyleStats is an useful tool to collect CSS statistics!
 
-      ul.c-tabs#js-tabs(role='tablist')
-        li.c-tabs-s-item.is-active.js-tab-uri(data-mode='uri' role='tab' id='tab-uri')
-          a.block(href="#uri") URI
-        li.c-tabs-s-item.js-tab-upload(data-mode='upload' role='tab' id='upload')
-          a.block(href="#upload") File Upload
-        li.c-tabs-s-item.js-tab-input(data-mode='input' role='tab' id='input')
-          a.block(href="#input") Direct Input
+      #js-operation
+        .c-inputBox
+          input#js-uri(
+          type="url"
+          placeholder="Enter the URI of a document (HTML with CSS or CSS only) "
+          value="http://www.google.com/")
 
-      ul.c-tabContents#js-tabContents
-        li.c-tabContents-s-item.is-active.js-tab-uri
-          input.c-uriBox#js-uri(type="url" placeholder="EX. http://www.google.com/" value="http://www.google.com/")
-        li.c-tabContents-s-item.js-tab-upload
-          input.c-fileButton#js-upload(type="file" value="Upload" multiple)
-        li.c-tabContents-s-item.js-tab-input
-          textarea.c-textBox#js-input(placeholder="EX. #foo { color: green; }" autofocus)
-
-      .u-mbm
-        button.c-button#js-parse(type="submit")
-          span#js-text Parse
-          img(src="/img/loading-bars.svg" height="45")
+        .u-mbm
+          button.c-button#js-parse(type="submit")
+            span#js-text Parse
+            img(src="/img/loading-bars.svg" height="48")
 
     .l-paneOutput
-      ul#js-results.c-resultBox
+      ul#js-resultView.c-resultBox
 
   ul.c-footer
     li.c-footer-s-item
@@ -43,3 +34,6 @@ block content
 
   a(href="https://github.com/t32k/stylestats")
     img.c-ribbon(src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" alt="Fork me on GitHub")
+
+  script(type='application/json' id='js-result')
+    | !{ result }

@@ -17,48 +17,11 @@
   margin-bottom: 20px
   font-size: 14px
 
-.c-tabs
-  display: flex
-  margin: 20px 0
+.c-inputBox
+  margin 2em 0 1em;
 
-.c-tabs-s-item
-  width: 200px
-  border-bottom: 3px #eee solid
-  color: #999
-  text-indent: 1em
-  font-size: 18px
-  transition-timing-function: ease-out
-  transition-duration: 0.4s
-  transition-property: border-bottom-color
-
-.c-tabs-s-item.is-active
-  border-bottom-color: $mainColor
-
-.c-tabs-s-item > .block
-  display: block
-  padding: 10px 0
-  text-decoration: none
-
-.c-tabContents-s-item
-  display: none
-  min-height: 40px
-
-.c-tabContents-s-item.is-active
-  display: block
-
-.c-textBox
+.c-inputBox > input
   padding: 1em
-  height: 240px
-  border-radius: 4px
-  background: #eee
-  color: #666
-  font-weight: bold
-  font-size: 14px
-  font-family: Consolas, 'Andale Mono', 'Lucida Console', Monaco, 'Courier New', Courier, monospace
-
-.c-uriBox
-  padding: 1em
-  height: 40px
   border-radius: 4px
   background: #eee
   color: #666
@@ -69,17 +32,15 @@
 .c-button
   position: relative
   display: block
-  margin: 40px 0
-  padding: 0 1em
-  max-width: 240px
-  height: 48px
   border: 0
   border-radius: 4px
   background: $mainColor
   color: #fff
   text-align: center
   font-size: 18px
-  line-height: 48px
+  height: 48px
+  line-height 48px
+  max-width: 500px
 
 .c-button:hover
   background: $subColor
@@ -90,13 +51,13 @@
 .c-button.is-loading img
   display: inline
 
-.c-button.c-button-m-danger
+.c-button.is-disabled
   background-color: $dangerColor
   animation-name: shake
   animation-duration: 1s
   animation-fill-mode: both
 
-.c-button.c-button-m-danger:hover
+.c-button.is-disabled:hover
   background-color: $dangerColor
 
 .c-resultBox
@@ -245,6 +206,7 @@
 
   .l-paneInput
     position: relative
+    width: 100%
 
   .l-paneOutput
     padding: 0

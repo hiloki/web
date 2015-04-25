@@ -13,13 +13,14 @@ var methodOverride = require('method-override');
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 
+var util = require('./assets/scripts/util.js');
+var Parse = require('parse').Parse;
+Parse.initialize(util.ID, util.KEY);
+
 app.use(morgan('dev'));
 app.use(compress());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride());
 
 app.set('view engine', 'jade');
@@ -42,7 +43,6 @@ app.use(function (request, response, next) {
 
 app.use(serveStatic(path.join(__dirname, 'public')));
 
-
 if (env === 'development') {
   app.use(errorHandler());
   app.locals.pretty = true;
@@ -61,13 +61,15 @@ if (env === 'production') {
 }
 
 app.get('/', require('./routes/index'));
+app.get('/results/*', require('./routes/results'));
 app.post('/parse', require('./routes/parse'));
 
 // 404 Page Not Found
 app.use(function (request, response, next) {
   response.status(404);
   response.render('404', {
-    title: "404 Page Not Found :("
+    title: "404 Page Not Found | StyleStats",
+    header: "404 Page Not Found :("
   });
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "StyleStats.Web",
-  "version": "4.0.3",
+  "version": "4.1.0",
   "description": "Official Web Application",
   "author": "Koji Ishimoto <ijok.ijok@gmail.com>",
   "contributors": [
@@ -31,11 +31,12 @@
     "postinstall": "gulp build",
     "start": "node web.js",
     "stop": "forever stopall",
-    "develop": "npm start & npm run server & npm run watch",
+    "dev": "npm start & npm run server & npm run watch",
     "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "watch 'gulp css' assets/styles/",
     "watch:js": "watch 'gulp js' assets/scripts/",
-    "server": "browser-sync start --proxy=localhost:5000 --files='**/*.css, public/js/app.min.js'"
+    "bs": "browser-sync start --proxy=localhost:5000",
+    "server": "npm run bs -- --files='public/js/app.min.js, public/js/app.min.js'"
   },
   "dependencies": {
     "body-parser": "^1.10.1",
@@ -46,17 +47,6 @@
     "express": "^4.11.0",
     "express-session": "^1.10.1",
     "forever": "^0.14.1",
-    "handlebars": "^3.0.2",
-    "jade": "^1.9.1",
-    "logfmt": "^1.2.0",
-    "method-override": "^2.3.1",
-    "moment": "^2.10.2",
-    "morgan": "^1.5.1",
-    "newrelic": "^1.14.7",
-    "numeral": "^1.5.3",
-    "serve-static": "^1.8.0",
-    "stylestats": "^5.2.0",
-    "underscore": "^1.8.3",
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-browserify": "^0.5.1",
@@ -66,10 +56,23 @@
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.0.1",
     "gulp-uglify": "^1.2.0",
-    "hbsfy": "^2.2.1"
+    "handlebars": "^3.0.2",
+    "hbsfy": "^2.2.1",
+    "jade": "^1.9.1",
+    "logfmt": "^1.2.0",
+    "method-override": "^2.3.1",
+    "moment": "^2.10.2",
+    "morgan": "^1.5.1",
+    "newrelic": "^1.14.7",
+    "numeral": "^1.5.3",
+    "parse": "^1.4.2",
+    "serve-static": "^1.8.0",
+    "stylestats": "^5.2.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "browser-sync": "^2.6.4",
+    "npm": "^2.8.3",
     "watch": "^0.16.0"
   },
   "license": "MIT"
