@@ -101,6 +101,9 @@ footer {
   color: $color-white;
   background: $color-red;
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  .ripple-effect {
+    border-radius: 50%;
+  }
   svg {
     fill: $color-white;
     width: 30px;
@@ -245,6 +248,7 @@ footer {
     }
     h2 {
       display: block;
+      font-size: 1.6rem;
     }
   }
   .c-inputBox {
@@ -277,6 +281,11 @@ footer {
 @media only screen and (min-width: 993px) {
   .container.l-input {
     max-width: 70%;
+  }
+  header {
+    h2 {
+      font-size: 2rem;
+    }
   }
   .c-metrics {
     column-count: 3;
