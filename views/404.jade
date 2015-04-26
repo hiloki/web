@@ -1,7 +1,26 @@
 extends layout
 
 block content
-  h1.c-title #{ header }
-  p.u-mbm This is not the web page you are looking for.
 
-  a.c-button(href="/") Return to homepage
+  header
+    h1
+      a(href="/") #{ header }
+
+  main.container(style="padding:40px;font-size:1.5rem; line-height:1.8")
+    p This is not the web page you are looking for.
+    p
+      a(href="/") Return to homepage
+
+  footer
+    ul
+      li
+        a(href="https://github.com/t32k/stylestats")
+          svg
+            use(xlink:href='#github')
+          | Source
+      li
+        a(href="https://github.com/t32k/stylestats#metrics") Document
+      li
+        a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
+    p
+      small &copy; 2014 StyleStats.org, All rights reserved.
