@@ -96,13 +96,18 @@ footer {
   right: 24px;
   width: 56px;
   height: 56px;
-  line-height: 56px;
   border: 0;
   border-radius: 50%;
   color: $color-white;
   background: $color-red;
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-  font-size: 34px;
+  svg {
+    fill: $color-white;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease-out;
+    vertical-align: middle;
+  }
   &.is-disabled {
     transition: background 0.2s ease-out;
     animation-name: shake;
@@ -113,12 +118,6 @@ footer {
       transition: transform 0.2s ease-out;
       transform: rotate(45deg);
     }
-  }
-  svg {
-    fill: $color-white;
-    width: 30px;
-    height: 30px;
-    transition: transform 0.2s ease-out;
   }
 }
 
