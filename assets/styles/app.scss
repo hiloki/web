@@ -83,7 +83,6 @@ footer {
 }
 
 .c-button {
-  transition: background 0.2s ease-out;
   overflow: hidden;
   appearance: none;
   user-select: none;
@@ -101,15 +100,8 @@ footer {
   color: $color-white;
   background: $color-red;
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-  .ripple-effect {
-    border-radius: 50%;
-  }
   svg {
-    fill: $color-white;
-    width: 30px;
-    height: 30px;
     transition: transform 0.2s ease-out;
-    vertical-align: middle;
   }
   &.is-disabled {
     transition: background 0.2s ease-out;
@@ -118,7 +110,6 @@ footer {
     animation-fill-mode: both;
     background: $color-grey;
     svg {
-      transition: transform 0.2s ease-out;
       transform: rotate(45deg);
     }
   }
