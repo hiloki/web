@@ -1,7 +1,25 @@
+//-------------------------------------------
+// Variables
+//-------------------------------------------
 $color-cyan: #00BCD4;
 $color-grey: #78909C;
 $color-white: #FFF;
 $color-red: #F50057;
+$color-blue: #607D8B;
+
+//-------------------------------------------
+// Animations
+//-------------------------------------------
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(100);
+    opacity: 0;
+  }
+}
 
 @keyframes shake {
   0%, 100% {
@@ -17,6 +35,7 @@ $color-red: #F50057;
     transform: translate3d(6px, 0, 0);
   }
 }
+
 @keyframes indeterminate {
   0% {
     left: -35%;
