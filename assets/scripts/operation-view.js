@@ -8,10 +8,31 @@ module.exports = Parse.View.extend({
     this.$parse = $('#js-parse');
     this.$progress = $('#js-progress');
     this.csrfToken = $('#js-token').attr('content');
+    $('.ripple').on('click', this.rippleEffect);
   },
   events: {
     'focus #js-uri': 'onFocusInput',
     'click #js-parse': 'requestParse'
+  },
+  rippleEffect: function (event) {
+    event.preventDefault();
+    var $div = $('<div/>');
+    var btnOffset = $(this).offset();
+    var xPos = event.pageX - btnOffset.left;
+    var yPos = event.pageY - btnOffset.top;
+    $div.addClass('ripple-effect');
+    var $ripple = $(".ripple-effect");
+    $ripple.css("height", $(this).height());
+    $ripple.css("width", $(this).height());
+    $div.css({
+      top: yPos - ($ripple.height() / 2),
+      left: xPos - ($ripple.width() / 2),
+      background: $(this).data("ripple-color")
+    })
+      .appendTo($(this));
+    window.setTimeout(function () {
+      $div.remove();
+    }, 2000);
   },
   onFocusInput: function (e) {
     this.$parse.prop('disabled', false).removeClass('is-disabled');
