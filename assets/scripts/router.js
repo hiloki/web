@@ -12,6 +12,6 @@ module.exports = Parse.Router.extend({
         data[key] = rawData[key];
       }
     });
-    result.set(data);
+    global.result.set(data);
   }
 });

@@ -6,33 +6,45 @@ module.exports = Parse.View.extend({
   initialize: function () {
     this.$uri = $('#js-uri');
     this.$parse = $('#js-parse');
-    this.$btnText = $('#js-text');
+    this.$progress = $('#js-progress');
     this.csrfToken = $('#js-token').attr('content');
-    this.$uri.one('focus', this.clearURI);
+    $('.ripple').on('click', this.rippleEffect);
   },
   events: {
     'focus #js-uri': 'onFocusInput',
     'click #js-parse': 'requestParse'
   },
-  clearURI: function () {
-    $(this).val('');
+  rippleEffect: function (event) {
+    event.preventDefault();
+    var $div = $('<div/>');
+    var btnOffset = $(this).offset();
+    var xPos = event.pageX - btnOffset.left;
+    var yPos = event.pageY - btnOffset.top;
+    $div.addClass('ripple-effect');
+    var $ripple = $(".ripple-effect");
+    $ripple.css("height", $(this).height());
+    $ripple.css("width", $(this).height());
+    $div.css({
+      top: yPos - ($ripple.height() / 2),
+      left: xPos - ($ripple.width() / 2),
+      background: $(this).data("ripple-color")
+    })
+      .appendTo($(this).find('.inner'));
+    window.setTimeout(function () {
+      $div.remove();
+    }, 2000);
   },
   onFocusInput: function (e) {
     this.$parse.prop('disabled', false).removeClass('is-disabled');
-    this.$btnText.text('Parse');
   },
   failParse: function () {
     this.$parse
       .prop('disabled', true)
-      .removeClass('is-loading')
       .addClass('is-disabled');
-    this.$btnText.text('Failed!');
+    this.$progress.removeClass('is-loading');
   },
   requestParse: function () {
     var that = this;
-    this.$parse.addClass('is-loading');
-    this.$btnText.text('');
-
     var param = {};
     var path = this.$uri.val();
     if (util.URL.test(path)) {
@@ -41,7 +53,7 @@ module.exports = Parse.View.extend({
       this.failParse();
       return;
     }
-
+    this.$progress.addClass('is-loading');
     var config = {
       type: 'post',
       url: '/parse',
@@ -52,8 +64,7 @@ module.exports = Parse.View.extend({
     };
 
     $.ajax(config).done(function (data) {
-      that.$parse.removeClass('is-loading');
-      that.$btnText.text('Parse');
+      that.$progress.removeClass('is-loading');
       that.model.set(data);
       that.model.save().then(function (object) {
         var title = object.get('paths')[0] + ' - ' + object.createdAt;

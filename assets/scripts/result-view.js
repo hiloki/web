@@ -1,6 +1,7 @@
 var templateList = require('../template/list.hbs');
 var templateColor = require('../template/color.hbs');
 var templateFont = require('../template/font.hbs');
+var templatePaths = require('../template/path.hbs');
 var prettify = require('stylestats/lib/prettify.js');
 
 module.exports = Parse.View.extend({
@@ -15,6 +16,7 @@ module.exports = Parse.View.extend({
         data[key] = data[key].replace(/\n/g, '<br>');
       }
     });
+    data['Paths'] = templatePaths({ paths: [data['Paths']] });
     if (data['Unique Colors'] !== 'N/A') {
       data['Unique Colors'] = templateColor({
         color: data['Unique Colors'].split(/<br>/)

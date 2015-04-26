@@ -1,39 +1,57 @@
 extends layout
 
 block content
-  .l-wrapper
-    .l-paneInput
-      h1.c-title
-        a(href="/") StyleStats
-      p.c-description StyleStats is an useful tool to collect CSS statistics!
 
-      #js-operation
-        .c-inputBox
-          input#js-uri(
-          type="url"
-          placeholder="Enter the URI of a document (HTML with CSS or CSS only) "
-          value="http://www.google.com/")
+  header
+    h1
+      a(href="/") StyleStats
+    h2 An evaluating tool for writing better CSS
 
-        .u-mbm
-          button.c-button#js-parse(type="submit")
-            span#js-text Parse
-            img(src="/img/loading-bars.svg" height="48")
+  main
+    .container.l-input#js-operation
+      .c-inputBox
+        .c-card
+          input.c-input#js-uri(type="url" placeholder="Enter the URI of a document (HTML with CSS or CSS only)")
+          .progress#js-progress
+            .line
+        button.c-button.ripple#js-parse(type="button" title="Start Test")
+          .inner
+            svg(fill="#FFF" width="30" height="30" viewbox='0 0 48 48')
+              path(d='M38 26h-12v12h-4v-12h-12v-4h12v-12h4v12h12v4z')
+              path(d='M0 0h48v48h-48z', fill='none')
 
-    .l-paneOutput
-      ul#js-resultView.c-resultBox
+    .container
+      ul.c-metrics#js-resultView
 
-  ul.c-footer
-    li.c-footer-s-item
-      a(href="https://github.com/t32k/stylestats") Source
-    li.c-footer-s-item
-      a(href="https://github.com/t32k/stylestats#metrics") Document
-    li.c-footer-s-item
-      a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
-    li.c-footer-s-item.c-footer-s-item-m-copyright
-      span.u-nw &copy; 2014 StyleStats.org
+      section.c-example
+        h2 View Test Results for Popular Sites
+        ul
+          li
+            a(href="/results/nBEUw1oi7k") Google.com
+          li
+            a(href="/results/VOK6LGFNOC") Twitter.com
+          li
+            a(href="/results/xXAIwOFpQ8") Facebook.com
+          li
+            a(href="/results/DevUN5HdvB") Tumblr.com
+          li
+            a(href="/results/qa3RdzTmQg") Apple.com
+          li
+            a(href="/results/cNsvDOhaa4") GitHub.com
 
-  a(href="https://github.com/t32k/stylestats")
-    img.c-ribbon(src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" alt="Fork me on GitHub")
+  footer
+    ul
+      li
+        a(href="https://github.com/t32k/stylestats")
+          svg
+            use(xlink:href='#github')
+          | Source
+      li
+        a(href="https://github.com/t32k/stylestats#metrics") Document
+      li
+        a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
+    p
+      small &copy; 2014 StyleStats.org, All rights reserved.
 
   script(type='application/json' id='js-result')
     | !{ result }
