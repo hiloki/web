@@ -24,6 +24,7 @@ module.exports = Parse.View.extend({
       .prop('disabled', true)
       .addClass('is-disabled');
     this.$progress.removeClass('is-loading');
+    ga('send', 'event', 'Parse', 'Error', this.$uri.val());
   },
   requestOnEnter: function (event) {
     if (event.which === util.ENTER_KEY) {
@@ -57,7 +58,9 @@ module.exports = Parse.View.extend({
         var title = object.get('paths')[0] + ' - ' + object.createdAt;
         $('title').text('StyleStats Test Result | ' + title);
         global.router.navigate('/results/' + object.id, {trigger: false});
+        ga('send', 'pageview');
       });
+      ga('send', 'event', 'Parse', 'Success');
     }).fail(function () {
       that.failParse();
       setTimeout(function () {
