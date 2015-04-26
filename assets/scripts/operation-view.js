@@ -29,7 +29,7 @@ module.exports = Parse.View.extend({
       left: xPos - ($ripple.width() / 2),
       background: $(this).data("ripple-color")
     })
-      .appendTo($(this));
+      .appendTo($(this).find('.inner'));
     window.setTimeout(function () {
       $div.remove();
     }, 2000);
