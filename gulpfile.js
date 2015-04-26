@@ -7,6 +7,9 @@ var $ = require('gulp-load-plugins')();
 gulp.task('css:build', function () {
   gulp.src('assets/styles/app.scss')
     .pipe($.sass())
+    .pipe($.autoprefixer({
+      browsers: ['last 2 versions']
+    }))
     .pipe($.rename({suffix: '.min'}))
     .pipe(gulp.dest('public/css/'));
 });

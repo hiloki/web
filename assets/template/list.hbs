@@ -1,24 +1,26 @@
 {{#each results}}
-  <li class="c-card">
-    <div class="inner">
-      <h3 class="header">{{ @key }}</h3>
-      <section class="section" data-name="{{ @key }}">{{{ this }}}</section>
-    </div>
-  </li>
+<li class="c-card">
+  <div class="inner">
+    <h3 class="header">{{ @key }}</h3>
+    <section data-name="{{ @key }}">{{{ this }}}</section>
+  </div>
+</li>
 {{/each}}
-  <li class="c-card">
-    <section class="inner">
-      <h3 class="header">Share</h3>
-      <ul class="c-">
+<li class="c-card">
+  <div class="inner">
+    <h3 class="header">Share</h3>
+    <section>
+      <ul>
         <li><a href="https://twitter.com/share?url="
                class="js-share" title="Share on Twitter" target="_blank">
-          <i class="icon-twitter"></i></a></li>
+          <i class="icon-twitter"></i>Share on Twitter</a></li>
         <li><a href="https://www.facebook.com/sharer/sharer.php?u="
                class="js-share" title="Share on Facebook" target="_blank">
-          <i class="icon-facebook"></i></a></li>
+          <i class="icon-facebook"></i>Share on Facebook</a></li>
         <li><a href="https://plus.google.com/share?url="
                class="js-share" title="Share on Google+" target="_blank">
-          <i class="icon-plus"></i></a></li>
+          <i class="icon-plus"></i>Share on Google+</a></li>
       </ul>
     </section>
-  </li>
+  </div>
+</li>

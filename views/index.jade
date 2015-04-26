@@ -1,32 +1,56 @@
 extends layout
 
 block content
-  header.c-pageHeader
+  header
     h1
       a(href="/") StyleStats
-    p An evaluating tool for writing better CSS
-  .c-card#js-operation
-    .c-inputBox
-      input.c-input#js-uri(
-      type="url"
-      placeholder="Enter the URI of a document (HTML with CSS or CSS only) "
-      value="http://www.google.com/")
+    h2 An evaluating tool for writing better CSS
 
-    button.c-button#js-parse(type="submit")
-      span#js-text Parse
+  main
+    .container#js-operation
+      .c-inputBox
+        .c-card
+          input.c-input#js-uri(
+          type="url"
+          placeholder="Enter the URI of a document (HTML with CSS or CSS only)")
+          .progress#js-progress
+            .line
+        button.c-button#js-parse(type="button")
+            svg
+              use(xlink:href='#add')
 
-  .l-paneOutput
-    ul#js-resultView.c-resultBox
 
-  ul.c-pageFooter
-    li.c-footer-s-item
-      a(href="https://github.com/t32k/stylestats") Source
-    li.c-footer-s-item
-      a(href="https://github.com/t32k/stylestats#metrics") Document
-    li.c-footer-s-item
-      a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
-    li.c-footer-s-item.c-footer-s-item-m-copyright
-      span.u-nw &copy; 2014 StyleStats.org
+    .container
+      ul.c-metrics#js-resultView
+
+      section.c-example
+        h2 View Test Results for Popular Sites
+        ul
+          li
+            a(href="/results/vjuYDgbTma") Google.com
+          li
+            a(href="/results/vjuYDgbTma") Yahoo.com
+          li
+            a(href="/results/vjuYDgbTma") Twitter.com
+          li
+            a(href="/results/vjuYDgbTma") Facebook.com
+          li
+            a(href="/results/vjuYDgbTma") Tumblr.com
+          li
+            a(href="/results/vjuYDgbTma") Apple.com
+          li
+            a(href="/results/vjuYDgbTma") GitHub.com
+
+  footer
+    ul
+      li
+        a(href="https://github.com/t32k/stylestats") Source
+      li
+        a(href="https://github.com/t32k/stylestats#metrics") Document
+      li
+        a(href="https://www.iubenda.com/privacy-policy/855911/legal") Privacy
+    p
+      small &copy; 2014 StyleStats.org, All rights reserved.
 
   script(type='application/json' id='js-result')
     | !{ result }
