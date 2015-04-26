@@ -35,6 +35,13 @@ footer {
     background: #607D8B;
     font-size: 12px;
   }
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-white;
+    margin-right: 6px;
+    vertical-align: -6px;
+  }
 }
 .c-inputBox {
   position: relative;
@@ -177,7 +184,17 @@ footer {
     animation-delay: 1.15s;
   }
 }
-
+.c-share {
+  line-height: 1.6 !important;
+  font-size: 1.2rem !important;
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: #607D8B;
+    margin-right: 6px;
+    vertical-align: -6px;
+  }
+}
 
 
 //-------------------------------------------
