@@ -52,6 +52,7 @@ footer {
 }
 .c-inputBox {
   position: relative;
+  z-index: 99;
   .c-card {
     padding: 8px 20px 20px;
     border-radius: 0;
@@ -72,6 +73,7 @@ footer {
 }
 .c-button {
   z-index: 100;
+  overflow: hidden;
   appearance: none;
   user-select: none;
   tap-highlight-color: transparent;
@@ -165,7 +167,7 @@ footer {
   display: block;
   position: relative;
   overflow: hidden;
-  height: 1px;
+  height: 2px;
   background-color: #26C6DA;
   &.is-loading {
     background-color: #B2EBF2;
@@ -255,4 +257,26 @@ footer {
   }
   .c-metrics { column-count: 3; }
   .container { max-width: 70%; }
+}
+.ripple-effect{
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: white;
+
+
+  animation: ripple-animation 2s;
+}
+
+
+@keyframes ripple-animation {
+  from {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(100);
+    opacity: 0;
+  }
 }
