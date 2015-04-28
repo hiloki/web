@@ -1,5 +1,6 @@
 var path = require('path');
 var csrf = require('csurf');
+var exphbs = require('express-handlebars');
 var morgan = require('morgan');
 var session = require('express-session');
 var express = require('express');
@@ -9,7 +10,6 @@ var serveStatic = require('serve-static');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
-var exphbs  = require('express-handlebars');
 
 var app = express();
 var env = process.env.NODE_ENV || 'development';
@@ -24,8 +24,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride());
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.engine('hbs', exphbs({defaultLayout: 'single', extname: '.hbs'}));
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // CSRF

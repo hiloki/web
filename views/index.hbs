@@ -1,0 +1,53 @@
+<header>
+  <h1><a href="/">StyleStats</a></h1>
+  <h2>An evaluating tool for writing better CSS</h2>
+</header>
+<main>
+  <div id="js-operation" class="container l-input">
+    <div class="c-inputBox">
+      <div class="c-card">
+        <input id="js-uri" type="url" placeholder="Enter the URI of a document (HTML with CSS or CSS only)" class="c-input"/>
+        <div id="js-progress" class="progress">
+          <div class="line"></div>
+        </div>
+      </div>
+      <button id="js-parse" type="button" title="Start Test" class="c-button ripple">
+        <div class="inner">
+          <svg fill="#FFF" width="30" height="30" viewbox="0 0 48 48">
+            <path d="M38 26h-12v12h-4v-12h-12v-4h12v-12h4v12h12v4z"></path>
+            <path d="M0 0h48v48h-48z" fill="none"></path>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="container">
+    <ul id="js-resultView" class="c-metrics"></ul>
+    <section class="c-example">
+      <h2>View Test Results for Popular Sites</h2>
+      <ul>
+        <li><a href="/results/nBEUw1oi7k">Google.com</a></li>
+        <li><a href="/results/VOK6LGFNOC">Twitter.com</a></li>
+        <li><a href="/results/vjDoLP5XgP">Facebook.com</a></li>
+        <li><a href="/results/DevUN5HdvB">Tumblr.com</a></li>
+        <li><a href="/results/qa3RdzTmQg">Apple.com</a></li>
+        <li><a href="/results/cNsvDOhaa4">GitHub.com</a></li>
+      </ul>
+    </section>
+  </div>
+</main>
+<footer>
+  <ul>
+    <li><a href="https://github.com/t32k/stylestats">
+      <svg>
+        <use xlink:href="#github"></use>
+      </svg>GitHub</a></li>
+    <li><a href="https://twitter.com/style_stats">
+      <svg>
+        <use xlink:href="#twitter"></use>
+      </svg>Twitter</a></li>
+    <li><a href="https://www.iubenda.com/privacy-policy/855911/legal">Privacy</a></li>
+  </ul>
+  <p><small>&copy; 2014 StyleStats.org, All rights reserved.</small></p>
+</footer>
+<script type="application/json" id="js-result"></script>
