@@ -101,7 +101,9 @@ footer {
   color: $color-white;
   background: $color-red;
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-  .inner {  /* Safari bug... overflow bleed */
+  .inner {
+    /* Safari bug... overflow bleed */
+    display: block;
     height: 100%;
     padding-top: 12px;
     border-radius: 50%;
@@ -233,6 +235,12 @@ footer {
   height: 50px;
   border-radius: 50%;
   background: $color-white;
+}
+
+.container-404 {
+  line-height: 1.8;
+  padding: 40px;
+  font-size: 1.5rem;
 }
 
 //-------------------------------------------

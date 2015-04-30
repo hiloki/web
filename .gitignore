@@ -2,6 +2,7 @@
 .DS_Store
 node_modules
 public/css/
-public/js/
+public/js/app.js
+public/js/app.min.js
 npm-debug.log
 newrelic_agent.log
