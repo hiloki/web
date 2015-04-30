@@ -1,7 +1,4 @@
-var templateList = require('../template/list.hbs');
-var templateColor = require('../template/color.hbs');
-var templateFont = require('../template/font.hbs');
-var templatePaths = require('../template/path.hbs');
+var templateAll = require('../template/perfect-list.hbs');
 var prettify = require('stylestats/lib/prettify.js');
 
 module.exports = Parse.View.extend({
@@ -11,22 +8,19 @@ module.exports = Parse.View.extend({
     this.$el.on('click', '.js-share', this.setShareURI);
   },
   processData: function (data) {
+    var KEY_ARRY = [
+      'Paths',
+      'Lowest Cohesion Selector',
+      'Unique Font Families',
+      'Unique Font Sizes',
+      'Unique Colors',
+      'Properties Count'
+    ];
     Object.keys(data).forEach(function (key) {
-      if (typeof data[key] === 'string') {
-        data[key] = data[key].replace(/\n/g, '<br>');
+      if (KEY_ARRY.indexOf(key) !== -1) {
+        data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
       }
     });
-    data['Paths'] = templatePaths({ paths: [data['Paths']] });
-    if (data['Unique Colors'] !== 'N/A') {
-      data['Unique Colors'] = templateColor({
-        color: data['Unique Colors'].split(/<br>/)
-      });
-    }
-    if (data['Unique Font Families'] !== 'N/A') {
-      data['Unique Font Families'] = templateFont({
-        font: data['Unique Font Families'].split(/<br>/)
-      });
-    }
   },
   setShareURI: function () {
     if ($(this).data('clicked')) return;
@@ -40,7 +34,8 @@ module.exports = Parse.View.extend({
   render: function () {
     var data = prettify(this.model.attributes);
     this.processData(data);
-    this.$el.html(templateList({results: data}));
+    console.log(data);
+    this.$el.html(templateAll({data: data}));
     return this;
   }
 });

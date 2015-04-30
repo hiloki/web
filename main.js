@@ -1,5 +1,6 @@
 var path = require('path');
 var csrf = require('csurf');
+var exphbs = require('express-handlebars');
 var morgan = require('morgan');
 var session = require('express-session');
 var express = require('express');
@@ -23,7 +24,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride());
 
-app.set('view engine', 'jade');
+app.engine('hbs', exphbs({defaultLayout: 'single', extname: '.hbs'}));
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // CSRF
