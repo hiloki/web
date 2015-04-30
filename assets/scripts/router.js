@@ -6,12 +6,6 @@ module.exports = Parse.Router.extend({
   },
   results: function (id) {
     var rawData = JSON.parse($('#js-result').text());
-    var data = {};
-    Object.keys(order).forEach(function (key) {
-      if (rawData[key]) {
-        data[key] = rawData[key];
-      }
-    });
-    global.result.set(data);
+    global.result.set(rawData);
   }
 });

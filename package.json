@@ -70,7 +70,7 @@
     "parse": "^1.4.2",
     "rendr": "^1.0.3",
     "serve-static": "^1.8.0",
-    "stylestats": "^5.2.0",
+    "stylestats": "^5.3.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

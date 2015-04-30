@@ -9,6 +9,7 @@ module.exports = function (request, response) {
   query.first().then(function (data) {
     if (data) {
       var title = data.get('paths')[0] + ' - ' + data.createdAt;
+
       var result = JSON.stringify(data.attributes);
       response.render('index', {
         title: 'StyleStats Test Result | ' + title,
