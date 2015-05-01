@@ -26,6 +26,21 @@
 
     <ul id="js-resultView" class="c-metrics">{{{ result }}}</ul>
 
+    {{#if results}}
+    <section class="c-tests">
+      <h2>Latest Test Results</h2>
+      <ul id="js-favicon">
+        {{#each results}}
+          <li>
+            <p><img src="{{ icon }}" width="32" height="32" alt></p>
+            <p class="ellipsis"><a href="/results/{{ id }}">{{ uri }}</a></p>
+            <p class="detail">Size: {{ size }}, {{ time }}</p>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/if}}
+
     <section class="c-example">
       <h2>View Test Results for Popular Sites</h2>
       <ul>
