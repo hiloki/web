@@ -193,6 +193,20 @@ footer {
   }
 }
 
+.c-download {
+  text-align: center;
+  a {
+    font-weight: 700;
+  }
+  svg {
+    fill: $color-blue;
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+    vertical-align: -6px;
+  }
+}
+
 .c-example {
   margin: 60px auto;
   text-align: center;
