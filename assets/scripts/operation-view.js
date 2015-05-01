@@ -39,7 +39,7 @@ module.exports = Parse.View.extend({
     var that = this;
     var param = {};
     var path = this.$uri.val();
-    if (path.search(/$http(s?):\/\//) === -1) {
+    if (path.search(/^http(s?):\/\//) === -1) {
       path = 'http://' + path;
     }
     if (util.URL.test(path)) {
