@@ -52,7 +52,10 @@
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">Simplicity</h3>
+    <h3 class="header">
+      <span data-tip="This metric is measured as Rules divided by Selectors." class="tooltip">
+        Simplicity<svg><use xlink:href="#help"></use></svg></span>
+    </h3>
     <section>{{ data.[Simplicity] }}</section>
   </div>
 </li>
@@ -88,13 +91,19 @@
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">Average of Cohesion</h3>
+    <h3 class="header">
+      <span data-tip="This metric is measured as total declarations divided by Rules." class="tooltip">
+        Average of Cohesion<svg><use xlink:href="#help"></use></svg></span></h3>
     <section>{{ data.[Average of Cohesion] }}</section>
   </div>
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">Lowest Cohesion</h3>
+    <h3 class="header">
+      <a href="http://blog.millermedeiros.com/solid-css/"
+         data-tip="Follow Single Responsibility Principle" class="tooltip">
+        Lowest Cohesion<svg><use xlink:href="#help"></use></svg></a>
+    </h3>
     <section>{{ data.[Lowest Cohesion] }}</section>
   </div>
 </li>
@@ -157,7 +166,11 @@
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">ID Selectors</h3>
+    <h3 class="header">
+      <a href="https://github.com/CSSLint/csslint/wiki/Disallow-IDs-in-selectors"
+         data-tip="Disallow IDs in selectors" class="tooltip">
+      ID Selectors<svg><use xlink:href="#help"></use></svg></a>
+    </h3>
     {{#if data.[ID Selectors] }}
       <section class="bad">{{ data.[ID Selectors] }}</section>
     {{else}}
@@ -167,7 +180,11 @@
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">Universal Selectors</h3>
+    <h3 class="header">
+      <a href="https://github.com/CSSLint/csslint/wiki/Disallow-universal-selector"
+         data-tip="Disallow universal selector" class="tooltip">
+        Universal Selectors<svg><use xlink:href="#help"></use></svg></a>
+    </h3>
     {{#if data.[Universal Selectors] }}
       <section class="bad">{{ data.[Universal Selectors] }}</section>
     {{else}}
@@ -177,7 +194,11 @@
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">Unqualified Attribute Selectors</h3>
+    <h3 class="header">
+      <a href="https://github.com/CSSLint/csslint/wiki/Disallow-unqualified-attribute-selectors"
+         data-tip="Disallow unqualified attribute selectors" class="tooltip">
+        Unqualified Attribute Selectors<svg><use xlink:href="#help"></use></svg></a>
+    </h3>
     {{#if data.[Unqualified Attribute Selectors] }}
       <section class="bad">{{ data.[Unqualified Attribute Selectors] }}</section>
     {{else}}
@@ -187,7 +208,11 @@
 </li>
 <li class="c-card">
   <div class="inner">
-    <h3 class="header">JavaScript Specific Selectors</h3>
+    <h3 class="header">
+      <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/#javascript-specific-classes"
+         data-tip="Disallow JavaScript-specific selectors such as `#js-foo`, `.js-bar`" class="tooltip">
+        JavaScript Specific Selectors<svg><use xlink:href="#help"></use></svg></a>
+    </h3>
     {{#if data.[JavaScript Specific Selectors] }}
       <section class="bad">{{ data.[JavaScript Specific Selectors] }}</section>
     {{else}}

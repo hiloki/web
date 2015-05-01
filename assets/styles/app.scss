@@ -146,6 +146,14 @@ footer {
     color: $color-blue;
     font-size: 1.2rem;
     font-weight: 700;
+    a {
+      color: $color-blue;
+      font-weight: inherit;
+    }
+    span {
+      cursor: help;
+      font-weight: inherit;
+    }
   }
   section {
     line-height: 1.4;
@@ -169,6 +177,28 @@ footer {
   .bad {
     color: $color-red;
     font-weight: 700;
+  }
+  svg {
+    fill: $color-blue;
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
+    vertical-align: -3px;
+  }
+  .tooltip {
+    position: relative;
+  }
+  .tooltip:hover:after {
+    content: attr(data-tip);
+    position: absolute;
+    top: 30px;
+    left: 0;
+    line-height: 22px;
+    padding: 0 8px;
+    border-radius: 2px;
+    color: $color-white;
+    background: rgba(117, 117, 117, 0.9);
+    font-size: 0.7rem;
   }
 }
 

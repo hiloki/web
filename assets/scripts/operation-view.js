@@ -17,7 +17,7 @@ module.exports = Parse.View.extend({
     'keypress #js-uri': 'requestOnEnter',
     'click #js-parse': 'requestParse'
   },
-  replaceFavicon: function() {
+  replaceFavicon: function () {
     $(this).attr({src: '/img/favicon.png'});
   },
   enableInput: function (e) {
@@ -39,6 +39,9 @@ module.exports = Parse.View.extend({
     var that = this;
     var param = {};
     var path = this.$uri.val();
+    if (path.search(/$http(s?):\/\//) === -1) {
+      path = 'http://' + path;
+    }
     if (util.URL.test(path)) {
       param.path = _.escape(path);
     } else {
