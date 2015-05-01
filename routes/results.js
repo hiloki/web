@@ -23,6 +23,11 @@ var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
   var id = request.params[0];
+  var flag = true;
+  if (id.indexOf('.json') !== -1) {
+    flag = false;
+    id = id.replace(/\.json/, '');
+  }
   query.equalTo('objectId', id);
   query.first().then(function (data) {
     if (data) {
@@ -31,10 +36,15 @@ module.exports = function (request, response) {
       var title = data.get('paths')[0] + ' - ' + data.createdAt;
       hbs.render('./assets/template/perfect-list.hbs', {data: result})
         .then(function (html) {
-          response.render('index', {
-            title: 'StyleStats Test Result | ' + title,
-            result: html
-          });
+          if (flag) {
+            response.render('index', {
+              title: 'StyleStats Test Result | ' + title,
+              result: html,
+              id: data.id
+            });
+          } else {
+            response.json(data.attributes);
+          }
         });
     } else {
       response.render('404', {

@@ -166,6 +166,10 @@ footer {
     border: 1px #efefef solid;
     vertical-align: middle;
   }
+  .bad {
+    color: $color-red;
+    font-weight: 700;
+  }
 }
 
 .c-tests {
@@ -186,12 +190,24 @@ footer {
   img {
     float: left;
     margin: 6px 12px 0 0;
-    border-radius: 50%;
-    background: $color-cyan;
   }
   .detail {
     color: $color-grey;
     font-size: 0.8rem;
+  }
+}
+
+.c-download {
+  text-align: center;
+  a {
+    font-weight: 700;
+  }
+  svg {
+    fill: $color-blue;
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+    vertical-align: -6px;
   }
 }
 

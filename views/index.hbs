@@ -26,6 +26,13 @@
 
     <ul id="js-resultView" class="c-metrics">{{{ result }}}</ul>
 
+    {{#if id}}
+      <p class="c-download">
+        <a href="/results/{{ id }}.json" download="{{ id }}.json">
+          <svg><use xlink:href="#cloud"></use></svg>Download raw JSON data</a>
+      </p>
+    {{/if}}
+
     {{#if results}}
     <section class="c-tests">
       <h2>Latest Test Results</h2>
@@ -34,7 +41,7 @@
           <li>
             <p><img src="{{ icon }}" width="32" height="32" alt></p>
             <p class="ellipsis"><a href="/results/{{ id }}">{{ uri }}</a></p>
-            <p class="detail">Size: {{ size }}, {{ time }}</p>
+            <p class="detail">Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}, {{ time }}</p>
           </li>
         {{/each}}
       </ul>
