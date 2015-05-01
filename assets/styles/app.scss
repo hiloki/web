@@ -166,6 +166,10 @@ footer {
     border: 1px #efefef solid;
     vertical-align: middle;
   }
+  .bad {
+    color: $color-red;
+    font-weight: 700;
+  }
 }
 
 .c-tests {

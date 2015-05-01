@@ -19,8 +19,8 @@
 <li class="c-card">
   <div class="inner">
     <h3 class="header">Style Elements</h3>
-    {{#if data.[Style Elements]}}
-      <section>{{ data.[Style Elements] }}</section>
+    {{#if data.[Style Elements] }}
+      <section class="bad">{{ data.[Style Elements] }}</section>
     {{else}}
       <section>0</section>
     {{/if}}
@@ -158,25 +158,41 @@
 <li class="c-card">
   <div class="inner">
     <h3 class="header">ID Selectors</h3>
-    <section>{{ data.[ID Selectors] }}</section>
+    {{#if data.[ID Selectors] }}
+      <section class="bad">{{ data.[ID Selectors] }}</section>
+    {{else}}
+      <section>0</section>
+    {{/if}}
   </div>
 </li>
 <li class="c-card">
   <div class="inner">
     <h3 class="header">Universal Selectors</h3>
-    <section>{{ data.[Universal Selectors] }}</section>
+    {{#if data.[Universal Selectors] }}
+      <section class="bad">{{ data.[Universal Selectors] }}</section>
+    {{else}}
+      <section>0</section>
+    {{/if}}
   </div>
 </li>
 <li class="c-card">
   <div class="inner">
     <h3 class="header">Unqualified Attribute Selectors</h3>
-    <section>{{ data.[Unqualified Attribute Selectors] }}</section>
+    {{#if data.[Unqualified Attribute Selectors] }}
+      <section class="bad">{{ data.[Unqualified Attribute Selectors] }}</section>
+    {{else}}
+      <section>0</section>
+    {{/if}}
   </div>
 </li>
 <li class="c-card">
   <div class="inner">
     <h3 class="header">JavaScript Specific Selectors</h3>
-    <section>{{ data.[JavaScript Specific Selectors] }}</section>
+    {{#if data.[JavaScript Specific Selectors] }}
+      <section class="bad">{{ data.[JavaScript Specific Selectors] }}</section>
+    {{else}}
+      <section>0</section>
+    {{/if}}
   </div>
 </li>
 <li class="c-card">
