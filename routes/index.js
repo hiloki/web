@@ -22,6 +22,8 @@ module.exports = function (request, response) {
           icon: favicon,
           id: result.id,
           size: byte,
+          rules: resultData.rules,
+          selectors: resultData.selectors,
           time: moment(result.createdAt).fromNow(),
           uri: resultData.paths[0]
         };
