@@ -9,7 +9,7 @@ module.exports = Parse.View.extend({
     this.$progress = $('#js-progress');
     this.csrfToken = $('#js-token').attr('content');
     $('.ripple').on('click', this.rippleEffect);
-    $('#js-favicon img').error(this.replaceFavicon);
+    $('.js-favicon').error(this.replaceFavicon);
   },
   events: {
     'focus #js-uri': 'enableInput',

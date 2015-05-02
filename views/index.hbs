@@ -34,15 +34,14 @@
     {{/if}}
 
     {{#if results}}
-    <section class="c-tests">
+    <section class="c-tests u-cf">
       <h2>Latest Test Results</h2>
-      <ul id="js-favicon">
+      <ul>
         {{#each results}}
-          <li>
-            <p><img src="{{ icon }}" width="32" height="32" alt></p>
-            <p class="ellipsis"><a href="/results/{{ id }}">{{ uri }}</a></p>
-            <p class="detail">Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}, {{ time }}</p>
-          </li>
+        <li><a href="/results/{{ id }}">
+          <p class="u-tov"><img src="{{ icon }}" width="16" height="16" alt class="js-favicon">{{ uri }}</p>
+          <p class="detail u-tov">Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}, {{ time }}</p>
+        </a></li>
         {{/each}}
       </ul>
     </section>
