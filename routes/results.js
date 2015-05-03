@@ -15,6 +15,7 @@ function processData(data) {
       data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
     }
   });
+  data['Properties Count'] = data['Properties Count'].slice(0,9);
 }
 
 var Parse = require('parse').Parse;
