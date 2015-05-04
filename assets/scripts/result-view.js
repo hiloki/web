@@ -21,6 +21,7 @@ module.exports = Parse.View.extend({
         data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
       }
     });
+    data['Properties Count'] = data['Properties Count'].slice(0,9);
   },
   setShareURI: function () {
     if ($(this).data('clicked')) return;
