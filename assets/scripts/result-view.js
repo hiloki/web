@@ -6,6 +6,7 @@ module.exports = Parse.View.extend({
   initialize: function () {
     this.model.on('change', this.render, this);
     this.$el.on('click', '.js-share', this.setShareURI);
+    this.renderPieChart();
   },
   processData: function (data) {
     var KEY_ARRY = [
@@ -21,7 +22,7 @@ module.exports = Parse.View.extend({
         data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
       }
     });
-    data['Properties Count'] = data['Properties Count'].slice(0,9);
+    data['Properties Count'] = data['Properties Count'].slice(0, 9);
   },
   setShareURI: function () {
     if ($(this).data('clicked')) return;
@@ -35,8 +36,58 @@ module.exports = Parse.View.extend({
   render: function () {
     var data = prettify(this.model.attributes);
     this.processData(data);
-    console.log(data);
     this.$el.html(templateAll({data: data}));
+    this.renderPieChart();
     return this;
+  },
+  renderPieChart: function () {
+    if (!$('#js-prop-data').html()) return;
+    var properties = JSON.parse($('#js-prop-data').html());
+    var results = [];
+    var count = 0;
+    properties.forEach(function (obj, index) {
+      if (index < 5) {
+        var result = [obj.property, obj.count];
+        results.push(result);
+      } else {
+        count += obj.count;
+      }
+    });
+    results.push(['Other', count]);
+
+    Highcharts.setOptions({
+      lang: {thousandsSep: ','}
+    });
+    $('#js-prop-chart').highcharts({
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        spacing: [0, 0, 10, 0]
+      },
+      credits: {
+        enabled: false
+      },
+      colors: ['#80DEEA', '#80CBC4', '#A5D6A7', '#C5E1A5', '#E6EE9C', '#FFF59D'],
+      title: false,
+      tooltip: {
+        pointFormat: '<b>{point.percentage:.1f}%, {point.y}</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Properties share',
+        data: results
+      }]
+    });
   }
 });
