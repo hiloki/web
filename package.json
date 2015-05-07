@@ -1,6 +1,6 @@
 {
   "name": "StyleStats.Web",
-  "version": "5.1.0",
+  "version": "5.4.0",
   "description": "Official Web Application",
   "author": "Koji Ishimoto <ijok.ijok@gmail.com>",
   "contributors": [
@@ -77,5 +77,5 @@
     "npm": "^2.8.3",
     "watch": "^0.16.0"
   },
-  "license": "MIT"
+  "license": "CC BY-NC-ND 4.0"
 }

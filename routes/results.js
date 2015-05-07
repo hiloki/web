@@ -32,6 +32,7 @@ module.exports = function (request, response) {
   query.equalTo('objectId', id);
   query.first().then(function (data) {
     if (data) {
+      var rank = JSON.stringify(data.attributes.propertiesCount);
       var result = prettify(data.attributes);
       processData(result);
       var title = data.get('paths')[0] + ' - ' + data.createdAt;
@@ -41,7 +42,8 @@ module.exports = function (request, response) {
             response.render('index', {
               title: 'StyleStats Test Result | ' + title,
               result: html,
-              id: data.id
+              id: data.id,
+              properties: rank
             });
           } else {
             response.json(data.attributes);
