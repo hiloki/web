@@ -22,7 +22,7 @@ module.exports = Parse.View.extend({
         data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
       }
     });
-    data['Properties Count'] = data['Properties Count'].slice(0,9);
+    data['Properties Count'] = data['Properties Count'].slice(0, 9);
   },
   setShareURI: function () {
     if ($(this).data('clicked')) return;
@@ -36,11 +36,12 @@ module.exports = Parse.View.extend({
   render: function () {
     var data = prettify(this.model.attributes);
     this.processData(data);
-    console.log(data);
     this.$el.html(templateAll({data: data}));
+    this.renderPieChart();
     return this;
   },
-  renderPieChart: function(){
+  renderPieChart: function () {
+    if (!$('#js-prop-data').html()) return;
     var properties = JSON.parse($('#js-prop-data').html());
     var results = [];
     var count = 0;
@@ -54,12 +55,18 @@ module.exports = Parse.View.extend({
     });
     results.push(['Other', count]);
 
+    Highcharts.setOptions({
+      lang: {thousandsSep: ','}
+    });
     $('#js-prop-chart').highcharts({
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
         spacing: [0, 0, 10, 0]
+      },
+      credits: {
+        enabled: false
       },
       colors: ['#80DEEA', '#80CBC4', '#A5D6A7', '#C5E1A5', '#E6EE9C', '#FFF59D'],
       title: false,
