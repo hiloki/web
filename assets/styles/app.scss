@@ -149,6 +149,15 @@ footer {
   margin: auto;
 }
 
+.compare > .c-metrics {
+  column-count: auto;
+  width: 50%;
+  float: left;
+}
+.compare > .c-metrics > .c-card {
+  max-height:100px;
+  overflow: auto;
+}
 .c-metrics {
   column-count: 1;
   column-gap: 20px;
@@ -336,6 +345,9 @@ footer {
 // Tablet
 //-------------------------------------------
 @media only screen and (min-width: 601px) {
+  .compare > .c-metrics {
+    column-count: auto;
+  }
   header {
     h1 {
       font-size: 3.6rem;
@@ -387,6 +399,9 @@ footer {
 // Desktop
 //-------------------------------------------
 @media only screen and (min-width: 993px) {
+  .compare > .c-metrics {
+    column-count: auto;
+  }
   header {
     padding: 100px 0 0 120px;
     h2 {
