@@ -48,7 +48,7 @@ footer {
   }
   li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 14px;
   }
   p {
     padding: 12px 20px;
@@ -155,13 +155,16 @@ footer {
   padding: 10px;
   float: left;
 }
+
 .compare > .c-metrics > .c-card {
-  max-height:100px;
+  max-height: 94px;
   overflow: auto;
 }
+
 .compare > .c-metrics > .c-card.properties {
   max-height: 1000px;
 }
+
 .c-metrics {
   column-count: 1;
   column-gap: 20px;
