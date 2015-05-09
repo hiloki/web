@@ -1,284 +1,288 @@
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Published</h3>
-    <section>{{ data.[Published] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Paths</h3>
-    <section><a href="{{ data.[Paths] }}">{{ data.[Paths] }}</a></section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Style Sheets</h3>
-    <section>{{ data.[Style Sheets] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Style Elements</h3>
-    {{#if data.[Style Elements] }}
-      <section class="bad">{{ data.[Style Elements] }}</section>
-    {{else}}
-      <section>0</section>
-    {{/if}}
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Size</h3>
-    <section>{{ data.[Size] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Data URI Size</h3>
-    <section>{{ data.[Data URI Size] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Ratio of Data URI Size</h3>
-    <section>{{ data.[Ratio of Data URI Size] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Gzipped Size</h3>
-    <section>{{ data.[Gzipped Size] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <span data-tip="This metric is measured as Rules divided by Selectors." class="tooltip">
-        Simplicity<svg class="icon"><use xlink:href="#help"></use></svg></span>
-    </h3>
-    <section>{{ data.[Simplicity] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Rules</h3>
-    <section>{{ data.[Rules] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Selectors</h3>
-    <section>{{ data.[Selectors] }}</section>
-  </div>
-</li>
-{{#if data.[Declarations] }}
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Declarations</h3>
-    <section>{{ data.[Declarations] }}</section>
-  </div>
-</li>
-{{/if}}
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Average of Identifier</h3>
-    <section>{{ data.[Average of Identifier] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Most Identifier</h3>
-    <section>{{ data.[Most Identifier] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Most Identifier Selector</h3>
-    <section>{{ data.[Most Identifier Selector] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <span data-tip="This metric is measured as total declarations divided by Rules." class="tooltip">
-        Average of Cohesion<svg class="icon"><use xlink:href="#help"></use></svg></span></h3>
-    <section>{{ data.[Average of Cohesion] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <a href="http://blog.millermedeiros.com/solid-css/"
-         data-tip="Follow Single Responsibility Principle" class="tooltip">
-        Lowest Cohesion<svg class="icon"><use xlink:href="#help"></use></svg></a>
-    </h3>
-    <section>{{ data.[Lowest Cohesion] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Lowest Cohesion Selector</h3>
-    <section>{{ data.[Lowest Cohesion Selector] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Total Unique Font Sizes</h3>
-    <section>{{ data.[Total Unique Font Sizes] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Unique Font Sizes</h3>
-    <section><ul>
-      {{#each data.[Unique Font Sizes]}}
-        <li>{{ this }}</li>
-      {{/each}}
-    </ul></section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Total Unique Font Families</h3>
-    <section>{{ data.[Total Unique Font Families] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Unique Font Families</h3>
-    <section><ul>
-      {{#each data.[Unique Font Families]}}
-        <li style="font-family:{{ this }}">{{ this }}</li>
-      {{/each}}
-    </ul></section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Total Unique Colors</h3>
-    <section>{{ data.[Total Unique Colors] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Unique Colors</h3>
-    <section><ul>
-      {{#each data.[Unique Colors]}}
-        <li>
-          <span class="box" style="background:{{ this }}"></span>
-          <span class="code">{{ this }}</span>
-        </li>
-      {{/each}}
-    </ul></section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <a href="https://github.com/CSSLint/csslint/wiki/Disallow-IDs-in-selectors"
-         data-tip="Disallow IDs in selectors" class="tooltip">
-      ID Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
-    </h3>
-    {{#if data.[ID Selectors] }}
-      <section class="bad">{{ data.[ID Selectors] }}</section>
-    {{else}}
-      <section>0</section>
-    {{/if}}
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <a href="https://github.com/CSSLint/csslint/wiki/Disallow-universal-selector"
-         data-tip="Disallow universal selector" class="tooltip">
-        Universal Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
-    </h3>
-    {{#if data.[Universal Selectors] }}
-      <section class="bad">{{ data.[Universal Selectors] }}</section>
-    {{else}}
-      <section>0</section>
-    {{/if}}
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <a href="https://github.com/CSSLint/csslint/wiki/Disallow-unqualified-attribute-selectors"
-         data-tip="Disallow unqualified attribute selectors" class="tooltip">
-        Unqualified Attribute Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
-    </h3>
-    {{#if data.[Unqualified Attribute Selectors] }}
-      <section class="bad">{{ data.[Unqualified Attribute Selectors] }}</section>
-    {{else}}
-      <section>0</section>
-    {{/if}}
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">
-      <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/#javascript-specific-classes"
-         data-tip="Disallow JavaScript-specific selectors such as `#js-foo`, `.js-bar`" class="tooltip">
-        JavaScript Specific Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
-    </h3>
-    {{#if data.[JavaScript Specific Selectors] }}
-      <section class="bad">{{ data.[JavaScript Specific Selectors] }}</section>
-    {{else}}
-      <section>0</section>
-    {{/if}}
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Important Keywords</h3>
-    <section>{{ data.[Important Keywords] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Float Properties</h3>
-    <section>{{ data.[Float Properties] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Media Queries</h3>
-    <section>{{ data.[Media Queries] }}</section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Properties Count</h3>
-    <section id="js-prop-chart"></section>
-  </div>
-</li>
-<li class="c-card">
-  <div class="inner">
-    <h3 class="header">Share</h3>
-    <section class="c-share">
-      <ul>
-        <li><a href="https://twitter.com/share?url=" class="js-share"
-               target="_blank">
-          <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xlink:href="#twitter"></use>
-          </svg>
-          Share on Twitter</a></li>
-        <li><a href="https://www.facebook.com/sharer/sharer.php?u="
-               class="js-share" target="_blank">
-          <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xlink:href="#facebook"></use>
-          </svg>
-          Share on Facebook</a></li>
-        <li><a href="https://plus.google.com/share?url=" class="js-share"
-               target="_blank">
-          <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xlink:href="#googleplus"></use>
-          </svg>
-          Share on Google+</a></li>
-      </ul>
-    </section>
-  </div>
-</li>
+{{#each data}}
+<ul class="c-metrics">
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Published</h3>
+      <section>{{ this.[Published] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Paths</h3>
+      <section><a href="{{ this.[Paths] }}">{{ this.[Paths] }}</a></section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Style Sheets</h3>
+      <section>{{ this.[Style Sheets] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Style Elements</h3>
+      {{#if this.[Style Elements] }}
+        <section class="bad">{{ this.[Style Elements] }}</section>
+      {{else}}
+        <section>0</section>
+      {{/if}}
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Size</h3>
+      <section>{{ this.[Size] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Data URI Size</h3>
+      <section>{{ this.[Data URI Size] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Ratio of Data URI Size</h3>
+      <section>{{ this.[Ratio of Data URI Size] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Gzipped Size</h3>
+      <section>{{ this.[Gzipped Size] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <span data-tip="This metric is measured as Rules divided by Selectors." class="tooltip">
+          Simplicity<svg class="icon"><use xlink:href="#help"></use></svg></span>
+      </h3>
+      <section>{{ this.[Simplicity] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Rules</h3>
+      <section>{{ this.[Rules] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Selectors</h3>
+      <section>{{ this.[Selectors] }}</section>
+    </div>
+  </li>
+  {{#if this.[Declarations] }}
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Declarations</h3>
+      <section>{{ this.[Declarations] }}</section>
+    </div>
+  </li>
+  {{/if}}
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Average of Identifier</h3>
+      <section>{{ this.[Average of Identifier] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Most Identifier</h3>
+      <section>{{ this.[Most Identifier] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Most Identifier Selector</h3>
+      <section>{{ this.[Most Identifier Selector] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <span data-tip="This metric is measured as total declarations divided by Rules." class="tooltip">
+          Average of Cohesion<svg class="icon"><use xlink:href="#help"></use></svg></span></h3>
+      <section>{{ this.[Average of Cohesion] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <a href="http://blog.millermedeiros.com/solid-css/"
+           data-tip="Follow Single Responsibility Principle" class="tooltip">
+          Lowest Cohesion<svg class="icon"><use xlink:href="#help"></use></svg></a>
+      </h3>
+      <section>{{ this.[Lowest Cohesion] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Lowest Cohesion Selector</h3>
+      <section>{{ this.[Lowest Cohesion Selector] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Total Unique Font Sizes</h3>
+      <section>{{ this.[Total Unique Font Sizes] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Unique Font Sizes</h3>
+      <section><ul>
+        {{#each this.[Unique Font Sizes]}}
+          <li>{{ this }}</li>
+        {{/each}}
+      </ul></section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Total Unique Font Families</h3>
+      <section>{{ this.[Total Unique Font Families] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Unique Font Families</h3>
+      <section><ul>
+        {{#each this.[Unique Font Families]}}
+          <li style="font-family:{{ this }}">{{ this }}</li>
+        {{/each}}
+      </ul></section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Total Unique Colors</h3>
+      <section>{{ this.[Total Unique Colors] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Unique Colors</h3>
+      <section><ul>
+        {{#each this.[Unique Colors]}}
+          <li>
+            <span class="box" style="background:{{ this }}"></span>
+            <span class="code">{{ this }}</span>
+          </li>
+        {{/each}}
+      </ul></section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <a href="https://github.com/CSSLint/csslint/wiki/Disallow-IDs-in-selectors"
+           data-tip="Disallow IDs in selectors" class="tooltip">
+        ID Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
+      </h3>
+      {{#if this.[ID Selectors] }}
+        <section class="bad">{{ this.[ID Selectors] }}</section>
+      {{else}}
+        <section>0</section>
+      {{/if}}
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <a href="https://github.com/CSSLint/csslint/wiki/Disallow-universal-selector"
+           data-tip="Disallow universal selector" class="tooltip">
+          Universal Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
+      </h3>
+      {{#if this.[Universal Selectors] }}
+        <section class="bad">{{ this.[Universal Selectors] }}</section>
+      {{else}}
+        <section>0</section>
+      {{/if}}
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <a href="https://github.com/CSSLint/csslint/wiki/Disallow-unqualified-attribute-selectors"
+           data-tip="Disallow unqualified attribute selectors" class="tooltip">
+          Unqualified Attribute Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
+      </h3>
+      {{#if this.[Unqualified Attribute Selectors] }}
+        <section class="bad">{{ this.[Unqualified Attribute Selectors] }}</section>
+      {{else}}
+        <section>0</section>
+      {{/if}}
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">
+        <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/#javascript-specific-classes"
+           data-tip="Disallow JavaScript-specific selectors such as `#js-foo`, `.js-bar`" class="tooltip">
+          JavaScript Specific Selectors<svg class="icon"><use xlink:href="#help"></use></svg></a>
+      </h3>
+      {{#if this.[JavaScript Specific Selectors] }}
+        <section class="bad">{{ this.[JavaScript Specific Selectors] }}</section>
+      {{else}}
+        <section>0</section>
+      {{/if}}
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Important Keywords</h3>
+      <section>{{ this.[Important Keywords] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Float Properties</h3>
+      <section>{{ this.[Float Properties] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Media Queries</h3>
+      <section>{{ this.[Media Queries] }}</section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Properties Count</h3>
+      <section id="js-prop-chart"></section>
+    </div>
+  </li>
+  <li class="c-card">
+    <div class="inner">
+      <h3 class="header">Share</h3>
+      <section class="c-share">
+        <ul>
+          <li><a href="https://twitter.com/share?url=" class="js-share"
+                 target="_blank">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                   xlink:href="#twitter"></use>
+            </svg>
+            Share on Twitter</a></li>
+          <li><a href="https://www.facebook.com/sharer/sharer.php?u="
+                 class="js-share" target="_blank">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                   xlink:href="#facebook"></use>
+            </svg>
+            Share on Facebook</a></li>
+          <li><a href="https://plus.google.com/share?url=" class="js-share"
+                 target="_blank">
+            <svg class="icon">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                   xlink:href="#googleplus"></use>
+            </svg>
+            Share on Google+</a></li>
+        </ul>
+      </section>
+    </div>
+  </li>
+  </ul>
+{{/each}}

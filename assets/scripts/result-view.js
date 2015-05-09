@@ -36,7 +36,7 @@ module.exports = Parse.View.extend({
   render: function () {
     var data = prettify(this.model.attributes);
     this.processData(data);
-    this.$el.html(tempList({data: data}));
+    this.$el.html(tempList({data: [data]}));
     this.renderPieChart();
     return this;
   },

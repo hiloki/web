@@ -24,11 +24,13 @@
     </div>
   </div>
   <div class="container">
-    <ul id="js-resultView" class="c-metrics">
-    {{#if data}}
-      {{> list }}
-    {{/if}}
-    </ul>
+    <div id="js-resultView">
+      {{#if data}}
+          {{> list }}
+      {{/if}}
+    </div>
+
+
 
     {{#if id}}
       <p class="c-download">

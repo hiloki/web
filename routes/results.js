@@ -40,7 +40,7 @@ module.exports = function (request, response) {
       if (flag) {
         response.render('index', {
           title: 'StyleStats Test Result | ' + title,
-          data: result,
+          data: [result],
           id: data.id,
           properties: rank
         });
