@@ -15,7 +15,27 @@ module.exports = function (request, response) {
   query.equalTo('objectId', id);
   query.first().then(function (data) {
     if (data) {
-      var rank = JSON.stringify(data.attributes.propertiesCount);
+      var ranks = [];
+
+
+
+      var props = data.attributes.propertiesCount;
+      var rank = [];
+      var count = 0;
+      props.forEach(function (obj, index) {
+        if (index < 5) {
+          var result = [obj.property, obj.count];
+          rank.push(result);
+        } else {
+          count += obj.count;
+        }
+      });
+      rank.push(['Other', count]);
+      
+      ranks.push(rank);
+
+
+
       var result = prettify(data.attributes);
       util.processData(result);
       var title = data.get('paths')[0] + ' - ' + data.createdAt;
@@ -25,7 +45,7 @@ module.exports = function (request, response) {
           title: 'StyleStats Test Result | ' + title,
           data: [result],
           id: data.id,
-          properties: rank
+          properties: JSON.stringify(ranks)
         });
       } else {
         response.json(data.attributes);

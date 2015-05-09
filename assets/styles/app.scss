@@ -152,11 +152,15 @@ footer {
 .compare > .c-metrics {
   column-count: auto;
   width: 50%;
+  padding: 10px;
   float: left;
 }
 .compare > .c-metrics > .c-card {
   max-height:100px;
   overflow: auto;
+}
+.compare > .c-metrics > .c-card.properties {
+  max-height: 1000px;
 }
 .c-metrics {
   column-count: 1;

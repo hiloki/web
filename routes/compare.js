@@ -11,15 +11,36 @@ module.exports = function (request, response) {
   query.find({
     success: function (results) {
       var data = [];
+      var ranks = [];
       results.forEach(function (result) {
+
+        var props = result.attributes.propertiesCount;
+        var rank = [];
+        var count = 0;
+        props.forEach(function (obj, index) {
+          if (index < 5) {
+            var result = [obj.property, obj.count];
+            rank.push(result);
+          } else {
+            count += obj.count;
+          }
+        });
+        rank.push(['Other', count]);
+
+        ranks.push(rank);
+
+
+
         var raw = prettify(result.attributes);
         util.processData(raw);
         data.push(raw);
       });
+      console.log(ranks);
       response.render('compare', {
         compare: true,
-        title: 'Compare',
-        data: data
+        title: 'Compare | StyleStas',
+        data: data,
+        properties: JSON.stringify(ranks)
       });
     },
     error: function (error) {
