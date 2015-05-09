@@ -21,7 +21,7 @@ module.exports = function (request, response) {
       });
 
       response.render('compare', {
-        title: 'Compare | StyleStas',
+        title: 'StyleStas Test Result Comparison',
         data: datum,
         properties: JSON.stringify(props),
         is_compare: true

@@ -17,6 +17,8 @@ module.exports = function (request, response) {
   query.first({
     success: function (result) {
       if (result) {
+        var title = util.createTitle(result.get('paths')[0], result.createdAt);
+
         var datum = [];
         var props = [];
 
@@ -25,11 +27,9 @@ module.exports = function (request, response) {
         datum.push(data);
         props.push(util.convertData(result));
 
-        var title = result.get('paths')[0] + ' - ' + result.createdAt;
-
         if (flag) {
           response.render('index', {
-            title: 'StyleStats Test Result | ' + title,
+            title: title,
             data: datum,
             properties: JSON.stringify(props),
             id: result.id
