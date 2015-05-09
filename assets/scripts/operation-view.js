@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var util = require('./util.js');
+var util = require('../../lib/util.js');
 
 module.exports = Parse.View.extend({
   el: '#js-operation',

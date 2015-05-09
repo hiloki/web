@@ -1,9 +1,8 @@
 $(function () {
-  var util = require('./util.js');
+  var util = require('../../lib/util.js');
 
   Parse.$ = jQuery;
   Parse.initialize(util.ID, util.KEY);
-
 
   // Router
   // =======================

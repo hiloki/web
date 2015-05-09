@@ -5,7 +5,6 @@ var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
 
-
 module.exports = function (request, response) {
   query.descending('createdAt');
   query.limit(10);

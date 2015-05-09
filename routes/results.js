@@ -1,5 +1,5 @@
 var prettify = require('stylestats/lib/prettify.js');
-var util = require('../assets/scripts/util.js');
+var util = require('../lib/util.js');
 
 var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
@@ -12,56 +12,57 @@ module.exports = function (request, response) {
     flag = false;
     id = id.replace(/\.json/, '');
   }
+  // Search for Object ID
   query.equalTo('objectId', id);
-  query.first().then(function (data) {
-    if (data) {
-      var ranks = [];
+  query.first({
+    success: function (data) {
+      if (data) {
+        var ranks = [];
 
-
-
-      var props = data.attributes.propertiesCount;
-      var rank = [];
-      var count = 0;
-      props.forEach(function (obj, index) {
-        if (index < 5) {
-          var result = [obj.property, obj.count];
-          rank.push(result);
-        } else {
-          count += obj.count;
-        }
-      });
-      rank.push(['Other', count]);
-      
-      ranks.push(rank);
-
-
-
-      var result = prettify(data.attributes);
-      util.processData(result);
-      var title = data.get('paths')[0] + ' - ' + data.createdAt;
-
-      if (flag) {
-        response.render('index', {
-          title: 'StyleStats Test Result | ' + title,
-          data: [result],
-          id: data.id,
-          properties: JSON.stringify(ranks)
+        var props = data.attributes.propertiesCount;
+        var rank = [];
+        var count = 0;
+        props.forEach(function (obj, index) {
+          if (index < 5) {
+            var result = [obj.property, obj.count];
+            rank.push(result);
+          } else {
+            count += obj.count;
+          }
         });
+        rank.push(['Other', count]);
+
+        ranks.push(rank);
+
+
+        var result = prettify(data.attributes);
+        util.processData(result);
+        var title = data.get('paths')[0] + ' - ' + data.createdAt;
+
+        if (flag) {
+          response.render('index', {
+            title: 'StyleStats Test Result | ' + title,
+            data: [result],
+            id: data.id,
+            properties: JSON.stringify(ranks)
+          });
+        } else {
+          response.json(data.attributes);
+        }
+
       } else {
-        response.json(data.attributes);
+        response.render('404', {
+          title: "Test not found | StyleStats",
+          header: "Test not found :("
+        });
       }
-
-    } else {
+    },
+    error: function (error) {
       response.render('404', {
-        title: "Test not found | StyleStats",
-        header: "Test not found :("
+        title: "Database is busy | StyleStats",
+        header: "Database is busy :("
       });
+      console.log(error);
     }
-  }, function (error) {
-    response.render('404', {
-      title: "Database is busy | StyleStats",
-      header: "Database is busy :("
-    });
   });
-
 };

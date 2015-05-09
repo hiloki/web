@@ -1,6 +1,6 @@
 var tempList = require('../../views/partials/list.hbs');
 var prettify = require('stylestats/lib/prettify.js');
-var util = require('./util.js');
+var util = require('../../lib/util.js');
 
 module.exports = Parse.View.extend({
   el: '#js-resultView',
