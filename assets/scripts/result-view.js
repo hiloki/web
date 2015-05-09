@@ -1,5 +1,6 @@
 var tempList = require('../../views/partials/list.hbs');
 var prettify = require('stylestats/lib/prettify.js');
+var util = require('./util.js');
 
 module.exports = Parse.View.extend({
   el: '#js-resultView',
@@ -7,22 +8,6 @@ module.exports = Parse.View.extend({
     this.model.on('change', this.render, this);
     this.$el.on('click', '.js-share', this.setShareURI);
     this.renderPieChart();
-  },
-  processData: function (data) {
-    var KEY_ARRY = [
-      'Paths',
-      'Lowest Cohesion Selector',
-      'Unique Font Families',
-      'Unique Font Sizes',
-      'Unique Colors',
-      'Properties Count'
-    ];
-    Object.keys(data).forEach(function (key) {
-      if (KEY_ARRY.indexOf(key) !== -1) {
-        data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
-      }
-    });
-    data['Properties Count'] = data['Properties Count'].slice(0, 9);
   },
   setShareURI: function (e) {
     e.preventDefault();
@@ -34,7 +19,7 @@ module.exports = Parse.View.extend({
   },
   render: function () {
     var data = prettify(this.model.attributes);
-    this.processData(data);
+    util.processData(data);
     this.$el.html(tempList({data: [data]}));
     this.renderPieChart();
     return this;

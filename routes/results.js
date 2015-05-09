@@ -1,22 +1,5 @@
-var hbs = require('express-handlebars').create();
 var prettify = require('stylestats/lib/prettify.js');
-
-function processData(data) {
-  var KEY_ARRY = [
-    'Paths',
-    'Lowest Cohesion Selector',
-    'Unique Font Families',
-    'Unique Font Sizes',
-    'Unique Colors',
-    'Properties Count'
-  ];
-  Object.keys(data).forEach(function (key) {
-    if (KEY_ARRY.indexOf(key) !== -1) {
-      data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
-    }
-  });
-  data['Properties Count'] = data['Properties Count'].slice(0, 9);
-}
+var util = require('../assets/scripts/util.js');
 
 var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
@@ -34,7 +17,7 @@ module.exports = function (request, response) {
     if (data) {
       var rank = JSON.stringify(data.attributes.propertiesCount);
       var result = prettify(data.attributes);
-      processData(result);
+      util.processData(result);
       var title = data.get('paths')[0] + ' - ' + data.createdAt;
 
       if (flag) {
