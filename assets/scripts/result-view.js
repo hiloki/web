@@ -24,11 +24,10 @@ module.exports = Parse.View.extend({
     });
     data['Properties Count'] = data['Properties Count'].slice(0, 9);
   },
-  setShareURI: function () {
-    if ($(this).data('clicked')) return;
+  setShareURI: function (e) {
+    e.preventDefault();
     var path = $(this).attr('href') + encodeURIComponent(location.href);
-    $(this).attr('href', path);
-    $(this).data('clicked', true);
+    window.open(path, 'Share Test Result', 'height=350,width=500,resizable=1');
   },
   clearResultView: function () {
     this.remove();
