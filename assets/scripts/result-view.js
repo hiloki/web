@@ -1,4 +1,4 @@
-var templateAll = require('../template/perfect-list.hbs');
+var tempList = require('../../views/partials/list.hbs');
 var prettify = require('stylestats/lib/prettify.js');
 
 module.exports = Parse.View.extend({
@@ -36,7 +36,7 @@ module.exports = Parse.View.extend({
   render: function () {
     var data = prettify(this.model.attributes);
     this.processData(data);
-    this.$el.html(templateAll({data: data}));
+    this.$el.html(tempList({data: data}));
     this.renderPieChart();
     return this;
   },
