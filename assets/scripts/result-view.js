@@ -8,6 +8,7 @@ module.exports = Parse.View.extend({
     this.model.on('change', this.render, this);
     this.$el.on('click', '.js-share', this.setShareURI);
     this.renderPieChart();
+    this.renderColumnChart();
   },
   setShareURI: function (e) {
     e.preventDefault();
@@ -31,7 +32,6 @@ module.exports = Parse.View.extend({
     if (!$('#js-prop-data').html()) return;
     var results = JSON.parse($('#js-prop-data').html());
     results.forEach(function (result, index) {
-      console.log(result);
       $('#js-prop-chart' + index).highcharts({
         chart: {
           plotBackgroundColor: null,
@@ -45,6 +45,11 @@ module.exports = Parse.View.extend({
         colors: ['#80DEEA', '#80CBC4', '#A5D6A7', '#C5E1A5', '#E6EE9C', '#FFF59D'],
         title: false,
         tooltip: {
+          borderRadius: 3,
+          borderWidth: 0,
+          backgroundColor: 'rgba(117, 117, 117, 0.9)',
+          shadow: false,
+          style: {color: '#fff'},
           pointFormat: '<b>{point.percentage:.1f}%, {point.y}</b>'
         },
         plotOptions: {
@@ -63,6 +68,58 @@ module.exports = Parse.View.extend({
           data: result
         }]
       });
+    });
+  },
+  renderColumnChart: function () {
+    if (!$('#js-compare-data').html()) return;
+    var results = JSON.parse($('#js-compare-data').html());
+    console.log(results);
+    $('#js-compare-chart').highcharts({
+      chart: {
+        type: 'column',
+        spacing: [40, 20, 20, 20]
+      },
+      credits: {
+        enabled: false
+      },
+      colors: ['#A5D6A7', '#E6EE9C'],
+      title: false,
+      xAxis: {
+        categories: results[3],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Size (Byte)'
+        }
+      },
+      tooltip: {
+        borderRadius: 3,
+        borderWidth: 0,
+        backgroundColor: 'rgba(117, 117, 117, 0.9)',
+        shadow: false,
+        style: {color: '#fff'},
+        headerFormat: '{point.key}<ul>',
+        pointFormat: '<li><span style="color:{series.color};">■</span>' + '<b> {point.y}Byte</b></li>',
+        footerFormat: '</ul>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: results[2][0],
+        data: results[0]
+
+      }, {
+        name: results[2][1],
+        data: results[1]
+      }]
     });
   }
 });

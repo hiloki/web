@@ -7,7 +7,7 @@
 <main>
 
   <div class="container">
-
+    <div id="js-compare-chart" class="c-compare-chart c-card"></div>
     <div class="compare">
       {{#if data}}
         {{> list }}
@@ -17,3 +17,4 @@
   </div>
 </main>
 <script type="application/json" id="js-prop-data">{{{ properties }}}</script>
+<script type="application/json" id="js-compare-data">{{{ numData }}}</script>

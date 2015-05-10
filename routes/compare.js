@@ -12,18 +12,27 @@ module.exports = function (request, response) {
     success: function (results) {
       var datum = [];
       var props = [];
-
+      var numDatum = [];
+      var paths = [];
       results.forEach(function (result) {
+        var numData = [];
+        paths.push(result.attributes.paths[0]);
+        numData.push(result.attributes.size);
+        numData.push(result.attributes.gzippedSize);
+        numDatum.push(numData);
         var data = prettify(result.attributes);
         util.processData(data);
         datum.push(data);
         props.push(util.convertData(result));
       });
+      numDatum.push(paths);
+      numDatum.push(['Size', 'Gzipped Size']);
 
       response.render('compare', {
         title: 'StyleStas Test Result Comparison',
         data: datum,
         properties: JSON.stringify(props),
+        numData: JSON.stringify(numDatum),
         is_compare: true
       });
     },
