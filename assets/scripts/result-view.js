@@ -29,8 +29,8 @@ module.exports = Parse.View.extend({
     Highcharts.setOptions({
       lang: {thousandsSep: ','}
     });
-    if (!$('#js-prop-data').html()) return;
-    var results = JSON.parse($('#js-prop-data').html());
+    if (!$('#js-props-data').html()) return;
+    var results = JSON.parse($('#js-props-data').html());
     results.forEach(function (result, index) {
       $('#js-prop-chart' + index).highcharts({
         chart: {
@@ -71,8 +71,8 @@ module.exports = Parse.View.extend({
     });
   },
   renderColumnChart: function () {
-    if (!$('#js-compare-data').html()) return;
-    var results = JSON.parse($('#js-compare-data').html());
+    if (!$('#js-sizes-data').html()) return;
+    var results = JSON.parse($('#js-sizes-data').html());
     console.log(results);
     $('#js-compare-chart').highcharts({
       chart: {

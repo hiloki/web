@@ -12,22 +12,22 @@ module.exports = function (request, response) {
     success: function (results) {
       var datum = [];
       var props = [];
-      var numDatum = [];
+      var sizes = [];
       var paths = [];
       results.forEach(function (result) {
-        var numData = [];
+        var size = [];
         paths.push(result.attributes.paths[0]);
-        numData.push(result.attributes.size);
-        numData.push(result.attributes.gzippedSize);
-        numDatum.push(numData);
+        size.push(result.attributes.size);
+        size.push(result.attributes.gzippedSize);
+        sizes.push(size);
         var data = prettify(result.attributes);
         util.processData(data);
         datum.push(data);
         props.push(util.convertData(result));
         console.log(data);
       });
-      numDatum.push(paths);
-      numDatum.push(['Size', 'Gzipped Size']);
+      sizes.push(paths);
+      sizes.push(['Size', 'Gzipped Size']);
 
 
 
@@ -49,7 +49,7 @@ module.exports = function (request, response) {
         title: 'StyleStas Test Result Comparison',
         data: datum,
         properties: JSON.stringify(props),
-        numData: JSON.stringify(numDatum),
+        sizes: JSON.stringify(sizes),
         is_compare: true
       });
     },

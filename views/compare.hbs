@@ -1,20 +1,21 @@
 <header>
   <h1><a href="/">CompareStats</a></h1>
   <h2>An evaluating tool for writing better CSS</h2>
-  <div title="Unavailable now."><svg><use xlink:href="#search"></use></svg></div>
+  <div title="Unavailable now.">
+    <svg><use xlink:href="#search"></use></svg>
+  </div>
 </header>
 
 <main>
-
   <div class="container">
-    <div id="js-compare-chart" class="c-compare-chart c-card"></div>
+    <div id="js-compare-chart" class="c-card c-card--sizechart"></div>
     <div class="compare">
       {{#if data}}
         {{> list }}
       {{/if}}
     </div>
-
   </div>
 </main>
-<script type="application/json" id="js-prop-data">{{{ properties }}}</script>
-<script type="application/json" id="js-compare-data">{{{ numData }}}</script>
+
+<script type="application/json" id="js-sizes-data">{{{ sizes }}}</script>
+<script type="application/json" id="js-props-data">{{{ properties }}}</script>
