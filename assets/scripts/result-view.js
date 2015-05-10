@@ -39,9 +39,7 @@ module.exports = Parse.View.extend({
           plotShadow: false,
           spacing: [0, 0, 10, 0]
         },
-        credits: {
-          enabled: false
-        },
+        credits: {enabled: false},
         colors: ['#80DEEA', '#80CBC4', '#A5D6A7', '#C5E1A5', '#E6EE9C', '#FFF59D'],
         title: false,
         tooltip: {
@@ -79,10 +77,8 @@ module.exports = Parse.View.extend({
         type: 'column',
         spacing: [40, 20, 20, 20]
       },
-      credits: {
-        enabled: false
-      },
-      colors: ['#A5D6A7', '#E6EE9C'],
+      credits: {enabled: false},
+      colors: ['#80DEEA', '#FFF59D'],
       title: false,
       xAxis: {
         categories: results[3],

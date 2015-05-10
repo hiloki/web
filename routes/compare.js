@@ -6,8 +6,10 @@ var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
+
   // Search for comparing Object IDs
   query.containedIn('objectId', [request.query.id1, request.query.id2]);
+
   query.find({
     success: function (results) {
       var datum = [];
@@ -26,21 +28,24 @@ module.exports = function (request, response) {
       });
       sizes.push(paths, ['Size', 'Gzipped Size']);
 
-
-      Object.keys(results[0].attributes).forEach(function(key){
-        if(!isNaN(results[0].attributes[key])) {
-          if(results[0].attributes[key] == results[1].attributes[key]) {
-            datum[0]['is_'+key] = true;
-            datum[1]['is_'+key] = true;
-          } else if(results[0].attributes[key] < results[1].attributes[key]) {
-            datum[0]['is_'+key] = true;
-          } else {
-            datum[1]['is_'+key] = true;
-          }
+      var alpha = results[0].attributes;
+      var beta = results[1].attributes;
+      Object.keys(alpha).forEach(function (key) {
+        if (isNaN(alpha[key])) return;
+        if (alpha[key] == beta[key]) {
+          datum[0]['is_' + key] = true;
+          datum[1]['is_' + key] = true;
+        } else if (alpha[key] < beta[key]) {
+          datum[0]['is_' + key] = true;
+        } else {
+          datum[1]['is_' + key] = true;
         }
       });
+      // Higher Simplicity is better.
+      datum.forEach(function (data) {
+        data.is_simplicity = (data.is_simplicity) ? false : true;
+      });
 
-      
       response.render('compare', {
         title: 'StyleStats Test Result Comparison',
         data: datum,

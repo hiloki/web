@@ -70,9 +70,11 @@ footer {
 .container.l-input {
   max-width: 100%;
 }
+
 .c-card.c-card--sizeschart {
   margin: -40px 0 -20px;
 }
+
 .c-inputBox {
   position: relative;
   z-index: 99;
@@ -151,22 +153,6 @@ footer {
   margin: auto;
 }
 
-.compare > .c-metrics {
-  column-count: auto;
-  width: 50%;
-  padding: 10px;
-  float: left;
-}
-
-.compare > .c-metrics > .c-card {
-  max-height: 94px;
-  overflow: auto;
-}
-
-.compare > .c-metrics > .c-card.propertiesCount {
-  max-height: 1000px;
-}
-
 .c-metrics {
   column-count: 1;
   column-gap: 20px;
@@ -193,27 +179,6 @@ footer {
     margin: 2px 2px 20px 2px;
     padding: 16px;
     white-space: nowrap;
-  }
-  &.is-compare section {
-      color: #F44336;
-    }
-  }
-  &.is-compare .is-good {
-    section {
-      color: #4CAF50;
-    }
-  }
-  &.is-compare {
-   .published,
-   .paths,
-   .mostIdentifierSelector,
-   .lowestCohesionSelector,
-   .uniqueFontSizes,
-   .uniqueColors,
-   .propertiesCount{
-    section {
-      color: #333;
-    }
   }
   .inner {
     overflow: auto;
@@ -250,6 +215,25 @@ footer {
     color: $color-white;
     background: rgba(117, 117, 117, 0.9);
     font-size: 0.7rem;
+  }
+  &.c-metrics--compare {
+    column-count: auto;
+    width: 50%;
+    padding: 10px;
+    float: left;
+    .c-card {
+      max-height: 95px;
+      overflow: auto;
+    }
+    .c-card.propertiesCount {
+      max-height: 1000px;
+    }
+    .is-bad section {
+      color: #F44336;
+    }
+    .is-good section {
+      color: #4CAF50;
+    }
   }
 }
 
