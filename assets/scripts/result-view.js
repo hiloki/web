@@ -74,7 +74,7 @@ module.exports = Parse.View.extend({
     if (!$('#js-sizes-data').html()) return;
     var results = JSON.parse($('#js-sizes-data').html());
     console.log(results);
-    $('#js-compare-chart').highcharts({
+    $('#js-sizes-chart').highcharts({
       chart: {
         type: 'column',
         spacing: [40, 20, 20, 20]

@@ -15,20 +15,16 @@ module.exports = function (request, response) {
       var sizes = [];
       var paths = [];
       results.forEach(function (result) {
-        var size = [];
-        paths.push(result.attributes.paths[0]);
-        size.push(result.attributes.size);
-        size.push(result.attributes.gzippedSize);
-        sizes.push(size);
-        var data = prettify(result.attributes);
+        var rawData = result.attributes;
+        var data = prettify(rawData);
         util.processData(data);
         datum.push(data);
         props.push(util.convertData(result));
-        console.log(data);
+        var size = [rawData.size, rawData.gzippedSize];
+        sizes.push(size);
+        paths.push(rawData.paths[0]);
       });
-      sizes.push(paths);
-      sizes.push(['Size', 'Gzipped Size']);
-
+      sizes.push(paths, ['Size', 'Gzipped Size']);
 
 
       Object.keys(results[0].attributes).forEach(function(key){
@@ -44,9 +40,9 @@ module.exports = function (request, response) {
         }
       });
 
-
+      
       response.render('compare', {
-        title: 'StyleStas Test Result Comparison',
+        title: 'StyleStats Test Result Comparison',
         data: datum,
         properties: JSON.stringify(props),
         sizes: JSON.stringify(sizes),
