@@ -64,6 +64,7 @@ if (env === 'production') {
 
 app.get('/', require('./routes/index'));
 app.get('/compare/', require('./routes/compare'));
+app.get('/search/', require('./routes/search'));
 app.get('/results/*', require('./routes/results'));
 app.post('/parse', require('./routes/parse'));
 
