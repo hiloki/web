@@ -1,5 +1,6 @@
-var templateAll = require('../template/perfect-list.hbs');
+var tempList = require('../../views/partials/list.hbs');
 var prettify = require('stylestats/lib/prettify.js');
+var util = require('../../lib/util.js');
 
 module.exports = Parse.View.extend({
   el: '#js-resultView',
@@ -7,86 +8,117 @@ module.exports = Parse.View.extend({
     this.model.on('change', this.render, this);
     this.$el.on('click', '.js-share', this.setShareURI);
     this.renderPieChart();
+    this.renderColumnChart();
   },
-  processData: function (data) {
-    var KEY_ARRY = [
-      'Paths',
-      'Lowest Cohesion Selector',
-      'Unique Font Families',
-      'Unique Font Sizes',
-      'Unique Colors',
-      'Properties Count'
-    ];
-    Object.keys(data).forEach(function (key) {
-      if (KEY_ARRY.indexOf(key) !== -1) {
-        data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
-      }
-    });
-    data['Properties Count'] = data['Properties Count'].slice(0, 9);
-  },
-  setShareURI: function () {
-    if ($(this).data('clicked')) return;
+  setShareURI: function (e) {
+    e.preventDefault();
     var path = $(this).attr('href') + encodeURIComponent(location.href);
-    $(this).attr('href', path);
-    $(this).data('clicked', true);
+    window.open(path, 'Share Test Result', 'height=350,width=500,resizable=1');
   },
   clearResultView: function () {
     this.remove();
   },
   render: function () {
     var data = prettify(this.model.attributes);
-    this.processData(data);
-    this.$el.html(templateAll({data: data}));
+    util.processData(data);
+    this.$el.html(tempList({data: [data]}));
     this.renderPieChart();
     return this;
   },
   renderPieChart: function () {
-    if (!$('#js-prop-data').html()) return;
-    var properties = JSON.parse($('#js-prop-data').html());
-    var results = [];
-    var count = 0;
-    properties.forEach(function (obj, index) {
-      if (index < 5) {
-        var result = [obj.property, obj.count];
-        results.push(result);
-      } else {
-        count += obj.count;
-      }
-    });
-    results.push(['Other', count]);
-
     Highcharts.setOptions({
       lang: {thousandsSep: ','}
     });
-    $('#js-prop-chart').highcharts({
+    if (!$('#js-prop-data').html()) return;
+    var results = JSON.parse($('#js-prop-data').html());
+    results.forEach(function (result, index) {
+      $('#js-prop-chart' + index).highcharts({
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          spacing: [0, 0, 10, 0]
+        },
+        credits: {
+          enabled: false
+        },
+        colors: ['#80DEEA', '#80CBC4', '#A5D6A7', '#C5E1A5', '#E6EE9C', '#FFF59D'],
+        title: false,
+        tooltip: {
+          borderRadius: 3,
+          borderWidth: 0,
+          backgroundColor: 'rgba(117, 117, 117, 0.9)',
+          shadow: false,
+          style: {color: '#fff'},
+          pointFormat: '<b>{point.percentage:.1f}%, {point.y}</b>'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Properties share',
+          data: result
+        }]
+      });
+    });
+  },
+  renderColumnChart: function () {
+    if (!$('#js-compare-data').html()) return;
+    var results = JSON.parse($('#js-compare-data').html());
+    console.log(results);
+    $('#js-compare-chart').highcharts({
       chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        spacing: [0, 0, 10, 0]
+        type: 'column',
+        spacing: [40, 20, 20, 20]
       },
       credits: {
         enabled: false
       },
-      colors: ['#80DEEA', '#80CBC4', '#A5D6A7', '#C5E1A5', '#E6EE9C', '#FFF59D'],
+      colors: ['#A5D6A7', '#E6EE9C'],
       title: false,
+      xAxis: {
+        categories: results[3],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Size (Byte)'
+        }
+      },
       tooltip: {
-        pointFormat: '<b>{point.percentage:.1f}%, {point.y}</b>'
+        borderRadius: 3,
+        borderWidth: 0,
+        backgroundColor: 'rgba(117, 117, 117, 0.9)',
+        shadow: false,
+        style: {color: '#fff'},
+        headerFormat: '{point.key}<ul>',
+        pointFormat: '<li><span style="color:{series.color};">■</span>' + '<b> {point.y}Byte</b></li>',
+        footerFormat: '</ul>',
+        shared: true,
+        useHTML: true
       },
       plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: false
-          },
-          showInLegend: true
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
         }
       },
       series: [{
-        type: 'pie',
-        name: 'Properties share',
-        data: results
+        name: results[2][0],
+        data: results[0]
+
+      }, {
+        name: results[2][1],
+        data: results[1]
       }]
     });
   }

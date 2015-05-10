@@ -14,7 +14,7 @@ var methodOverride = require('method-override');
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 
-var util = require('./assets/scripts/util.js');
+var util = require('./lib/util.js');
 var Parse = require('parse').Parse;
 Parse.initialize(util.ID, util.KEY);
 
@@ -63,6 +63,7 @@ if (env === 'production') {
 }
 
 app.get('/', require('./routes/index'));
+app.get('/compare/', require('./routes/compare'));
 app.get('/results/*', require('./routes/results'));
 app.post('/parse', require('./routes/parse'));
 
