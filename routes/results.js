@@ -1,22 +1,5 @@
-var hbs = require('express-handlebars').create();
 var prettify = require('stylestats/lib/prettify.js');
-
-function processData(data) {
-  var KEY_ARRY = [
-    'Paths',
-    'Lowest Cohesion Selector',
-    'Unique Font Families',
-    'Unique Font Sizes',
-    'Unique Colors',
-    'Properties Count'
-  ];
-  Object.keys(data).forEach(function (key) {
-    if (KEY_ARRY.indexOf(key) !== -1) {
-      data[key] = data[key].replace(/\n/g, '<br>').split('<br>');
-    }
-  });
-  data['Properties Count'] = data['Properties Count'].slice(0,9);
-}
+var util = require('../lib/util.js');
 
 var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
@@ -29,37 +12,44 @@ module.exports = function (request, response) {
     flag = false;
     id = id.replace(/\.json/, '');
   }
+  // Search for Object ID
   query.equalTo('objectId', id);
-  query.first().then(function (data) {
-    if (data) {
-      var rank = JSON.stringify(data.attributes.propertiesCount);
-      var result = prettify(data.attributes);
-      processData(result);
-      var title = data.get('paths')[0] + ' - ' + data.createdAt;
-      hbs.render('./assets/template/perfect-list.hbs', {data: result})
-        .then(function (html) {
-          if (flag) {
-            response.render('index', {
-              title: 'StyleStats Test Result | ' + title,
-              result: html,
-              id: data.id,
-              properties: rank
-            });
-          } else {
-            response.json(data.attributes);
-          }
-        });
-    } else {
-      response.render('404', {
-        title: "Test not found | StyleStats",
-        header: "Test not found :("
-      });
-    }
-  }, function (error) {
-    response.render('404', {
-      title: "Database is busy | StyleStats",
-      header: "Database is busy :("
-    });
-  });
+  query.first({
+    success: function (result) {
+      if (result) {
+        var title = util.createTitle(result.get('paths')[0], result.createdAt);
 
+        var datum = [];
+        var props = [];
+
+        var data = prettify(result.attributes);
+        util.processData(data);
+        datum.push(data);
+        props.push(util.convertData(result));
+
+        if (flag) {
+          response.render('index', {
+            title: title,
+            data: datum,
+            properties: JSON.stringify(props),
+            id: result.id
+          });
+        } else {
+          response.json(result.attributes);
+        }
+      } else {
+        response.render('404', {
+          title: "Test not found | StyleStats",
+          header: "Test not found :("
+        });
+      }
+    },
+    error: function (error) {
+      response.render('404', {
+        title: "Database is busy | StyleStats",
+        header: "Database is busy :("
+      });
+      console.log(error);
+    }
+  });
 };

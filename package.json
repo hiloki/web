@@ -32,10 +32,9 @@
     "start": "node web.js",
     "stop": "forever stopall",
     "dev": "npm start & npm run server & npm run watch",
-    "watch": "npm run watch:css & npm run watch:js & npm run watch:hbs",
+    "watch": "npm run watch:css & npm run watch:js",
     "watch:css": "watch 'gulp css' assets/styles/",
     "watch:js": "watch 'gulp js' assets/scripts/",
-    "watch:hbs": "watch 'gulp js' assets/template/",
     "bs": "browser-sync start --proxy=localhost:5000",
     "server": "npm run bs -- --files='public/js/app.min.js, public/js/app.min.js'"
   },

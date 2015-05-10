@@ -1,7 +1,5 @@
 var StyleStats = require('stylestats');
-var config = {
-  "propertiesCount": 1000
-};
+var config = {"propertiesCount": 1000};
 
 module.exports = function (request, response) {
   var path = request.body.path;
