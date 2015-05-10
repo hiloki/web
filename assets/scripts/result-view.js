@@ -32,7 +32,7 @@ module.exports = Parse.View.extend({
     if (!$('#js-props-data').html()) return;
     var results = JSON.parse($('#js-props-data').html());
     results.forEach(function (result, index) {
-      $('#js-prop-chart' + index).highcharts({
+      $('#js-props-chart' + index).highcharts({
         chart: {
           plotBackgroundColor: null,
           plotBorderWidth: null,
