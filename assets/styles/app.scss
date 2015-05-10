@@ -163,7 +163,7 @@ footer {
   overflow: auto;
 }
 
-.compare > .c-metrics > .c-card.properties {
+.compare > .c-metrics > .c-card.propertiesCount {
   max-height: 1000px;
 }
 
@@ -193,6 +193,27 @@ footer {
     margin: 2px 2px 20px 2px;
     padding: 16px;
     white-space: nowrap;
+  }
+  &.is-compare section {
+      color: #F44336;
+    }
+  }
+  &.is-compare .is-good {
+    section {
+      color: #4CAF50;
+    }
+  }
+  &.is-compare {
+   .published,
+   .paths,
+   .mostIdentifierSelector,
+   .lowestCohesionSelector,
+   .uniqueFontSizes,
+   .uniqueColors,
+   .propertiesCount{
+    section {
+      color: #333;
+    }
   }
   .inner {
     overflow: auto;

@@ -24,9 +24,26 @@ module.exports = function (request, response) {
         util.processData(data);
         datum.push(data);
         props.push(util.convertData(result));
+        console.log(data);
       });
       numDatum.push(paths);
       numDatum.push(['Size', 'Gzipped Size']);
+
+
+
+      Object.keys(results[0].attributes).forEach(function(key){
+        if(!isNaN(results[0].attributes[key])) {
+          if(results[0].attributes[key] == results[1].attributes[key]) {
+            datum[0]['is_'+key] = true;
+            datum[1]['is_'+key] = true;
+          } else if(results[0].attributes[key] < results[1].attributes[key]) {
+            datum[0]['is_'+key] = true;
+          } else {
+            datum[1]['is_'+key] = true;
+          }
+        }
+      });
+
 
       response.render('compare', {
         title: 'StyleStas Test Result Comparison',
