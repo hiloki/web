@@ -6,33 +6,51 @@ var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
+
   // Search for comparing Object IDs
   query.containedIn('objectId', [request.query.id1, request.query.id2]);
+
   query.find({
     success: function (results) {
       var datum = [];
       var props = [];
-      var numDatum = [];
+      var sizes = [];
       var paths = [];
       results.forEach(function (result) {
-        var numData = [];
-        paths.push(result.attributes.paths[0]);
-        numData.push(result.attributes.size);
-        numData.push(result.attributes.gzippedSize);
-        numDatum.push(numData);
-        var data = prettify(result.attributes);
+        var rawData = result.attributes;
+        var data = prettify(rawData);
         util.processData(data);
         datum.push(data);
         props.push(util.convertData(result));
+        var size = [rawData.size, rawData.gzippedSize];
+        sizes.push(size);
+        paths.push(rawData.paths[0]);
       });
-      numDatum.push(paths);
-      numDatum.push(['Size', 'Gzipped Size']);
+      sizes.push(paths, ['Size', 'Gzipped Size']);
+
+      var alpha = results[0].attributes;
+      var beta = results[1].attributes;
+      Object.keys(alpha).forEach(function (key) {
+        if (isNaN(alpha[key])) return;
+        if (alpha[key] == beta[key]) {
+          datum[0]['is_' + key] = true;
+          datum[1]['is_' + key] = true;
+        } else if (alpha[key] < beta[key]) {
+          datum[0]['is_' + key] = true;
+        } else {
+          datum[1]['is_' + key] = true;
+        }
+      });
+      // Higher Simplicity is better.
+      datum.forEach(function (data) {
+        data.is_simplicity = (data.is_simplicity) ? false : true;
+      });
 
       response.render('compare', {
-        title: 'StyleStas Test Result Comparison',
+        title: 'StyleStats Test Result Comparison',
         data: datum,
         properties: JSON.stringify(props),
-        numData: JSON.stringify(numDatum),
+        sizes: JSON.stringify(sizes),
         is_compare: true
       });
     },

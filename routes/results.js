@@ -12,8 +12,10 @@ module.exports = function (request, response) {
     flag = false;
     id = id.replace(/\.json/, '');
   }
+
   // Search for Object ID
   query.equalTo('objectId', id);
+
   query.first({
     success: function (result) {
       if (result) {
