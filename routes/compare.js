@@ -7,6 +7,13 @@ var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
 
+  if (request.query.id1 === undefined) {
+    response.render('Compare', {
+      title: 'Test Result Comparison | StyleStats'
+    });
+    return;
+  }
+
   // Search for comparing Object IDs
   query.containedIn('objectId', [request.query.id1, request.query.id2]);
 
