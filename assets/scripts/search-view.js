@@ -4,13 +4,37 @@ module.exports = Parse.View.extend({
   el: '#js-searchView',
   initialize: function () {
     this.$query = $('#js-query');
-    this.$search = $('#js-search');
+    this.$compare = $('#js-compare');
     this.$progress = $('#js-progress');
     this.setQuery();
   },
   events: {
     'keypress #js-query': 'moveOnEnter',
-    'click #js-search': 'moveResultPage'
+    'click #js-search': 'moveResultPage',
+    'change .js-checkbox': 'inputTestId',
+    'click #js-compare': 'startComparison'
+  },
+  startComparison: function() {
+    var id1 = $('#js-id1').val();
+    var id2 = $('#js-id2').val();
+    var query = '/compare?id1='  + id1 + '&id2='+ id2;
+    this.$compare.attr('href', query);
+  },
+  inputTestId: function() {
+    var $checks = $('.js-checkbox');
+    var $fileds = $('.js-input-filed');
+    if ($checks.filter(':checked').length === 2) {
+      $checks.not(':checked').prop('disabled', true);
+    } else {
+      $checks.prop('disabled', false);
+    }
+    $fileds.each(function(index){
+      if(!$checks.filter(':checked')[index]) {
+        $(this).val('');
+      } else {
+        $(this).val($checks.filter(':checked')[index].id);
+      }
+    });
   },
   setQuery: function() {
     if(!window.location.search) return;

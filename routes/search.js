@@ -1,3 +1,6 @@
+var moment = require('moment');
+var numeral = require('numeral');
+
 var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
@@ -21,9 +24,16 @@ module.exports = function (request, response) {
     success: function (results) {
       var datum = [];
       results.forEach(function(result){
+        var resultData = result.attributes;
+        var byte = numeral(resultData.size).format('0.0b');
+        byte.replace(/\.0B/, 'B').replace(/0\.0/, '0');
+
         var data = {
-          path: result.attributes.path,
-          time: result.createdAt,
+          path: resultData.path,
+          time: moment(result.createdAt).format('MM/DD/YY HH:mm:ss'),
+          size: byte,
+          rules: resultData.rules,
+          selectors: resultData.selectors,
           uri: '/results/' + result.id,
           id: result.id
         };

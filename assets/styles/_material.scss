@@ -50,7 +50,8 @@ input[type="checkbox"], input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
-  /* 2 */ }
+  /* 2 */
+}
 
 /* Remove default checkbox */
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
@@ -64,7 +65,7 @@ input[type="checkbox"], input[type="radio"] {
 
 [type="checkbox"] + label {
   position: relative;
-  padding-left: 36px;
+  padding-left: 16px;
   cursor: pointer;
   display: inline-block;
   height: 16px;
@@ -205,4 +206,49 @@ input[type="checkbox"], input[type="radio"] {
 [type="checkbox"].filled-in:disabled:checked + label:after {
   background-color: #BDBDBD;
   border-color: #BDBDBD;
+}
+
+.c-if {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid #9E9E9E;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 30%;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  padding: 0;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  transition: all .3s;
+}
+
+.c-btn {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity, transform;
+  transition: all .3s ease-out;
+  height: 36px;
+  line-height: 38px;
+  text-decoration: none;
+  color: #FFF;
+  background-color: #26A69A;
+  text-align: center;
+  letter-spacing: .5px;
+  border: none;
+  border-radius: 2px;
+  outline: 0;
+  padding: 0 2rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }

@@ -28,20 +28,25 @@
       </div>
     </div>
     <div class="container">
-      <input type="text">
-      <input type="text">
-      <a href="" class="button">Compare</a>
+      <div class="c-comparebox">
+        <input type="text" class="c-if js-input-filed" id="js-id1" />
+        x
+        <input type="text" class="c-if js-input-filed" id="js-id2" />
+        =
+        <a href="" class="c-btn" id="js-compare">Compare</a>
+      </div>
+
 
 
       <ul class="c-srchlist">
         {{#if searchResults}}
           {{#each searchResults}}
             <li>
-              <input type="checkbox" class="filled-in" id="{{ id }}">
+              <input type="checkbox" class="filled-in js-checkbox" id="{{ id }}">
               <label for="{{ id }}"></label>
               <a href="{{ uri }}">
                 <span class="path">{{ path }}</span>
-                <span class="date">{{ time }}</span>
+                <span class="date">- {{ time }}, Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}</span>
               </a>
             </li>
           {{/each}}
