@@ -1,5 +1,6 @@
 <header style="background-color: #673AB7">
   <h1><a href="/">SearchStats</a></h1>
+
   <h2>An evaluating tool for writing better CSS</h2>
 </header>
 
@@ -8,7 +9,9 @@
     <div class="container l-input">
       <div class="c-inputBox">
         <div class="c-card">
-          <input id="js-query" type="text" placeholder="test log for URLs containing" class="c-input"/>
+          <input id="js-query" type="text"
+                 placeholder="test log for URLs containing" class="c-input"/>
+
           <div id="js-progress" class="progress">
             <div class="line"></div>
           </div>
@@ -28,21 +31,25 @@
       <input type="text">
       <input type="text">
       <a href="" class="button">Compare</a>
-      {{#if searchResults}}
-        <ul>
+
+
+      <ul class="c-srchlist">
+        {{#if searchResults}}
           {{#each searchResults}}
             <li>
-              <input type="checkbox" class="filled-in" data-id="{{ id }}">
+              <input type="checkbox" class="filled-in" id="{{ id }}">
+              <label for="{{ id }}"></label>
               <a href="{{ uri }}">
-                <p class="path">{{ path }}</p>
-                <p class="date">{{ time }}</p>
+                <span class="path">{{ path }}</span>
+                <span class="date">{{ time }}</span>
               </a>
             </li>
           {{/each}}
-        </ul>
-      {{else}}
-        <p>No results were found. Please try a different search.</p>
-      {{/if}}
+        {{else}}
+          <li><b>No results were found. Please try a different search.</b></li>
+        {{/if}}
+      </ul>
+
     </div>
   </div>
 </main>

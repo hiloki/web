@@ -4,6 +4,13 @@ var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
 
+  if (request.query.q === undefined) {
+    response.render('search', {
+      title: 'Test Result Logs | StyleStats'
+    });
+    return;
+  }
+
   var q = decodeURIComponent(request.query.q);
   var regex = new RegExp(q);
   query.matches('path', regex);
