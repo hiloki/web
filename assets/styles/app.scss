@@ -309,7 +309,7 @@ footer {
   }
 }
 .c-srchlist {
-  padding: 20px;
+  padding: 40px 0 20px;
   label {
     float: left;
     margin-top: 1px;
@@ -321,18 +321,31 @@ footer {
   }
   li {
     margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
   .path {
     font-weight: 700;
+    word-break: break-all;
   }
-  .date {
+  .detail {
     font-size: .8rem;
     color: #78909C;
   }
 }
 
 .c-comparebox {
-  padding: 30px 0;
+  line-height: 50px;
+  padding-bottom: 40px;
+  text-align: center;
+  .separator {
+    margin: 0 20px;
+  }
+  p {
+    line-height: 1.2;
+    margin-top: 20px;
+    color: #78909C;
+  }
 }
 
 .container--404 {

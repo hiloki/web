@@ -16,31 +16,43 @@ module.exports = Parse.View.extend({
     'keypress #js-query': 'moveOnEnter',
     'click #js-search': 'moveResultPage',
     'change .js-checkbox': 'inputTestId',
+    'input .js-input-filed': 'activateBtn',
     'click #js-compare': 'startComparison'
   },
-  startComparison: function() {
+  activateBtn: function () {
     var id1 = $('#js-id1').val();
     var id2 = $('#js-id2').val();
-    var query = '/compare?id1='  + id1 + '&id2='+ id2;
+    if (id1 !== '' && id2 !== '') {
+      this.$compare.removeClass('disabled');
+    } else {
+      this.$compare.addClass('disabled');
+    }
+  },
+  startComparison: function () {
+    var id1 = $('#js-id1').val();
+    var id2 = $('#js-id2').val();
+    var query = '/compare?id1=' + id1 + '&id2=' + id2;
     this.$compare.attr('href', query);
   },
-  inputTestId: function() {
+  inputTestId: function () {
+    var that = this;
     if (this.$checks.filter(':checked').length === 2) {
       this.$checks.not(':checked').prop('disabled', true);
+      this.$compare.removeClass('disabled');
     } else {
       this.$checks.prop('disabled', false);
+      this.$compare.addClass('disabled');
     }
-    var that = this;
-    this.$fileds.each(function(index){
-      if(!that.$checks.filter(':checked')[index]) {
+    this.$fileds.each(function (index) {
+      if (!that.$checks.filter(':checked')[index]) {
         $(this).val('');
       } else {
         $(this).val(that.$checks.filter(':checked')[index].id);
       }
     });
   },
-  setQuery: function() {
-    if(!window.location.search) return;
+  setQuery: function () {
+    if (!window.location.search) return;
     var query = window.location.search.replace(/^\?q=/, '');
     this.$query.val(decodeURIComponent(query));
   },
