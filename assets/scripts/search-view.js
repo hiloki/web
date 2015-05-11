@@ -6,7 +6,11 @@ module.exports = Parse.View.extend({
     this.$query = $('#js-query');
     this.$compare = $('#js-compare');
     this.$progress = $('#js-progress');
+    this.$checks = $('.js-checkbox');
+    this.$fileds = $('.js-input-filed');
     this.setQuery();
+    this.$checks.prop('checked', false);
+    this.$fileds.val('');
   },
   events: {
     'keypress #js-query': 'moveOnEnter',
@@ -21,18 +25,17 @@ module.exports = Parse.View.extend({
     this.$compare.attr('href', query);
   },
   inputTestId: function() {
-    var $checks = $('.js-checkbox');
-    var $fileds = $('.js-input-filed');
-    if ($checks.filter(':checked').length === 2) {
-      $checks.not(':checked').prop('disabled', true);
+    if (this.$checks.filter(':checked').length === 2) {
+      this.$checks.not(':checked').prop('disabled', true);
     } else {
-      $checks.prop('disabled', false);
+      this.$checks.prop('disabled', false);
     }
-    $fileds.each(function(index){
-      if(!$checks.filter(':checked')[index]) {
+    var that = this;
+    this.$fileds.each(function(index){
+      if(!that.$checks.filter(':checked')[index]) {
         $(this).val('');
       } else {
-        $(this).val($checks.filter(':checked')[index].id);
+        $(this).val(that.$checks.filter(':checked')[index].id);
       }
     });
   },
