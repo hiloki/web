@@ -6,7 +6,8 @@ module.exports = function (request, response) {
 
   if (request.query.q === undefined) {
     response.render('search', {
-      title: 'Test Result Logs | StyleStats'
+      title: 'Test Result Logs | StyleStats',
+      searchResults: true
     });
     return;
   }
