@@ -1,19 +1,13 @@
-var prettify = require('stylestats/lib/prettify.js');
-var util = require('../lib/util.js');
-
 var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
-  console.log(request.query.q);
-  // Search for comparing Object IDs
-  // query.containedIn('objectId', [request.query.id1, request.query.id2]);
-
+  query.matches('paths', /http/);
+  query.limit(10);
   query.find({
     success: function (results) {
-
-
+      console.log('================||| ', results.length);
       response.render('search', {
         title: 'StyleStats'
       });
