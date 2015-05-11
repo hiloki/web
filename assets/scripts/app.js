@@ -18,6 +18,7 @@ $(function () {
   // =======================
   var OperationView = require('./operation-view.js');
   var ResultView = require('./result-view.js');
+  var SearchView = require('./serach-view.js');
 
   new OperationView({model: result});
   new ResultView({model: result});

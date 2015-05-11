@@ -47,7 +47,7 @@ module.exports = function (request, response) {
       });
 
       response.render('compare', {
-        title: 'StyleStats Test Result Comparison',
+        title: 'Test Result Comparison | StyleStats',
         data: datum,
         properties: JSON.stringify(props),
         sizes: JSON.stringify(sizes),

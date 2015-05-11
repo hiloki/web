@@ -3,13 +3,24 @@ var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
-  query.matches('paths', /http/);
+  query.matches('path', /g/);
   query.limit(10);
   query.find({
     success: function (results) {
-      console.log('================||| ', results.length);
+      var datum = [];
+      results.forEach(function(result){
+        var data = {
+          path: result.attributes.path,
+          time: result.createdAt,
+          uri: '/results/' + result.id,
+          id: result.id
+        };
+        datum.push(data);
+      });
+
       response.render('search', {
-        title: 'StyleStats'
+        title: 'Test Result Logs | StyleStats',
+        searchResults: datum
       });
     },
     error: function (error) {
