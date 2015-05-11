@@ -60,7 +60,8 @@ module.exports = Parse.View.extend({
 
     $.ajax(config).done(function (data) {
       that.$progress.removeClass('is-loading');
-      $('#js-prop-data').html(JSON.stringify(data.propertiesCount));
+      $('#js-props-data').html(JSON.stringify(data.propertiesCount));
+      data.path = data.paths[0].replace(/\/$/, '');
       that.model.set(data);
       that.model.save().then(function (object) {
         var title = object.get('paths')[0] + ' - ' + object.createdAt;
