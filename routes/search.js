@@ -3,8 +3,12 @@ var Result = Parse.Object.extend('Result');
 var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
-  query.matches('path', /g/);
+
+  var q = decodeURIComponent(request.query.q);
+  var regex = new RegExp(q);
+  query.matches('path', regex);
   query.limit(10);
+
   query.find({
     success: function (results) {
       var datum = [];

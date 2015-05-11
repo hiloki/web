@@ -18,10 +18,11 @@ $(function () {
   // =======================
   var OperationView = require('./operation-view.js');
   var ResultView = require('./result-view.js');
-  var SearchView = require('./serach-view.js');
+  var SearchView = require('./search-view.js');
 
   new OperationView({model: result});
   new ResultView({model: result});
+  new SearchView();
 
   global.router = new Workspace();
   Parse.history.start({pushState: true});
