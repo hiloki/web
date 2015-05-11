@@ -19,6 +19,12 @@ module.exports = function (request, response) {
 
   query.find({
     success: function (results) {
+      if (results.length !== 2) {
+        response.render('Compare', {
+          title: 'Test Result Comparison | StyleStats'
+        });
+        return;
+      }
       var datum = [];
       var props = [];
       var sizes = [];
