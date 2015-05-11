@@ -8,7 +8,7 @@ module.exports = function (request, response) {
   var regex = new RegExp(q);
   query.matches('path', regex);
   query.limit(10);
-
+  query.descending("createdAt");
   query.find({
     success: function (results) {
       var datum = [];
