@@ -261,5 +261,6 @@ input[type="checkbox"], input[type="radio"] {
     box-shadow: none;
     color: #9F9F9F;
     cursor: default;
+    pointer-events: none;
   }
 }
