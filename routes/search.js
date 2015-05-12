@@ -3,7 +3,7 @@ var numeral = require('numeral');
 
 var Parse = require('parse').Parse;
 var Result = Parse.Object.extend('Result');
-var query = new Parse.Query(Result);
+
 
 module.exports = function (request, response) {
 
@@ -15,9 +15,15 @@ module.exports = function (request, response) {
     return;
   }
 
+  var subqueries = [];
   var q = decodeURIComponent(request.query.q);
-  var regex = new RegExp(q);
-  query.matches('path', regex);
+  q.trim().split(' ').forEach(function (value) {
+    var subquery = new Parse.Query(Result);
+    subquery.contains('path', value);
+    subqueries.push(subquery);
+  });
+
+  var query = Parse.Query.or.apply(null, subqueries);
   query.limit(10);
   query.descending("createdAt");
   query.find({
