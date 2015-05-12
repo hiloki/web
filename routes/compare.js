@@ -34,7 +34,7 @@ module.exports = function (request, response) {
         var data = prettify(rawData);
         util.processData(data);
         datum.push(data);
-        props.push(util.convertData(result));
+        props.push(util.convertData(rawData));
         var size = [rawData.size, rawData.gzippedSize];
         sizes.push(size);
         paths.push(rawData.paths[0]);
