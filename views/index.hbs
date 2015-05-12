@@ -1,7 +1,7 @@
 <header>
   <h1><a href="/">StyleStats</a></h1>
   <h2>An evaluating tool for writing better CSS</h2>
-  <div title="Unavailable now."><svg><use xlink:href="#search"></use></svg></div>
+  <a href="/search" title="Go to Search page"><svg><use xlink:href="#search"></use></svg></a>
 </header>
 
 <main>
@@ -35,8 +35,11 @@
       <p class="c-download">
         <a href="/results/{{ id }}.json" download="{{ id }}.json">
           <svg><use xlink:href="#cloud"></use></svg>Download raw JSON data</a>
+        <span>The test ID is <code>{{ id }}</code>.</span>
       </p>
+
     {{/if}}
+
 
     {{#if results}}
     <section class="c-tests">

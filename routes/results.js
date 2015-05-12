@@ -27,7 +27,7 @@ module.exports = function (request, response) {
         var data = prettify(result.attributes);
         util.processData(data);
         datum.push(data);
-        props.push(util.convertData(result));
+        props.push(util.convertData(result.attributes));
 
         if (flag) {
           response.render('index', {
