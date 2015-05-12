@@ -1,9 +1,11 @@
 @charset "UTF-8";
+
+//-------------------------------------------
+// Import modules
+//-------------------------------------------
 @import "config";
 @import "util";
 @import "reset";
-
-
 @import "material";
 
 
@@ -341,7 +343,6 @@ footer {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
   .path {
-    font-weight: 700;
     word-break: break-all;
   }
   .detail {

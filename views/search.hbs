@@ -30,8 +30,8 @@
               <input type="checkbox" class="filled-in js-checkbox" id="{{ id }}">
               <label for="{{ id }}"></label>
               <a href="{{ uri }}">
-                <span class="path">{{ path }}</span>
-                <span class="detail">- <b>{{ time }}</b>, Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}</span>
+               <span class="path"><b>{{ path }}</b> - {{ time }}</span>
+               <span class="detail">, Test ID: <b>{{ id }}</b>, Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}</span>
               </a>
             </li>
           {{/each}}
