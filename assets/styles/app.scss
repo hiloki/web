@@ -25,13 +25,20 @@ header {
     margin-top: 4px;
     letter-spacing: 0.1rem;
   }
-  svg {
+  .search {
     position: absolute;
-    top: 12px;
+    top: 0;
     right: 12px;
+  }
+  svg {
     width: 24px;
     height: 24px;
+    margin-right: 3px;
     fill: $color-white;
+    vertical-align: -7px;
+  }
+  span {
+    display: none;
   }
 }
 
@@ -380,6 +387,9 @@ footer {
     h2 {
       display: block;
       font-size: 1.6rem;
+    }
+    span {
+      display: inline;
     }
   }
   footer {
