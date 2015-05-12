@@ -7,11 +7,24 @@ var query = new Parse.Query(Result);
 
 module.exports = function (request, response) {
 
+  if (request.query.id1 === undefined) {
+    response.render('Compare', {
+      title: 'Test Result Comparison | StyleStats'
+    });
+    return;
+  }
+
   // Search for comparing Object IDs
   query.containedIn('objectId', [request.query.id1, request.query.id2]);
 
   query.find({
     success: function (results) {
+      if (results.length !== 2) {
+        response.render('Compare', {
+          title: 'Test Result Comparison | StyleStats'
+        });
+        return;
+      }
       var datum = [];
       var props = [];
       var sizes = [];
@@ -21,7 +34,7 @@ module.exports = function (request, response) {
         var data = prettify(rawData);
         util.processData(data);
         datum.push(data);
-        props.push(util.convertData(result));
+        props.push(util.convertData(rawData));
         var size = [rawData.size, rawData.gzippedSize];
         sizes.push(size);
         paths.push(rawData.paths[0]);
@@ -47,7 +60,7 @@ module.exports = function (request, response) {
       });
 
       response.render('compare', {
-        title: 'StyleStats Test Result Comparison',
+        title: 'Test Result Comparison | StyleStats',
         data: datum,
         properties: JSON.stringify(props),
         sizes: JSON.stringify(sizes),
