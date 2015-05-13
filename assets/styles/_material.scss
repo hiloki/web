@@ -257,9 +257,10 @@ input[type="checkbox"], input[type="radio"] {
   text-align: center;
   text-transform: uppercase;
   &.disabled {
+    cursor: default;
+    pointer-events: none;
+    color: #9F9F9F;
     background-color: #DFDFDF;
     box-shadow: none;
-    color: #9F9F9F;
-    cursor: default;
   }
 }

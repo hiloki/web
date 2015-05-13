@@ -1,9 +1,11 @@
 @charset "UTF-8";
+
+//-------------------------------------------
+// Import modules
+//-------------------------------------------
 @import "config";
 @import "util";
 @import "reset";
-
-
 @import "material";
 
 
@@ -25,13 +27,20 @@ header {
     margin-top: 4px;
     letter-spacing: 0.1rem;
   }
-  svg {
+  .search {
     position: absolute;
-    top: 12px;
+    top: 0;
     right: 12px;
+  }
+  svg {
     width: 24px;
     height: 24px;
+    margin-right: 3px;
     fill: $color-white;
+    vertical-align: -7px;
+  }
+  span {
+    display: none;
   }
 }
 
@@ -268,6 +277,7 @@ footer {
 }
 
 .c-download {
+  line-height: 2;
   text-align: center;
   a {
     font-weight: 700;
@@ -334,7 +344,6 @@ footer {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
   .path {
-    font-weight: 700;
     word-break: break-all;
   }
   .detail {
@@ -380,6 +389,9 @@ footer {
     h2 {
       display: block;
       font-size: 1.6rem;
+    }
+    span {
+      display: inline;
     }
   }
   footer {

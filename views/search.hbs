@@ -1,6 +1,5 @@
 <header style="background-color: #9C27B0">
   <h1><a href="/">SearchStats</a></h1>
-
   <h2>An evaluating tool for writing better CSS</h2>
 </header>
 
@@ -31,8 +30,8 @@
               <input type="checkbox" class="filled-in js-checkbox" id="{{ id }}">
               <label for="{{ id }}"></label>
               <a href="{{ uri }}">
-                <span class="path">{{ path }}</span>
-                <span class="detail">- <b>{{ time }}</b>, Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}</span>
+               <span class="path"><b>{{ path }}</b> - {{ time }}</span>
+               <span class="detail">, Test ID: <b>{{ id }}</b>, Size: {{ size }}, Rules: {{ rules }}, Selectors: {{ selectors }}</span>
               </a>
             </li>
           {{/each}}

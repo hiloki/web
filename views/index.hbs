@@ -1,7 +1,8 @@
 <header>
   <h1><a href="/">StyleStats</a></h1>
   <h2>An evaluating tool for writing better CSS</h2>
-  <a href="/search" title="Go to Search page"><svg><use xlink:href="#search"></use></svg></a>
+  <a href="/search" title="Go to Search page" class="search">
+    <svg><use xlink:href="#search"></use></svg><span>Search</span></a>
 </header>
 
 <main>
@@ -35,7 +36,7 @@
       <p class="c-download">
         <a href="/results/{{ id }}.json" download="{{ id }}.json">
           <svg><use xlink:href="#cloud"></use></svg>Download raw JSON data</a>
-        <span>The test ID is <code>{{ id }}</code>.</span>
+        <span class="u-nw">The test ID is <code>{{ id }}</code>.</span>
       </p>
 
     {{/if}}
@@ -64,6 +65,17 @@
         <li><a href="/results/Vz2DRgUCKI">Tumblr.com</a></li>
         <li><a href="/results/dcJe6mYwdh">Apple.com</a></li>
         <li><a href="/results/cCwLstUUVb">GitHub.com</a></li>
+      </ul>
+    </section>
+
+    <section class="c-example u-cf">
+      <h2>View Test Result Comparisons</h2>
+      <ul>
+        <li><a href="/compare?id1=WHGHqunurS&id2=x5HaDGTrMt">Foundation.css x Bootstrap.css</a></li>
+        <li><a href="/results/dcJe6mYwdh">Meyer-reset.css x Normalize.css</a></li>
+        <li><a href="/compare?id1=URpMfBnc9M&id2=plWM0Tblk5">Google x Bing</a></li>
+        <li><a href="/compare?id1=aG1xRvKNEs&id2=SPXAVn6J0c">Apple x Microsoft</a></li>
+        <li><a href="/compare?id1=BCEyZswlmM&id2=MzwnrdWO1Z">Google+ x Facebook</a></li>
       </ul>
     </section>
   </div>
