@@ -36,7 +36,7 @@ module.exports = function (request, response) {
 
         var data = {
           path: resultData.path,
-          time: moment(result.createdAt).format('MM/DD/YY HH:mm:ss'),
+          time: moment(result.createdAt).format('MM/DD/YY HH:mm'),
           size: byte,
           rules: resultData.rules,
           selectors: resultData.selectors,
