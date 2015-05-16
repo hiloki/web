@@ -1,4 +1,3 @@
-require('newrelic');
 var forever = require('forever');
 
 var child = new (forever.Monitor)('main.js', {
