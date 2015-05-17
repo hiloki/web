@@ -15,8 +15,8 @@ module.exports = function (request, response) {
         var resultData = result.attributes;
         var byte = numeral(resultData.size).format('0.0b');
         byte.replace(/\.0B/, 'B').replace(/0\.0/, '0');
-        var faviconArry = resultData.paths[0].split('/');
-        var favicon = faviconArry[0] + '//' + faviconArry[2] + '/favicon.ico';
+        var uriPaths = resultData.paths[0].split('/');
+        var favicon = 'http://www.google.com/s2/favicons?domain=' + uriPaths[2];
         var obj = {
           icon: favicon,
           id: result.id,
@@ -33,7 +33,7 @@ module.exports = function (request, response) {
         results: data
       });
     },
-    error: function(error) {
+    error: function (error) {
       response.render('index', {
         title: 'StyleStats - An evaluating tool for writing better CSS.'
       });
