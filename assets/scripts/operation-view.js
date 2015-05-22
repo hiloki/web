@@ -9,16 +9,12 @@ module.exports = Parse.View.extend({
     this.$progress = $('#js-progress');
     this.csrfToken = $('#js-token').attr('content');
     $('.ripple').on('click', this.rippleEffect);
-    $('.js-favicon').error(this.replaceFavicon);
   },
   events: {
     'focus #js-uri': 'enableInput',
     'keydown #js-uri': 'enableInput',
     'keypress #js-uri': 'requestOnEnter',
     'click #js-parse': 'requestParse'
-  },
-  replaceFavicon: function () {
-    $(this).attr({src: '/img/favicon.png'});
   },
   enableInput: function (e) {
     this.$parse.prop('disabled', false).removeClass('is-disabled');
